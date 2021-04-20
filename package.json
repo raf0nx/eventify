@@ -11,15 +11,18 @@
     },
     "devDependencies": {
         "axios": "^0.21",
+        "case-sensitive-paths-webpack-plugin": "^2.4.0",
+        "deepmerge": "^4.2.2",
         "laravel-mix": "^6.0.6",
         "laravel-mix-purgecss": "^6.0.0",
         "lodash": "^4.17.19",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
+        "sass": "^1.32.11",
+        "sass-loader": "^8.0.2",
         "vue": "^2.5.17",
         "vue-loader": "^15.9.6",
-        "vue-template-compiler": "^2.6.10"
+        "vue-template-compiler": "^2.6.10",
+        "vuetify-loader": "^1.7.2"
     },
     "dependencies": {
         "vue-router": "^3.5.1",
