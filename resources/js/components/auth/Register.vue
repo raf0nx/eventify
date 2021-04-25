@@ -62,8 +62,9 @@ export default {
   methods: {
     async saveUser() {
       try {
-        const response = await axios.post("/register", this.formData);
-        console.log(response);
+        await axios.get("/sanctum/csrf-cookie");
+        await axios.post("/register", this.formData);
+        this.$router.push({ name: "Login" });
       } catch (error) {
         console.log(error);
       }
