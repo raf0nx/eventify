@@ -1,17 +1,16 @@
-require('./bootstrap');
+require("./bootstrap");
 
-import Vue from 'vue'
-import Vuetify from '../plugins/vuetify'
+import Vue from "vue";
+import Vuetify from "../plugins/vuetify";
 
-import VueRouter from 'vue-router'
-import router from './router/router'
+import router from "./router/router";
+import store from "./store/store";
 
-Vue.use(VueRouter);
+Vue.component("app", require("./components/App.vue").default);
 
-Vue.component('app', require('./components/App.vue').default);
-
-const app = new Vue({
-    el: '#app',
-    router: new  VueRouter(router),
+new Vue({
+    el: "#app",
+    router,
+    store,
     vuetify: Vuetify
 });
