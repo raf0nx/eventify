@@ -64,6 +64,7 @@
 			async registerUser() {
 				try {
 					await AuthService.registerUser(this.formData);
+					this.$store.commit("alert/SET_ALERT", `Account verification mail sent to ${this.formData.email}!`);
 					this.$router.push({ name: "Login" });
 				} catch (error) {
 					console.log(error);
