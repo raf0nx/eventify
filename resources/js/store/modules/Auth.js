@@ -4,12 +4,16 @@ import AuthService from "../../services/AuthService";
 export const namespaced = true;
 
 export const state = {
-    user: null
+    user: null,
+    showAlert: false
 };
 
 export const mutations = {
     SET_USER(state, user) {
         state.user = user;
+    },
+    SET_ALERT(state, setAlert) {
+        state.showAlert = setAlert;
     }
 };
 
@@ -23,9 +27,9 @@ export const actions = {
             commit("SET_USER", null);
         }
     },
-    async logout({ commit }) {
+    logout({ commit }) {
         try {
-            await AuthService.logout();
+            AuthService.logout();
             commit("SET_USER", null);
             if (router.currentRoute.name !== "Login") {
                 router.push({ name: "Login" });
@@ -39,5 +43,8 @@ export const actions = {
 export const getters = {
     authUser: state => {
         return state.user;
+    },
+    showAlert: state => {
+        return state.showAlert;
     }
 };
