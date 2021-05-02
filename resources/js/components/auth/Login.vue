@@ -1,39 +1,51 @@
 <template>
-	<v-main class="d-flex align-center">
-		<v-container class="d-flex justify-center" fluid>
-			<v-col cols="12" md="6">
-				<v-card class="pa-12" elevation="12">
-					<v-form>
-						<v-text-field
-							color="purple"
-							type="email"
-							label="Email"
-							outlined
-							v-model="formData.email"
-						></v-text-field>
-						<v-text-field
-							color="purple"
-							type="password"
-							label="Password"
-							outlined
-							v-model="formData.password"
-						></v-text-field>
-						<v-btn
-							color="purple"
-							type="submit"
-							large
-							dark
-							@click.prevent="loginUser()"
-							>Login</v-btn
-						>
-					</v-form>
-				</v-card>
-			</v-col>
-		</v-container>
-	</v-main>
+	<v-col
+		cols="12"
+		md="5"
+		class="d-flex flex-column justify-center px-12"
+		dark
+	>
+		<v-card elevation="0">
+			<h1
+				class="main-title font-weight-bold deep-purple--text text--darken-4"
+			>
+				Sign In
+			</h1>
+			<v-form class="py-12">
+				<v-text-field
+					color="deep-purple"
+					type="email"
+					label="Email Address"
+					v-model="formData.email"
+				></v-text-field>
+				<v-text-field
+					color="deep-purple"
+					type="password"
+					label="Password"
+					v-model="formData.password"
+				></v-text-field>
+				<v-btn
+					color="purple"
+					type="submit"
+					class="white--text font-weight-bold mt-12"
+					large
+					block
+					@click.prevent="loginUser()"
+					>Continue</v-btn
+				>
+			</v-form>
+			<p class="text-center">
+				Don't have an account?
+				<v-btn :to="{ name: 'Register' }" plain text small>
+					Sign up
+				</v-btn>
+			</p>
+		</v-card>
+	</v-col>
 </template>
 
 <script>
+	import { mapGetters } from "vuex";
 	import AuthService from "../../services/AuthService";
 
 	export default {
@@ -45,8 +57,12 @@
 				},
 			};
 		},
+		computed: {
+			...mapGetters("auth", ["isLoading"]),
+		},
 		methods: {
 			async loginUser() {
+				this.$store.commit("auth/SET_LOADING", true);
 				try {
 					await AuthService.loginUser(this.formData);
 					const authUser = await this.$store.dispatch("auth/getAuthUser");
@@ -58,10 +74,11 @@
 				} catch (error) {
 					console.log(error);
 				}
+				this.$store.commit("auth/SET_LOADING", false);
 			},
 		},
 	};
 </script>
 
-<style>
+<style scoped>
 </style>

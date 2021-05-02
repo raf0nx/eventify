@@ -1,7 +1,7 @@
 <template>
 	<v-main class="d-flex align-center">
 		<v-container class="d-flex justify-center" fluid>
-			<v-btn @click="resendVerificationLink()">Resend email verification link<v-btn>
+			<v-btn @click="resendVerificationLink()">Resend email verification link</v-btn>
 		</v-container>
 	</v-main>
 </template>

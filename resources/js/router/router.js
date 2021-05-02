@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store/store";
 import Home from "../components/main/Home";
+import Auth from "../components/auth/Auth";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
 import VerifyEmail from "../components/auth/VerifyEmail";
@@ -17,14 +18,21 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
-        path: "/login",
-        component: Login,
-        name: "Login"
-    },
-    {
-        path: "/register",
-        component: Register,
-        name: "Register"
+        path: "/auth",
+        component: Auth,
+        name: "Auth",
+        children: [
+            {
+                path: "login",
+                component: Login,
+                name: "Login"
+            },
+            {
+                path: "register",
+                component: Register,
+                name: "Register"
+            }
+        ]
     },
     {
         path: "/verify-email",
@@ -68,7 +76,10 @@ router.beforeEach(async (to, _, next) => {
 router.afterEach((_, _2) => {
     const authUser = store.getters["auth/authUser"];
     if (authUser) {
-        store.commit("auth/SET_ALERT", !authUser.email_verified_at ? true : false);
+        store.commit(
+            "auth/SET_ALERT",
+            !authUser.email_verified_at ? true : false
+        );
     }
 });
 

@@ -1,12 +1,13 @@
 <template>
 	<v-app>
-		<v-alert
+		<v-system-bar
 			v-if="showAlert"
-			class="rounded-0 font-weight-bold text-center white--text"
-			color="orange"
-			elevation="2"
-			dense
+			color="orange darken-1"
+			class="font-weight-bold justify-center white--text"
+			app
+			window
 		>
+			<v-icon class="white--text">mdi-alert</v-icon>
 			Email not verified! Check your inbox at {{ userEmail }}
 			<v-btn
 				:to="{ name: 'VerifyEmail' }"
@@ -17,27 +18,37 @@
 			>
 				Resend link
 			</v-btn>
-		</v-alert>
-		<router-link :to="{ name: 'Home' }" exact>Home</router-link>
-		<router-link :to="{ name: 'Login' }">Login</router-link>
-		<router-link :to="{ name: 'Register' }">Register</router-link>
-		<router-view></router-view>
+		</v-system-bar>
+		<v-overlay :value="isLoading">
+			<v-progress-circular indeterminate size="64"></v-progress-circular>
+		</v-overlay>
+		<transition name="scale" mode="out-in" appear>
+			<router-view></router-view>
+		</transition>
 	</v-app>
 </template>
 
 <script>
+	import { mapGetters } from "vuex";
 	export default {
 		computed: {
-			showAlert() {
-				return this.$store.getters["auth/showAlert"];
-			},
+			...mapGetters("auth", ["showAlert", "isLoading", "authUser"]),
 			userEmail() {
-				const userObj = this.$store.getters["auth/authUser"];
-				return userObj ? userObj.email : null;
+				return this.authUser ? this.authUser.email : null;
 			},
 		},
 	};
 </script>
 
-<style scoped>
+<style>
+	.scale-enter-active,
+	.scale-leave-active {
+		transition: all 0.5s ease;
+	}
+
+	.scale-enter,
+	.scale-leave-to {
+		opacity: 0;
+		transform: scale(0.9);
+	}
 </style>

@@ -1,6 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 * {
-  font-family: "nunito";
+  font-family: "nunito" !important;
 }
-
-
