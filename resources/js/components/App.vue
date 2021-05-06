@@ -2,7 +2,7 @@
 	<v-app>
 		<v-system-bar
 			v-if="showAlert"
-			color="orange darken-1"
+			color="orange darken-2"
 			class="font-weight-bold justify-center white--text"
 			app
 			window
@@ -10,7 +10,7 @@
 			<v-icon class="white--text">mdi-alert</v-icon>
 			Email not verified! Check your inbox at {{ userEmail }}
 			<v-btn
-				:to="{ name: 'VerifyEmail' }"
+				@click="resendVerificationLink"
 				plain
 				text
 				class="white--text font-weight-bold"
@@ -19,6 +19,19 @@
 				Resend link
 			</v-btn>
 		</v-system-bar>
+		<v-snackbar
+			v-model="showSnackbar"
+			absolute
+			centered
+			top
+			color="deep-purple"
+			class="mt-12"
+		>
+        <div class="d-flex align-center">
+			<v-icon color="white">mdi-check-circle</v-icon>
+			<span class="font-weight-bold ml-1">Verification Link resend successfully!</span>
+        </div>
+		</v-snackbar>
 		<v-overlay :value="isLoading">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
@@ -30,11 +43,30 @@
 
 <script>
 	import { mapGetters } from "vuex";
+
+	import AuthService from "../services/AuthService";
+
 	export default {
 		computed: {
-			...mapGetters("auth", ["showAlert", "isLoading", "authUser"]),
+			...mapGetters("auth", ["authUser"]),
+			...mapGetters("utils", ["showAlert", "isLoading", "showSnackbar"]),
 			userEmail() {
 				return this.authUser ? this.authUser.email : null;
+			},
+			userId() {
+				return this.authUser ? this.authUser.id : null;
+			},
+		},
+		methods: {
+			async resendVerificationLink() {
+				this.$store.commit("utils/SET_LOADING", true);
+				try {
+					await AuthService.sendVerification(this.userId);
+					this.$store.dispatch("utils/setSnackbar");
+				} catch (error) {
+					console.log(error);
+				}
+				this.$store.commit("utils/SET_LOADING", false);
 			},
 		},
 	};

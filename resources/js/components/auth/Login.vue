@@ -58,11 +58,11 @@
 			};
 		},
 		computed: {
-			...mapGetters("auth", ["isLoading"]),
+			...mapGetters("utils", ["isLoading"]),
 		},
 		methods: {
 			async loginUser() {
-				this.$store.commit("auth/SET_LOADING", true);
+				this.$store.commit("utils/SET_LOADING", true);
 				try {
 					await AuthService.loginUser(this.formData);
 					const authUser = await this.$store.dispatch("auth/getAuthUser");
@@ -74,7 +74,7 @@
 				} catch (error) {
 					console.log(error);
 				}
-				this.$store.commit("auth/SET_LOADING", false);
+				this.$store.commit("utils/SET_LOADING", false);
 			},
 		},
 	};

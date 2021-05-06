@@ -71,14 +71,14 @@
 		},
 		methods: {
 			async registerUser() {
-				this.$store.commit("auth/SET_LOADING", true);
+				this.$store.commit("utils/SET_LOADING", true);
 				try {
 					await AuthService.registerUser(this.formData);
 					this.$router.push({ name: "Home" });
 				} catch (error) {
 					console.log(error);
 				}
-				this.$store.commit("auth/SET_LOADING", false);
+				this.$store.commit("utils/SET_LOADING", false);
 			},
 		},
 	};

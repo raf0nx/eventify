@@ -5,20 +5,12 @@ export const namespaced = true;
 
 export const state = {
     user: null,
-    showAlert: false,
-    loading: false
 };
 
 export const mutations = {
     SET_USER(state, user) {
         state.user = user;
     },
-    SET_ALERT(state, setAlert) {
-        state.showAlert = setAlert;
-    },
-    SET_LOADING(state, isLoading) {
-        state.loading = isLoading;
-    }
 };
 
 export const actions = {
@@ -48,10 +40,4 @@ export const getters = {
     authUser: state => {
         return state.user;
     },
-    showAlert: state => {
-        return state.showAlert;
-    },
-    isLoading: state => {
-        return state.loading;
-    }
 };

@@ -5,7 +5,6 @@ import Home from "../components/main/Home";
 import Auth from "../components/auth/Auth";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
-import VerifyEmail from "../components/auth/VerifyEmail";
 import ErrorPage from "../components/error/ErrorPage";
 
 Vue.use(VueRouter);
@@ -33,12 +32,6 @@ const routes = [
                 name: "Register"
             }
         ]
-    },
-    {
-        path: "/verify-email",
-        component: VerifyEmail,
-        name: "VerifyEmail",
-        meta: { requiresAuth: true }
     },
     {
         path: "*",
@@ -77,7 +70,7 @@ router.afterEach((_, _2) => {
     const authUser = store.getters["auth/authUser"];
     if (authUser) {
         store.commit(
-            "auth/SET_ALERT",
+            "utils/SET_ALERT",
             !authUser.email_verified_at ? true : false
         );
     }
