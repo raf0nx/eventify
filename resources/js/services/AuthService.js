@@ -9,7 +9,7 @@ export default {
         return axios.post("/login", payload);
     },
     logout() {
-        axios.post("/logout");
+        return axios.post("/logout");
     },
     async registerUser(payload) {
         await axios.get("/sanctum/csrf-cookie");

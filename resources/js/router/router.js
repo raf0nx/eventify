@@ -71,8 +71,10 @@ router.afterEach((_, _2) => {
     if (authUser) {
         store.commit(
             "utils/SET_ALERT",
-            !authUser.email_verified_at ? true : false
+            authUser.email_verified_at ? false : true
         );
+    } else {
+        store.commit("utils/SET_ALERT", false);
     }
 });
 

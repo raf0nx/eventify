@@ -2556,7 +2556,9 @@ router.afterEach(function (_, _2) {
   var authUser = _store_store__WEBPACK_IMPORTED_MODULE_1__.default.getters["auth/authUser"];
 
   if (authUser) {
-    _store_store__WEBPACK_IMPORTED_MODULE_1__.default.commit("utils/SET_ALERT", !authUser.email_verified_at ? true : false);
+    _store_store__WEBPACK_IMPORTED_MODULE_1__.default.commit("utils/SET_ALERT", authUser.email_verified_at ? false : true);
+  } else {
+    _store_store__WEBPACK_IMPORTED_MODULE_1__.default.commit("utils/SET_ALERT", false);
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -2610,7 +2612,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   logout: function logout() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/logout");
+    return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/logout");
   },
   registerUser: function registerUser(payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -2707,20 +2709,41 @@ var actions = {
     }))();
   },
   logout: function logout(_ref2) {
-    var commit = _ref2.commit;
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return _services_AuthService__WEBPACK_IMPORTED_MODULE_2__.default.logout();
 
-    try {
-      _services_AuthService__WEBPACK_IMPORTED_MODULE_2__.default.logout();
-      commit("SET_USER", null);
+            case 4:
+              commit("SET_USER", null);
 
-      if (_router_router__WEBPACK_IMPORTED_MODULE_1__.default.currentRoute.name !== "Login") {
-        _router_router__WEBPACK_IMPORTED_MODULE_1__.default.push({
-          name: "Login"
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
+              if (_router_router__WEBPACK_IMPORTED_MODULE_1__.default.currentRoute.name !== "Login") {
+                _router_router__WEBPACK_IMPORTED_MODULE_1__.default.push({
+                  name: "Login"
+                });
+              }
+
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              console.log(_context2.t0);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 8]]);
+    }))();
   }
 };
 var getters = {

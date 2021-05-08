@@ -23,9 +23,9 @@ export const actions = {
             commit("SET_USER", null);
         }
     },
-    logout({ commit }) {
+    async logout({ commit }) {
         try {
-            AuthService.logout();
+            await AuthService.logout();
             commit("SET_USER", null);
             if (router.currentRoute.name !== "Login") {
                 router.push({ name: "Login" });
