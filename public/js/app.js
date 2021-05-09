@@ -1914,10 +1914,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("auth", ["authUser"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("utils", ["showAlert", "isLoading", "showSnackbar"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("auth", ["authUser"])), (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("utils", ["showAlert", "isLoading", "snackbarNotify"])), {}, {
     userEmail: function userEmail() {
       return this.authUser ? this.authUser.email : null;
     },
@@ -1941,7 +1943,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _services_AuthService__WEBPACK_IMPORTED_MODULE_1__.default.sendVerification(_this.userId);
 
               case 4:
-                _this.$store.dispatch("utils/setSnackbar");
+                _this.$store.dispatch("utils/setSnackbar", {
+                  showSnackbar: true,
+                  message: "Verification Link resend successfully!"
+                });
 
                 _context.next = 10;
                 break;
@@ -2770,7 +2775,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var namespaced = true;
 var state = {
-  showSnackbar: false,
+  snackbarNotify: {},
   showAlert: false,
   loading: false
 };
@@ -2781,16 +2786,19 @@ var mutations = {
   SET_LOADING: function SET_LOADING(state, isLoading) {
     state.loading = isLoading;
   },
-  SET_SNACKBAR: function SET_SNACKBAR(state, setSnackbar) {
-    state.showSnackbar = setSnackbar;
+  SET_SNACKBAR: function SET_SNACKBAR(state, snackbarInfo) {
+    state.snackbarNotify = snackbarInfo;
   }
 };
 var actions = {
-  setSnackbar: function setSnackbar(_ref) {
+  setSnackbar: function setSnackbar(_ref, payload) {
     var commit = _ref.commit;
-    commit("SET_SNACKBAR", true);
+    commit("SET_SNACKBAR", payload);
     setTimeout(function () {
-      return commit("SET_SNACKBAR", false);
+      return commit("SET_SNACKBAR", {
+        showSnackbar: false,
+        message: null
+      });
     }, 4000);
   }
 };
@@ -2801,8 +2809,8 @@ var getters = {
   isLoading: function isLoading(state) {
     return state.loading;
   },
-  showSnackbar: function showSnackbar(state) {
-    return state.showSnackbar;
+  snackbarNotify: function snackbarNotify(state) {
+    return state.snackbarNotify;
   }
 };
 
@@ -21905,9 +21913,9 @@ var render = function() {
                 _vm._v("mdi-alert")
               ]),
               _vm._v(
-                "\n\t\t\tEmail not verified! Check your inbox at " +
+                "\n\t\tEmail not verified! Check your inbox at " +
                   _vm._s(_vm.userEmail) +
-                  "\n\t\t\t"
+                  "\n\t\t"
               ),
               _c(
                 "v-btn",
@@ -21916,7 +21924,7 @@ var render = function() {
                   attrs: { plain: "", text: "", small: "" },
                   on: { click: _vm.resendVerificationLink }
                 },
-                [_vm._v("\n\t\t\t\tResend link\n\t\t\t")]
+                [_vm._v("\n\t\t\tResend link\n\t\t")]
               )
             ],
             1
@@ -21929,11 +21937,11 @@ var render = function() {
           staticClass: "mb-12",
           attrs: { fixed: "", bottom: "", color: "deep-purple" },
           model: {
-            value: _vm.showSnackbar,
+            value: _vm.snackbarNotify.showSnackbar,
             callback: function($$v) {
-              _vm.showSnackbar = $$v
+              _vm.$set(_vm.snackbarNotify, "showSnackbar", $$v)
             },
-            expression: "showSnackbar"
+            expression: "snackbarNotify.showSnackbar"
           }
         },
         [
@@ -21946,7 +21954,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "font-weight-bold ml-1" }, [
-                _vm._v("Verification Link resend successfully!")
+                _vm._v(_vm._s(_vm.snackbarNotify.message))
               ])
             ],
             1

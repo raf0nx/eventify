@@ -1,7 +1,7 @@
 export const namespaced = true;
 
 export const state = {
-    showSnackbar: false,
+    snackbarNotify: {},
     showAlert: false,
     loading: false
 };
@@ -12,14 +12,18 @@ export const mutations = {
     SET_LOADING(state, isLoading) {
         state.loading = isLoading;
     },
-    SET_SNACKBAR(state, setSnackbar) {
-        state.showSnackbar = setSnackbar;
+    SET_SNACKBAR(state, snackbarInfo) {
+        state.snackbarNotify = snackbarInfo;
     }
 };
 export const actions = {
-    setSnackbar({ commit }) {
-        commit("SET_SNACKBAR", true);
-        setTimeout(() => commit("SET_SNACKBAR", false), 4000);
+    setSnackbar({ commit }, payload) {
+        commit("SET_SNACKBAR", payload);
+        setTimeout(
+            () =>
+                commit("SET_SNACKBAR", { showSnackbar: false, message: null }),
+            4000
+        );
     }
 };
 
@@ -30,7 +34,7 @@ export const getters = {
     isLoading: state => {
         return state.loading;
     },
-    showSnackbar: state => {
-        return state.showSnackbar;
+    snackbarNotify: state => {
+        return state.snackbarNotify;
     }
 };

@@ -20,16 +20,18 @@
 			</v-btn>
 		</v-system-bar>
 		<v-snackbar
-			v-model="showSnackbar"
+			v-model="snackbarNotify.showSnackbar"
 			fixed
 			bottom
 			color="deep-purple"
 			class="mb-12"
 		>
-        <div class="d-flex align-center">
-			<v-icon color="white">mdi-check-circle</v-icon>
-			<span class="font-weight-bold ml-1">Verification Link resend successfully!</span>
-        </div>
+			<div class="d-flex align-center">
+				<v-icon color="white">mdi-check-circle</v-icon>
+				<span class="font-weight-bold ml-1">{{
+					snackbarNotify.message
+				}}</span>
+			</div>
 		</v-snackbar>
 		<v-overlay :value="isLoading">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
@@ -48,7 +50,7 @@
 	export default {
 		computed: {
 			...mapGetters("auth", ["authUser"]),
-			...mapGetters("utils", ["showAlert", "isLoading", "showSnackbar"]),
+			...mapGetters("utils", ["showAlert", "isLoading", "snackbarNotify"]),
 			userEmail() {
 				return this.authUser ? this.authUser.email : null;
 			},
@@ -61,7 +63,10 @@
 				this.$store.commit("utils/SET_LOADING", true);
 				try {
 					await AuthService.sendVerification(this.userId);
-					this.$store.dispatch("utils/setSnackbar");
+					this.$store.dispatch("utils/setSnackbar", {
+						showSnackbar: true,
+						message: "Verification Link resend successfully!",
+					});
 				} catch (error) {
 					console.log(error);
 				}
