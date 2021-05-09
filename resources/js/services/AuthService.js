@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     getAuthUser() {
-        return axios.get("api/user");
+        return axios.get("/api/user");
     },
     async loginUser(payload) {
         await axios.get("/sanctum/csrf-cookie");

@@ -21,11 +21,10 @@
 		</v-system-bar>
 		<v-snackbar
 			v-model="showSnackbar"
-			absolute
-			centered
-			top
+			fixed
+			bottom
 			color="deep-purple"
-			class="mt-12"
+			class="mb-12"
 		>
         <div class="d-flex align-center">
 			<v-icon color="white">mdi-check-circle</v-icon>

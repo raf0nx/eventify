@@ -1914,7 +1914,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2589,7 +2588,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   getAuthUser: function getAuthUser() {
-    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("api/user");
+    return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/user");
   },
   loginUser: function loginUser(payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -2792,7 +2791,7 @@ var actions = {
     commit("SET_SNACKBAR", true);
     setTimeout(function () {
       return commit("SET_SNACKBAR", false);
-    }, 2500);
+    }, 4000);
   }
 };
 var getters = {
@@ -21927,8 +21926,8 @@ var render = function() {
       _c(
         "v-snackbar",
         {
-          staticClass: "mt-12",
-          attrs: { absolute: "", centered: "", top: "", color: "deep-purple" },
+          staticClass: "mb-12",
+          attrs: { fixed: "", bottom: "", color: "deep-purple" },
           model: {
             value: _vm.showSnackbar,
             callback: function($$v) {

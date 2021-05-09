@@ -19,7 +19,7 @@ export const mutations = {
 export const actions = {
     setSnackbar({ commit }) {
         commit("SET_SNACKBAR", true);
-        setTimeout(() => commit("SET_SNACKBAR", false), 2500);
+        setTimeout(() => commit("SET_SNACKBAR", false), 4000);
     }
 };
 
