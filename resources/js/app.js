@@ -5,6 +5,7 @@ import Vuetify from "../plugins/vuetify";
 
 import router from "./router/router";
 import store from "./store/store";
+import "./utils/validation";
 
 Vue.component("app", require("./components/App.vue").default);
 

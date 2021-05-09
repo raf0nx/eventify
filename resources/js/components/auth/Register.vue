@@ -11,38 +11,67 @@
 			>
 				Create a new account
 			</h1>
-			<v-form class="py-12">
-				<v-text-field
-					color="deep-purple"
-					type="text"
-					label="Your Name"
-					v-model="formData.name"
-				></v-text-field>
-				<v-text-field
-					color="deep-purple"
-					type="email"
-					label="Your Email"
-					v-model="formData.email"
-				></v-text-field>
-				<v-text-field
-					color="deep-purple"
-					label="Password"
-					type="password"
-					v-model="formData.password"
-				></v-text-field>
-				<v-text-field
-					color="deep-purple"
-					type="password"
-					label="Confirm password"
-					v-model="formData.password_confirmation"
-				></v-text-field>
+			<v-form class="py-12" @submit.prevent="registerUser">
+				<ValidationProvider
+					v-slot="{ errors }"
+					rules="required|alpha_spaces"
+					name="Name"
+				>
+					<v-text-field
+						color="deep-purple"
+						type="text"
+						label="Your Name"
+						:error-messages="errors"
+						v-model="formData.name"
+					></v-text-field>
+				</ValidationProvider>
+				<ValidationProvider
+					v-slot="{ errors }"
+					rules="required|email"
+					name="Email"
+				>
+					<v-text-field
+						color="deep-purple"
+						type="email"
+						label="Your Email"
+						:error-messages="errors"
+						v-model="formData.email"
+					></v-text-field>
+				</ValidationProvider>
+				<ValidationObserver>
+					<ValidationProvider
+						v-slot="{ errors }"
+						rules="required|min:8"
+						name="Password"
+					>
+						<v-text-field
+							color="deep-purple"
+							label="Password"
+							type="password"
+							:error-messages="errors"
+							v-model="formData.password"
+						></v-text-field>
+					</ValidationProvider>
+					<ValidationProvider
+						v-slot="{ errors }"
+						rules="required|confirmed:Password"
+						name="Password Confirmation"
+					>
+						<v-text-field
+							color="deep-purple"
+							type="password"
+							label="Confirm password"
+							:error-messages="errors"
+							v-model="formData.password_confirmation"
+						></v-text-field>
+					</ValidationProvider>
+				</ValidationObserver>
 				<v-btn
 					color="purple"
 					type="submit"
 					class="white--text font-weight-bold mt-12"
 					large
 					block
-					@click.prevent="registerUser()"
 					>Create account</v-btn
 				>
 			</v-form>
@@ -57,8 +86,15 @@
 </template>
 
 <script>
+	import { ValidationProvider, ValidationObserver } from "vee-validate";
+
 	import AuthService from "../../services/AuthService";
+
 	export default {
+		components: {
+			ValidationProvider,
+			ValidationObserver,
+		},
 		data() {
 			return {
 				formData: {

@@ -12,18 +12,24 @@
 				Sign In
 			</h1>
 			<v-form class="py-12">
-				<v-text-field
-					color="deep-purple"
-					type="email"
-					label="Email Address"
-					v-model="formData.email"
-				></v-text-field>
-				<v-text-field
-					color="deep-purple"
-					type="password"
-					label="Password"
-					v-model="formData.password"
-				></v-text-field>
+				<ValidationProvider v-slot="{ errors }" rules="required|email" name="Email">
+					<v-text-field
+						color="deep-purple"
+						type="email"
+						label="Email Address"
+                        :error-messages="errors"
+						v-model="formData.email"
+					></v-text-field>
+				</ValidationProvider>
+				<ValidationProvider v-slot="{ errors }" rules="required" name="Password">
+					<v-text-field
+						color="deep-purple"
+						type="password"
+						label="Password"
+                        :error-messages="errors"
+						v-model="formData.password"
+					></v-text-field>
+				</ValidationProvider>
 				<v-btn
 					color="purple"
 					type="submit"
@@ -46,9 +52,14 @@
 
 <script>
 	import { mapGetters } from "vuex";
+	import { ValidationProvider } from "vee-validate";
+
 	import AuthService from "../../services/AuthService";
 
 	export default {
+		components: {
+			ValidationProvider,
+		},
 		data() {
 			return {
 				formData: {
