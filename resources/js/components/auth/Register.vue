@@ -11,70 +11,75 @@
 			>
 				Create a new account
 			</h1>
-			<v-form class="py-12" @submit.prevent="registerUser">
-				<ValidationProvider
-					v-slot="{ errors }"
-					rules="required|alpha_spaces"
-					name="Name"
-				>
-					<v-text-field
-						color="deep-purple"
-						type="text"
-						label="Your Name"
-						:error-messages="errors"
-						v-model="formData.name"
-					></v-text-field>
-				</ValidationProvider>
-				<ValidationProvider
-					v-slot="{ errors }"
-					rules="required|email"
-					name="Email"
-				>
-					<v-text-field
-						color="deep-purple"
-						type="email"
-						label="Your Email"
-						:error-messages="errors"
-						v-model="formData.email"
-					></v-text-field>
-				</ValidationProvider>
-				<ValidationObserver>
+			<ValidationObserver ref="form" v-slot="{ passes, invalid }">
+				<v-form class="py-12" @submit.prevent="passes(registerUser)">
 					<ValidationProvider
 						v-slot="{ errors }"
-						rules="required|min:8"
-						name="Password"
+						rules="required|alpha_spaces"
+						name="Name"
+                        vid="name"
 					>
 						<v-text-field
 							color="deep-purple"
-							label="Password"
-							type="password"
+							type="text"
+							label="Your Name"
 							:error-messages="errors"
-							v-model="formData.password"
+							v-model="formData.name"
 						></v-text-field>
 					</ValidationProvider>
 					<ValidationProvider
 						v-slot="{ errors }"
-						rules="required|confirmed:Password"
-						name="Password Confirmation"
+						rules="required|email"
+						name="E-mail"
+                        vid="email"
 					>
 						<v-text-field
 							color="deep-purple"
-							type="password"
-							label="Confirm password"
+							type="email"
+							label="Your Email"
 							:error-messages="errors"
-							v-model="formData.password_confirmation"
+							v-model="formData.email"
 						></v-text-field>
 					</ValidationProvider>
-				</ValidationObserver>
-				<v-btn
-					color="purple"
-					type="submit"
-					class="white--text font-weight-bold mt-12"
-					large
-					block
-					>Create account</v-btn
-				>
-			</v-form>
+					<ValidationObserver>
+						<ValidationProvider
+							v-slot="{ errors }"
+							rules="required|min:8"
+							name="Password"
+						>
+							<v-text-field
+								color="deep-purple"
+								label="Password"
+								type="password"
+								:error-messages="errors"
+								v-model="formData.password"
+							></v-text-field>
+						</ValidationProvider>
+						<ValidationProvider
+							v-slot="{ errors }"
+							rules="required|confirmed:Password"
+							name="Password Confirmation"
+						>
+							<v-text-field
+								color="deep-purple"
+								type="password"
+								label="Confirm password"
+								:error-messages="errors"
+								v-model="formData.password_confirmation"
+							></v-text-field>
+						</ValidationProvider>
+					</ValidationObserver>
+					<v-btn
+						color="purple"
+						type="submit"
+						class="white--text font-weight-bold mt-12"
+						large
+						block
+                        :disabled="invalid"
+						>Create account</v-btn
+					>
+				</v-form>
+			</ValidationObserver>
 			<p class="text-center">
 				Already have an account?
 				<v-btn :to="{ name: 'Login' }" plain text small>
@@ -112,7 +117,12 @@
 					await AuthService.registerUser(this.formData);
 					this.$router.push({ name: "Home" });
 				} catch (error) {
-					console.log(error);
+                    const errorsData = error.response.data.errors;
+					this.$refs.form.setErrors({
+                        name: errorsData.name,
+                        email: errorsData.email,
+                        Password: errorsData.password
+                    });
 				}
 				this.$store.commit("utils/SET_LOADING", false);
 			},

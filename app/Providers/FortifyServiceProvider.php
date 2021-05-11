@@ -44,7 +44,7 @@ class FortifyServiceProvider extends ServiceProvider {
         return $user;
       } else {
         throw ValidationException::withMessages([
-          'email' => 'The provided credentials are incorrect!',
+          'password' => 'Email or password are incorrect!',
         ]);
       }
     });

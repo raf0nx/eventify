@@ -11,35 +11,46 @@
 			>
 				Sign In
 			</h1>
-			<v-form class="py-12">
-				<ValidationProvider v-slot="{ errors }" rules="required|email" name="Email">
-					<v-text-field
-						color="deep-purple"
-						type="email"
-						label="Email Address"
-                        :error-messages="errors"
-						v-model="formData.email"
-					></v-text-field>
-				</ValidationProvider>
-				<ValidationProvider v-slot="{ errors }" rules="required" name="Password">
-					<v-text-field
-						color="deep-purple"
-						type="password"
-						label="Password"
-                        :error-messages="errors"
-						v-model="formData.password"
-					></v-text-field>
-				</ValidationProvider>
-				<v-btn
-					color="purple"
-					type="submit"
-					class="white--text font-weight-bold mt-12"
-					large
-					block
-					@click.prevent="loginUser()"
-					>Continue</v-btn
-				>
-			</v-form>
+			<ValidationObserver ref="form" v-slot="{ passes, invalid }">
+				<v-form class="py-12" @submit.prevent="passes(loginUser)">
+					<ValidationProvider
+						v-slot="{ errors }"
+						rules="required|email"
+						name="Email"
+					>
+						<v-text-field
+							color="deep-purple"
+							type="email"
+							label="Email Address"
+							:error-messages="errors"
+							v-model="formData.email"
+						></v-text-field>
+					</ValidationProvider>
+					<ValidationProvider
+						v-slot="{ errors }"
+						rules="required"
+						name="Password"
+                        vid="password"
+					>
+						<v-text-field
+							color="deep-purple"
+							type="password"
+							label="Password"
+							:error-messages="errors"
+							v-model="formData.password"
+						></v-text-field>
+					</ValidationProvider>
+					<v-btn
+						color="purple"
+						type="submit"
+						class="white--text font-weight-bold mt-12"
+						large
+						block
+                        :disabled="invalid"
+						>Continue</v-btn
+					>
+				</v-form>
+			</ValidationObserver>
 			<p class="text-center">
 				Don't have an account?
 				<v-btn :to="{ name: 'Register' }" plain text small>
@@ -52,13 +63,14 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import { ValidationProvider } from "vee-validate";
+	import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 	import AuthService from "../../services/AuthService";
 
 	export default {
 		components: {
 			ValidationProvider,
+			ValidationObserver,
 		},
 		data() {
 			return {
@@ -83,7 +95,10 @@
 						throw new Error("Cannot authenticate user");
 					}
 				} catch (error) {
-					console.log(error);
+					const errorsData = error.response.data.errors;
+					this.$refs.form.setErrors({
+                        password: errorsData.password
+                    });
 				}
 				this.$store.commit("utils/SET_LOADING", false);
 			},
