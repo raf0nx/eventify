@@ -30,7 +30,7 @@
 						v-slot="{ errors }"
 						rules="required"
 						name="Password"
-                        vid="password"
+						vid="password"
 					>
 						<v-text-field
 							color="deep-purple"
@@ -46,7 +46,7 @@
 						class="white--text font-weight-bold mt-12"
 						large
 						block
-                        :disabled="invalid"
+						:disabled="invalid"
 						>Continue</v-btn
 					>
 				</v-form>
@@ -61,49 +61,45 @@
 	</v-col>
 </template>
 
-<script>
+<script lang="ts">
+	import "vue-router/types/vue";
 	import { mapGetters } from "vuex";
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
+	import Vue from "vue";
+	import Component from "vue-class-component";
 
 	import AuthService from "../../services/AuthService";
 
-	export default {
-		components: {
-			ValidationProvider,
-			ValidationObserver,
-		},
-		data() {
-			return {
-				formData: {
-					email: "",
-					password: "",
-				},
-			};
-		},
-		computed: {
-			...mapGetters("utils", ["isLoading"]),
-		},
-		methods: {
-			async loginUser() {
-				this.$store.commit("utils/SET_LOADING", true);
-				try {
-					await AuthService.loginUser(this.formData);
-					const authUser = await this.$store.dispatch("auth/getAuthUser");
-					if (authUser) {
-						this.$router.push({ name: "Home" });
-					} else {
-						throw new Error("Cannot authenticate user");
-					}
-				} catch (error) {
-					const errorsData = error.response.data.errors;
-					this.$refs.form.setErrors({
-                        password: errorsData.password
-                    });
+	@Component({
+		components: { ValidationProvider, ValidationObserver },
+		...mapGetters("utils", ["isLoading"]),
+	})
+	export default class Login extends Vue {
+
+		formData: { email: ""; password: "" };
+		$refs!: {
+			provider: InstanceType<typeof ValidationProvider>;
+		};
+        
+		async loginUser(): Promise<void> {
+			this.$store.commit("utils/SET_LOADING", true);
+			try {
+				await AuthService.loginUser(this.formData);
+				const authUser = await this.$store.dispatch("auth/getAuthUser");
+				if (authUser) {
+					this.$router.push({ name: "Home" });
+				} else {
+					throw new Error("Cannot authenticate user");
 				}
-				this.$store.commit("utils/SET_LOADING", false);
-			},
-		},
-	};
+			} catch (error) {
+				const errorsData = error.response.data.errors;
+				this.$refs.form.setErrors({
+					password: errorsData.password,
+				});
+			}
+			this.$store.commit("utils/SET_LOADING", false);
+		}
+	}
 </script>
 
 <style scoped>

@@ -10,7 +10,7 @@ var webpackConfig = {
 
 mix.webpackConfig(webpackConfig);
 
-mix.js("resources/js/app.js", "public/js")
+mix.js("resources/js/app.ts", "public/js")
     .vue()
     .sass("resources/sass/app.scss", "public/css")
     .purgeCss();
