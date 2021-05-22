@@ -8,19 +8,23 @@
 	</v-main>
 </template>
 
-<script>
-	import AuthService from "../../services/AuthService";
-	export default {
-		methods: {
-			logout() {
-				this.$store.dispatch("auth/logout");
-			},
-			async getUser() {
-				const user = await AuthService.getAuthUser();
-				console.log(user);
-			},
-		},
-	};
+<script lang="ts">
+	import { Vue, Component } from "vue-property-decorator";
+
+	import * as AuthService from "../../services/AuthService";
+    import { AuthModule } from "../../store/modules/Auth";
+
+	@Component({})
+	export default class Home extends Vue {
+		logout() {
+			AuthModule.logout();
+		}
+        
+		async getUser() {
+			const user = await AuthService.getAuthUser();
+			console.log(user);
+		}
+	}
 </script>
 
 <style>

@@ -1,5 +1,8 @@
 {
     "private": true,
+    "plugins": [
+        "@babel/plugin-transform-typescript"
+    ],
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
@@ -10,7 +13,9 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@babel/plugin-transform-typescript": "^7.13.0",
         "axios": "^0.21",
+        "babel-plugin-transform-decorators": "^6.24.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "deepmerge": "^4.2.2",
         "laravel-mix": "^6.0.6",
@@ -19,14 +24,16 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.32.11",
         "sass-loader": "^8.0.2",
+        "ts-loader": "^9.1.2",
         "vue": "^2.6.12",
-        "vue-class-component": "^7.2.6",
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.10",
-        "vuetify-loader": "^1.7.2"
+        "vuetify-loader": "^1.7.2",
+        "vuex-module-decorators": "^1.0.1"
     },
     "dependencies": {
         "vee-validate": "^3.4.5",
+        "vue-property-decorator": "^9.1.2",
         "vue-router": "^3.5.1",
         "vuetify": "^2.4.10",
         "vuex": "^3.6.2"

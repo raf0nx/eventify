@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
+        "types": ["vuetify"],
         "strict": true,
         "module": "es2015",
+        "sourceMap": true,
         "moduleResolution": "node",
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
     },
     "include": ["resources/js/**/*"]
 }

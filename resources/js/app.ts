@@ -1,17 +1,18 @@
-require("./bootstrap");
+import "./bootstrap";
 
 import Vue from "vue";
-import Vuetify from "../plugins/vuetify";
+import Vuetify from "./plugins/vuetify";
 
-import router from "./router/router";
+import App from "./components/App.vue";
 import store from "./store/store";
-import "./utils/validation";
+import router from "./routes/router";
+import "./utils/validation.ts";
 
-Vue.component("app", require("./components/App.vue").default);
+Vue.component("app", App);
 
 new Vue({
     el: "#app",
-    router,
     store,
+    router,
     vuetify: Vuetify
 });

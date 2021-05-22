@@ -1,13 +1,13 @@
 <template>
-  <div class="display-1 error--text">Page not found!</div>
+	<div class="display-1 error--text">Page not found!</div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+	import { Vue, Component } from "vue-property-decorator";
 
-}
+    @Component({})
+	export default class ErrorPage extends Vue {}
 </script>
 
 <style>
-
 </style>

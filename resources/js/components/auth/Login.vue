@@ -62,30 +62,27 @@
 </template>
 
 <script lang="ts">
-	import "vue-router/types/vue";
-	import { mapGetters } from "vuex";
+	import { Vue, Component } from "vue-property-decorator";
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
-	import Vue from "vue";
-	import Component from "vue-class-component";
 
-	import AuthService from "../../services/AuthService";
+	import * as AuthService from "../../services/AuthService";
+    import { AuthModule } from "../../store/modules/Auth";
+	import { UtilsModule } from "../../store/modules/Utils";
 
 	@Component({
 		components: { ValidationProvider, ValidationObserver },
-		...mapGetters("utils", ["isLoading"]),
 	})
 	export default class Login extends Vue {
-
-		formData: { email: ""; password: "" };
+		formData = { email: "", password: "" };
 		$refs!: {
-			provider: InstanceType<typeof ValidationProvider>;
+			form: InstanceType<typeof ValidationObserver>;
 		};
-        
+
 		async loginUser(): Promise<void> {
-			this.$store.commit("utils/SET_LOADING", true);
+			UtilsModule.setLoading(true);
 			try {
 				await AuthService.loginUser(this.formData);
-				const authUser = await this.$store.dispatch("auth/getAuthUser");
+				const authUser = await AuthModule.getAuthUser();
 				if (authUser) {
 					this.$router.push({ name: "Home" });
 				} else {
@@ -97,7 +94,7 @@
 					password: errorsData.password,
 				});
 			}
-			this.$store.commit("utils/SET_LOADING", false);
+			UtilsModule.setLoading(false);
 		}
 	}
 </script>

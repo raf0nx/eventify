@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-system-bar
-			v-if="showAlert"
+			v-if="alert"
 			color="orange darken-2"
 			class="font-weight-bold justify-center white--text"
 			app
@@ -20,7 +20,7 @@
 			</v-btn>
 		</v-system-bar>
 		<v-snackbar
-			v-model="snackbarNotify.showSnackbar"
+			v-model="snackbar.showSnackbar"
 			fixed
 			bottom
 			color="deep-purple"
@@ -29,11 +29,11 @@
 			<div class="d-flex align-center">
 				<v-icon color="white">mdi-check-circle</v-icon>
 				<span class="font-weight-bold ml-1">{{
-					snackbarNotify.message
+					snackbar.message
 				}}</span>
 			</div>
 		</v-snackbar>
-		<v-overlay :value="isLoading">
+		<v-overlay :value="loader">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
 		<transition name="scale" mode="out-in" appear>
@@ -42,38 +42,53 @@
 	</v-app>
 </template>
 
-<script>
-	import { mapGetters } from "vuex";
+<script lang="ts">
+	import { Vue, Component } from "vue-property-decorator";
 
-	import AuthService from "../services/AuthService";
+	import * as AuthService from "../services/AuthService";
+	import { AuthModule } from "../store/modules/Auth";
+	import { UtilsModule } from "../store/modules/Utils";
 
-	export default {
-		computed: {
-			...mapGetters("auth", ["authUser"]),
-			...mapGetters("utils", ["showAlert", "isLoading", "snackbarNotify"]),
-			userEmail() {
-				return this.authUser ? this.authUser.email : null;
-			},
-			userId() {
-				return this.authUser ? this.authUser.id : null;
-			},
-		},
-		methods: {
-			async resendVerificationLink() {
-				this.$store.commit("utils/SET_LOADING", true);
-				try {
-					await AuthService.sendVerification(this.userId);
-					this.$store.dispatch("utils/setSnackbar", {
-						showSnackbar: true,
-						message: "Verification Link resend successfully!",
-					});
-				} catch (error) {
-					console.log(error);
-				}
-				this.$store.commit("utils/SET_LOADING", false);
-			},
-		},
-	};
+	@Component({})
+	export default class App extends Vue {
+		get authUser() {
+			return AuthModule.authUser;
+		}
+
+        get snackbar() {
+            return UtilsModule.snackbar;
+        }
+
+		get userEmail() {
+			return this.authUser ? this.authUser.email : null;
+		}
+
+        get alert() {
+            return UtilsModule.alert;
+        }
+
+        get loader() {
+            return UtilsModule.loader;
+        }
+
+		get userId() {
+			return this.authUser ? this.authUser.id : null;
+		}
+
+		async resendVerificationLink() {
+			UtilsModule.setLoading(true);
+			try {
+				await AuthService.sendVerification(this.userId);
+				UtilsModule.setSnackbar({
+					showSnackbar: true,
+					message: "Verification Link resend successfully!",
+				});
+			} catch (error) {
+				console.log(error);
+			}
+			UtilsModule.setLoading(false);
+		}
+	}
 </script>
 
 <style>

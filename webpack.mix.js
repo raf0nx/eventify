@@ -13,4 +13,19 @@ mix.webpackConfig(webpackConfig);
 mix.js("resources/js/app.ts", "public/js")
     .vue()
     .sass("resources/sass/app.scss", "public/css")
-    .purgeCss();
+    .purgeCss()
+    .webpackConfig({
+        module: {
+            rules: [
+                {
+                    test: /\.tsx?$/,
+                    loader: "ts-loader",
+                    options: { appendTsSuffixTo: [/\.vue$/] },
+                    exclude: /node_modules/
+                }
+            ]
+        },
+        resolve: {
+            extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
+        }
+    });

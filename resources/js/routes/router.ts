@@ -1,15 +1,18 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import VueRouter, { RouteConfig } from "vue-router";
+
+import { AuthModule } from "../store/modules/Auth";
+import { UtilsModule } from "../store/modules/Utils";
 import store from "../store/store";
-import Home from "../components/main/Home";
-import Auth from "../components/auth/Auth";
-import Login from "../components/auth/Login";
-import Register from "../components/auth/Register";
-import ErrorPage from "../components/error/ErrorPage";
+import Home from "../components/main/Home.vue";
+import Auth from "../components/auth/Auth.vue";
+import Login from "../components/auth/Login.vue";
+import Register from "../components/auth/Register.vue";
+import ErrorPage from "../components/error/ErrorPage.vue";
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes: Array<RouteConfig> = [
     {
         path: "/",
         component: Home,
@@ -55,11 +58,11 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, _, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters["auth/authUser"]) {
+        if (AuthModule.authUser) {
             next();
         } else {
-            await store.dispatch("auth/getAuthUser");
-            store.getters["auth/authUser"] ? next() : next({ name: "Login" });
+            await AuthModule.getAuthUser();
+            AuthModule.authUser ? next() : next({ name: "Login" });
         }
     } else {
         next();
@@ -67,14 +70,11 @@ router.beforeEach(async (to, _, next) => {
 });
 
 router.afterEach((_, _2) => {
-    const authUser = store.getters["auth/authUser"];
+    const authUser = AuthModule.authUser;
     if (authUser) {
-        store.commit(
-            "utils/SET_ALERT",
-            authUser.email_verified_at ? false : true
-        );
+        UtilsModule.setAlert(authUser.email_verified_at ? false : true);
     } else {
-        store.commit("utils/SET_ALERT", false);
+        UtilsModule.setAlert(false);
     }
 });
 

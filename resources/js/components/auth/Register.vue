@@ -17,7 +17,7 @@
 						v-slot="{ errors }"
 						rules="required|alpha_spaces"
 						name="Name"
-                        vid="name"
+						vid="name"
 					>
 						<v-text-field
 							color="deep-purple"
@@ -31,7 +31,7 @@
 						v-slot="{ errors }"
 						rules="required|email"
 						name="E-mail"
-                        vid="email"
+						vid="email"
 					>
 						<v-text-field
 							color="deep-purple"
@@ -75,7 +75,7 @@
 						class="white--text font-weight-bold mt-12"
 						large
 						block
-                        :disabled="invalid"
+						:disabled="invalid"
 						>Create account</v-btn
 					>
 				</v-form>
@@ -90,44 +90,42 @@
 	</v-col>
 </template>
 
-<script>
+<script lang="ts">
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
+    import { Vue, Component } from "vue-property-decorator";
 
-	import AuthService from "../../services/AuthService";
+	import * as AuthService from "../../services/AuthService";
+	import { UtilsModule } from "../../store/modules/Utils";
 
-	export default {
-		components: {
-			ValidationProvider,
-			ValidationObserver,
-		},
-		data() {
-			return {
-				formData: {
-					name: "",
-					email: "",
-					password: "",
-					password_confirmation: "",
-				},
-			};
-		},
-		methods: {
-			async registerUser() {
-				this.$store.commit("utils/SET_LOADING", true);
-				try {
-					await AuthService.registerUser(this.formData);
-					this.$router.push({ name: "Home" });
-				} catch (error) {
-                    const errorsData = error.response.data.errors;
-					this.$refs.form.setErrors({
-                        name: errorsData.name,
-                        email: errorsData.email,
-                        Password: errorsData.password
-                    });
-				}
-				this.$store.commit("utils/SET_LOADING", false);
-			},
-		},
-	};
+	@Component({ components: { ValidationProvider, ValidationObserver } })
+	export default class Register extends Vue {
+		formData = {
+			name: "",
+			email: "",
+			password: "",
+			password_confirmation: "",
+		};
+
+		$refs!: {
+			form: InstanceType<typeof ValidationObserver>;
+		};
+
+		async registerUser() {
+			UtilsModule.setLoading(true);
+			try {
+				await AuthService.registerUser(this.formData);
+				this.$router.push({ name: "Home" });
+			} catch (error) {
+				const errorsData = error.response.data.errors;
+				this.$refs.form.setErrors({
+					name: errorsData.name,
+					email: errorsData.email,
+					Password: errorsData.password,
+				});
+			}
+			UtilsModule.setLoading(false);
+		}
+	}
 </script>
 
 <style>
