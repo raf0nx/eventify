@@ -41,7 +41,7 @@
 						></v-text-field>
 					</ValidationProvider>
 					<v-btn
-						color="purple"
+						color="deep-purple"
 						type="submit"
 						class="white--text font-weight-bold mt-12"
 						large
@@ -65,9 +65,9 @@
 	import { Vue, Component } from "vue-property-decorator";
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
 
-	import * as AuthService from "../../services/AuthService";
-    import { AuthModule } from "../../store/modules/Auth";
-	import { UtilsModule } from "../../store/modules/Utils";
+	import * as AuthService from "@/services/AuthService.ts";
+	import { AuthModule } from "@modules/Auth.ts";
+	import { UtilsModule } from "@modules/Utils.ts";
 
 	@Component({
 		components: { ValidationProvider, ValidationObserver },

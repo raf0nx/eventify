@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+const path = require("path");
 require("laravel-mix-purgecss");
 
 const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
@@ -26,6 +27,17 @@ mix.js("resources/js/app.ts", "public/js")
             ]
         },
         resolve: {
-            extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
+            extensions: ["*", ".js", ".vue", ".ts"],
+            alias: {
+                "@": path.resolve(__dirname, "resources/js"),
+                "@components": path.resolve(
+                    __dirname,
+                    "resources/js/components"
+                ),
+                "@modules": path.resolve(
+                    __dirname,
+                    "resources/js/store/modules"
+                )
+            }
         }
     });

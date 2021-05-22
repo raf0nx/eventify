@@ -7,7 +7,7 @@ import { UtilsState } from "./modules/Utils";
 Vue.use(Vuex);
 
 export interface RootState {
-    auth: AuthState
+    auth: AuthState;
     utils: UtilsState;
 }
 

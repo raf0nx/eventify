@@ -70,7 +70,7 @@
 						</ValidationProvider>
 					</ValidationObserver>
 					<v-btn
-						color="purple"
+						color="deep-purple"
 						type="submit"
 						class="white--text font-weight-bold mt-12"
 						large
@@ -92,10 +92,10 @@
 
 <script lang="ts">
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
-    import { Vue, Component } from "vue-property-decorator";
+	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "../../services/AuthService";
-	import { UtilsModule } from "../../store/modules/Utils";
+	import * as AuthService from "@/services/AuthService.ts";
+	import { UtilsModule } from "@modules/Utils.ts";
 
 	@Component({ components: { ValidationProvider, ValidationObserver } })
 	export default class Register extends Vue {

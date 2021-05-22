@@ -45,9 +45,9 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "../services/AuthService";
-	import { AuthModule } from "../store/modules/Auth";
-	import { UtilsModule } from "../store/modules/Utils";
+	import * as AuthService from "@/services/AuthService.ts";
+	import { AuthModule } from "@modules/Auth.ts";
+	import { UtilsModule } from "@modules/Utils.ts";
 
 	@Component({})
 	export default class App extends Vue {
@@ -55,21 +55,21 @@
 			return AuthModule.authUser;
 		}
 
-        get snackbar() {
-            return UtilsModule.snackbar;
-        }
+		get snackbar() {
+			return UtilsModule.snackbar;
+		}
 
 		get userEmail() {
 			return this.authUser ? this.authUser.email : null;
 		}
 
-        get alert() {
-            return UtilsModule.alert;
-        }
+		get alert() {
+			return UtilsModule.alert;
+		}
 
-        get loader() {
-            return UtilsModule.loader;
-        }
+		get loader() {
+			return UtilsModule.loader;
+		}
 
 		get userId() {
 			return this.authUser ? this.authUser.id : null;

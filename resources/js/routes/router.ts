@@ -1,14 +1,13 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 
-import { AuthModule } from "../store/modules/Auth";
-import { UtilsModule } from "../store/modules/Utils";
-import store from "../store/store";
-import Home from "../components/main/Home.vue";
-import Auth from "../components/auth/Auth.vue";
-import Login from "../components/auth/Login.vue";
-import Register from "../components/auth/Register.vue";
-import ErrorPage from "../components/error/ErrorPage.vue";
+import { AuthModule } from "@modules/Auth.ts";
+import { UtilsModule } from "@modules/Utils.ts";
+import Home from "@components/main/Home.vue";
+import Auth from "@components/auth/Auth.vue";
+import Login from "@components/auth/Login.vue";
+import Register from "@components/auth/Register.vue";
+import ErrorPage from "@components/error/ErrorPage.vue";
 
 Vue.use(VueRouter);
 

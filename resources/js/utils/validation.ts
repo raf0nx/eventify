@@ -1,18 +1,24 @@
 import { extend } from "vee-validate";
 
-import { alpha_spaces, confirmed, email, min, required } from "vee-validate/dist/rules";
+import {
+    alpha_spaces,
+    confirmed,
+    email,
+    min,
+    required
+} from "vee-validate/dist/rules";
 
 extend("alpha_spaces", {
     ...alpha_spaces,
     message: "{_field_} should contain only alphabetic characters or spaces"
 });
 
-extend("confirmed", { 
+extend("confirmed", {
     ...confirmed,
     message: "Please make sure your passwords match"
- });
+});
 
-extend("email", { 
+extend("email", {
     ...email,
     message: "{_field_} seems not to be valid"
 });
