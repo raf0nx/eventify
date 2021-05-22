@@ -6,7 +6,7 @@ import {
     getModule
 } from "vuex-module-decorators";
 
-import store from "@/store/store.ts";
+import store from "@/store/store";
 
 export interface UtilsState {
     snackbarNotification: object;

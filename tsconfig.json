@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es6",
         "types": ["vuetify"],
         "strict": true,
@@ -7,6 +8,11 @@
         "sourceMap": true,
         "moduleResolution": "node",
         "experimentalDecorators": true,
+        "paths": {
+            "@/*": ["resources/js/*"],
+            "@components/*": ["resources/js/components/*"],
+            "@modules/*": ["resources/js/store/modules/*"]
+        }
     },
     "include": ["resources/js/**/*"]
 }

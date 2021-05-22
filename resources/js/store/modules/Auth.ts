@@ -6,9 +6,9 @@ import {
     getModule
 } from "vuex-module-decorators";
 
-import store from "@/store/store.ts";
-import router from "@/routes/router.ts";
-import * as AuthService from "@/services/AuthService.ts";
+import store from "@/store/store";
+import router from "@/routes/router";
+import * as AuthService from "@/services/AuthService";
 
 export interface AuthState {
     user: any;

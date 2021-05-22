@@ -94,8 +94,8 @@
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
 	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "@/services/AuthService.ts";
-	import { UtilsModule } from "@modules/Utils.ts";
+	import * as AuthService from "@/services/AuthService";
+	import { UtilsModule } from "@modules/Utils";
 
 	@Component({ components: { ValidationProvider, ValidationObserver } })
 	export default class Register extends Vue {

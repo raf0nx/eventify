@@ -45,9 +45,9 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "@/services/AuthService.ts";
-	import { AuthModule } from "@modules/Auth.ts";
-	import { UtilsModule } from "@modules/Utils.ts";
+	import * as AuthService from "@/services/AuthService";
+	import { AuthModule } from "@modules/Auth";
+	import { UtilsModule } from "@modules/Utils";
 
 	@Component({})
 	export default class App extends Vue {

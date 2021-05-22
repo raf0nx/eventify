@@ -1,5 +1,5 @@
 const mix = require("laravel-mix");
-const path = require("path");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 require("laravel-mix-purgecss");
 
 const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
@@ -28,16 +28,10 @@ mix.js("resources/js/app.ts", "public/js")
         },
         resolve: {
             extensions: ["*", ".js", ".vue", ".ts"],
-            alias: {
-                "@": path.resolve(__dirname, "resources/js"),
-                "@components": path.resolve(
-                    __dirname,
-                    "resources/js/components"
-                ),
-                "@modules": path.resolve(
-                    __dirname,
-                    "resources/js/store/modules"
-                )
-            }
+            plugins: [
+                new TsconfigPathsPlugin({
+                    extensions: ["*", ".js", ".vue", ".ts"]
+                })
+            ]
         }
     });

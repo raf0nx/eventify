@@ -6,7 +6,7 @@ import Vuetify from "./plugins/vuetify";
 import App from "@components/App.vue";
 import store from "./store/store";
 import router from "./routes/router";
-import "./utils/validation.ts";
+import "./utils/validation";
 
 Vue.component("app", App);
 

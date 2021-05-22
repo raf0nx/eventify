@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 
-import { AuthModule } from "@modules/Auth.ts";
-import { UtilsModule } from "@modules/Utils.ts";
+import { AuthModule } from "@modules/Auth";
+import { UtilsModule } from "@modules/Utils";
 import Home from "@components/main/Home.vue";
 import Auth from "@components/auth/Auth.vue";
 import Login from "@components/auth/Login.vue";
