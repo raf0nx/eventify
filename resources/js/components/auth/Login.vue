@@ -65,15 +65,16 @@
 	import { Vue, Component } from "vue-property-decorator";
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
 
-	import * as AuthService from "@/services/AuthService";
+	import AuthService from "@/services/AuthService";
 	import { AuthModule } from "@modules/Auth";
 	import { UtilsModule } from "@modules/Utils";
+	import { LoginFormData } from "./types";
 
 	@Component({
 		components: { ValidationProvider, ValidationObserver },
 	})
 	export default class Login extends Vue {
-		formData = { email: "", password: "" };
+		formData: LoginFormData = { email: "", password: "" };
 		$refs!: {
 			form: InstanceType<typeof ValidationObserver>;
 		};

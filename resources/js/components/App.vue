@@ -10,7 +10,7 @@
 			<v-icon class="white--text">mdi-alert</v-icon>
 			Email not verified! Check your inbox at {{ userEmail }}
 			<v-btn
-				@click="resendVerificationLink"
+				@click="resendVerificationLink()"
 				plain
 				text
 				class="white--text font-weight-bold"
@@ -45,37 +45,38 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "@/services/AuthService";
+	import AuthService from "@/services/AuthService";
 	import { AuthModule } from "@modules/Auth";
-	import { UtilsModule } from "@modules/Utils";
+	import { Snackbar, UtilsModule } from "@modules/Utils";
+	import { User } from "@/models/User";
 
 	@Component({})
 	export default class App extends Vue {
-		get authUser() {
+		get authUser(): User | null {
 			return AuthModule.authUser;
 		}
 
-		get snackbar() {
+		get snackbar(): Snackbar {
 			return UtilsModule.snackbar;
 		}
 
-		get userEmail() {
+		get userEmail(): string | null {
 			return this.authUser ? this.authUser.email : null;
 		}
 
-		get alert() {
+		get alert(): boolean {
 			return UtilsModule.alert;
 		}
 
-		get loader() {
+		get loader(): boolean {
 			return UtilsModule.loader;
 		}
 
-		get userId() {
+		get userId(): Number | null {
 			return this.authUser ? this.authUser.id : null;
 		}
 
-		async resendVerificationLink() {
+		async resendVerificationLink(): Promise<void> {
 			UtilsModule.setLoading(true);
 			try {
 				await AuthService.sendVerification(this.userId);
@@ -83,7 +84,7 @@
 					showSnackbar: true,
 					message: "Verification Link resend successfully!",
 				});
-			} catch (error) {
+			} catch (error: unknown) {
 				console.log(error);
 			}
 			UtilsModule.setLoading(false);

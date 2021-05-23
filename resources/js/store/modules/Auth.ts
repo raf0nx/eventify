@@ -8,33 +8,35 @@ import {
 
 import store from "@/store/store";
 import router from "@/routes/router";
-import * as AuthService from "@/services/AuthService";
+import AuthService from "@/services/AuthService";
+import { User } from "@/models/User";
 
 export interface AuthState {
-    user: any;
+    user: User | null;
 }
 
 @Module({ dynamic: true, store, name: "auth" })
 class Auth extends VuexModule implements AuthState {
-    public user: any = null;
+    public user: User | null = null;
 
     @Mutation
-    private SET_USER(userPayload: any) {
+    private SET_USER(userPayload: User | null): void {
         this.user = userPayload;
     }
     @Action
-    public async getAuthUser() {
+    public async getAuthUser(): Promise<User | null> {
         try {
             const authUser = await AuthService.getAuthUser();
             this.SET_USER(authUser.data);
             return authUser.data;
         } catch (error) {
             this.SET_USER(null);
+            return null;
         }
     }
 
     @Action
-    public async logout() {
+    public async logout(): Promise<void> {
         try {
             await AuthService.logout();
             this.SET_USER(null);
@@ -46,7 +48,7 @@ class Auth extends VuexModule implements AuthState {
         }
     }
 
-    public get authUser() {
+    public get authUser(): User | null {
         return this.user;
     }
 }

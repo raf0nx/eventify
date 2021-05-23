@@ -8,45 +8,52 @@ import {
 
 import store from "@/store/store";
 
+export interface Snackbar {
+    showSnackbar: boolean;
+    message: string | null;
+}
 export interface UtilsState {
-    snackbarNotification: object;
+    snackbarNotification: Snackbar;
     showAlert: boolean;
     isLoading: boolean;
 }
 
 @Module({ dynamic: true, store, name: "utils" })
 class Utils extends VuexModule implements UtilsState {
-    public snackbarNotification = {};
-    public showAlert: boolean = false;
-    public isLoading: boolean = false;
+    public snackbarNotification: Snackbar = {
+        showSnackbar: false,
+        message: null
+    };
+    public showAlert = false;
+    public isLoading = false;
 
     @Mutation
-    private SET_ALERT(setAlert: boolean) {
+    private SET_ALERT(setAlert: boolean): void {
         this.showAlert = setAlert;
     }
 
     @Mutation
-    private SET_LOADING(isLoading: boolean) {
+    private SET_LOADING(isLoading: boolean): void {
         this.isLoading = isLoading;
     }
 
     @Mutation
-    private SET_SNACKBAR(snackbarPayload: object) {
+    private SET_SNACKBAR(snackbarPayload: Snackbar): void {
         this.snackbarNotification = snackbarPayload;
     }
 
     @Action
-    public setAlert(setAlert: boolean) {
+    public setAlert(setAlert: boolean): void {
         this.SET_ALERT(setAlert);
     }
 
     @Action
-    public setLoading(isLoading: boolean) {
+    public setLoading(isLoading: boolean): void {
         this.SET_LOADING(isLoading);
     }
 
     @Action
-    setSnackbar(snackbarPayload: any) {
+    public setSnackbar(snackbarPayload: Snackbar): void {
         this.SET_SNACKBAR(snackbarPayload);
         setTimeout(
             () =>
@@ -58,15 +65,15 @@ class Utils extends VuexModule implements UtilsState {
         );
     }
 
-    get alert(): boolean {
+    public get alert(): boolean {
         return this.showAlert;
     }
 
-    get loader(): boolean {
+    public get loader(): boolean {
         return this.isLoading;
     }
 
-    get snackbar(): object {
+    public get snackbar(): Snackbar {
         return this.snackbarNotification;
     }
 }

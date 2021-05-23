@@ -11,16 +11,16 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "@/services/AuthService";
+	import AuthService from "@/services/AuthService";
 	import { AuthModule } from "@modules/Auth";
 
 	@Component({})
 	export default class Home extends Vue {
-		logout() {
+		logout(): void {
 			AuthModule.logout();
 		}
 
-		async getUser() {
+		async getUser(): Promise<void> {
 			const user = await AuthService.getAuthUser();
 			console.log(user);
 		}

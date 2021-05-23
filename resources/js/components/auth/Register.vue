@@ -94,12 +94,13 @@
 	import { ValidationProvider, ValidationObserver } from "vee-validate";
 	import { Vue, Component } from "vue-property-decorator";
 
-	import * as AuthService from "@/services/AuthService";
+	import AuthService from "@/services/AuthService";
 	import { UtilsModule } from "@modules/Utils";
+	import { RegisterFormData } from "./types";
 
 	@Component({ components: { ValidationProvider, ValidationObserver } })
 	export default class Register extends Vue {
-		formData = {
+		formData: RegisterFormData = {
 			name: "",
 			email: "",
 			password: "",
@@ -110,7 +111,7 @@
 			form: InstanceType<typeof ValidationObserver>;
 		};
 
-		async registerUser() {
+		async registerUser(): Promise<void> {
 			UtilsModule.setLoading(true);
 			try {
 				await AuthService.registerUser(this.formData);
