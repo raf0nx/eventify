@@ -12,4 +12,8 @@ abstract class TestCase extends BaseTestCase
     static function createUser() {
         return User::factory()->create();
     }
+
+    static function makeUser() {
+        return User::factory()->make();
+    }
 }
