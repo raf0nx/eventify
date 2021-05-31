@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     static function createUser() {
-        return User::factory()->create();
+        return User::factory()->unverified()->create();
     }
 
     static function makeUser() {
