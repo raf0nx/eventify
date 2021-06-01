@@ -1,27 +1,27 @@
 <?php
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class RegistrationTest extends TestCase {
     use RefreshDatabase;
 
     public function test_create_user() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => $user->password, "password_confirmation" => $user->password]);
 
-        // THEN
+        // assert
         $response->assertCreated();
     }
 
     public function test_required_fields_for_registration() {
-        // WHEN
+        // act
         $response = $this->post("/register");
 
-        // THEN
+        // assert
         $response->assertStatus(422)
             ->assertJson([
                 "message" => "The given data was invalid.",
@@ -40,13 +40,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_password_confirmation_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => $user->password, "password_confirmation" => "random_password"]);
 
-        // THEN
+        // assert
         $response->assertStatus(422)
             ->assertJson([
                 "message" => "The given data was invalid.",
@@ -59,13 +59,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_email_uniqueness_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::createUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => $user->password, "password_confirmation" => $user->password]);
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -78,13 +78,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_email_is_string_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => 123, "name" => $user->name, "password" => $user->password, "password_confirmation" => $user->password]);
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -97,13 +97,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_valid_email_address_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => 'bad.email', "name" => $user->name, "password" => $user->password, "password_confirmation" => $user->password]);
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -116,10 +116,10 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_email_max_length_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", [
             "email" => "someveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylong@email.com",
             "name" => $user->name,
@@ -128,7 +128,7 @@ class RegistrationTest extends TestCase {
         ]
         );
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -141,13 +141,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_name_is_string_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => $user->email, "name" => 123, "password" => $user->password, "password_confirmation" => $user->password]);
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -160,10 +160,10 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_name_max_length_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", [
             "email" => $user->email,
             "name" => "someveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongName",
@@ -172,7 +172,7 @@ class RegistrationTest extends TestCase {
         ]
         );
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -185,13 +185,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_password_is_string_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => 12345678, "password_confirmation" => 12345678]);
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
@@ -204,13 +204,13 @@ class RegistrationTest extends TestCase {
     }
 
     public function test_password_min_length_for_registration() {
-        // GIVEN
+        // arrange
         $user = TestCase::makeUser();
 
-        // WHEN
+        // act
         $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => '123', "password_confirmation" => '123']);
 
-        // THEN
+        // assert
         $response->assertStatus(422);
         $response->assertJson([
             "message" => "The given data was invalid.",
