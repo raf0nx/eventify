@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase {
@@ -11,9 +14,12 @@ class RegistrationTest extends TestCase {
         $user = TestCase::makeUser();
 
         // act
+        Event::fake();
         $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => $user->password, "password_confirmation" => $user->password]);
 
         // assert
+        Event::assertDispatched(Registered::class);
+        Event::assertListening(Registered::class, SendEmailVerificationNotification::class);
         $response->assertCreated();
     }
 

@@ -20,7 +20,10 @@ class EmailVerificationTest extends TestCase {
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             now()->addSeconds(60),
-            ['id' => $user->id, 'hash' => sha1($user->email)]
+            [
+                'id' => $user->id,
+                'hash' => sha1($user->email)
+            ]
         );
 
         // act
@@ -35,7 +38,8 @@ class EmailVerificationTest extends TestCase {
     }
 
     public function test_redirect_if_email_verified() {
-        // arragne
+        // arrange
+        $user = (object)Mockery::mock(Authenticatable::class);
         $url = URL::temporarySignedRoute(
             'verification.verify',
             now()->addMinutes(60),
@@ -46,7 +50,6 @@ class EmailVerificationTest extends TestCase {
         );
 
         // expect
-        $user = (object)Mockery::mock(Authenticatable::class);
         $user->shouldReceive('getKey')->andReturn(1);
         $user->shouldReceive('getAuthIdentifier')->andReturn(1);
         $user->shouldReceive('getEmailForVerification')->andReturn('taylor@laravel.com');
@@ -84,7 +87,10 @@ class EmailVerificationTest extends TestCase {
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             now()->addSeconds(60),
-            ['id' => $user->id, 'hash' => sha1('bad@email.com')]
+            [
+                'id' => $user->id,
+                'hash' => sha1('bad@email.com')
+            ]
         );
 
         // act

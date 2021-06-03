@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class LoginTest extends TestCase {
@@ -13,9 +16,11 @@ class LoginTest extends TestCase {
         $user = TestCase::createUser();
 
         // act
+        Event::fake();
         $response = $this->post("/login", ["email" => $user->email, "password" => "password"]);
 
         // assert
+        Event::assertDispatched(Login::class);
         $this->assertAuthenticated();
         $response->assertOk();
     }
@@ -122,9 +127,11 @@ class LoginTest extends TestCase {
         $user = TestCase::createUser();
 
         // act
+        Event::fake();
         $response = $this->actingAs($user)->post("/logout");
 
         // assert
+        Event::assertDispatched(Logout::class);
         $response->assertNoContent();
     }
 }
