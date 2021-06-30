@@ -34,6 +34,7 @@
     },
     "dependencies": {
         "cypress": "^7.6.0",
+        "faker": "^5.5.3",
         "vee-validate": "^3.4.5",
         "vue-property-decorator": "^9.1.2",
         "vue-router": "^3.5.1",
