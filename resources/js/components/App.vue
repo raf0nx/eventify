@@ -4,6 +4,7 @@
 			v-if="alert"
 			color="orange darken-2"
 			class="font-weight-bold justify-center white--text"
+            data-cy="system_bar"
 			app
 			window
 		>

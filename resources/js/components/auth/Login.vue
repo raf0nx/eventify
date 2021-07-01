@@ -16,12 +16,13 @@
 					<ValidationProvider
 						v-slot="{ errors }"
 						rules="required|email"
-						name="Email"
+						name="E-mail"
 					>
 						<v-text-field
 							color="deep-purple"
 							type="email"
 							label="Email Address"
+                            data-cy="email"
 							:error-messages="errors"
 							v-model="formData.email"
 						></v-text-field>
@@ -36,6 +37,7 @@
 							color="deep-purple"
 							type="password"
 							label="Password"
+                            data-cy="password"
 							:error-messages="errors"
 							v-model="formData.password"
 						></v-text-field>
@@ -44,6 +46,7 @@
 						color="deep-purple"
 						type="submit"
 						class="white--text font-weight-bold mt-12"
+                        data-cy="submit"
 						large
 						block
 						:disabled="invalid"

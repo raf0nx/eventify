@@ -23,6 +23,7 @@
 							color="deep-purple"
 							type="text"
 							label="Your Name"
+                            data-cy="name"
 							:error-messages="errors"
 							v-model="formData.name"
 						></v-text-field>
@@ -37,6 +38,7 @@
 							color="deep-purple"
 							type="email"
 							label="Your Email"
+                            data-cy="email"
 							:error-messages="errors"
 							v-model="formData.email"
 						></v-text-field>
@@ -51,6 +53,7 @@
 								color="deep-purple"
 								label="Password"
 								type="password"
+                                data-cy="password"
 								:error-messages="errors"
 								v-model="formData.password"
 							></v-text-field>
@@ -64,6 +67,7 @@
 								color="deep-purple"
 								type="password"
 								label="Confirm password"
+                                data-cy="password_confirmation"
 								:error-messages="errors"
 								v-model="formData.password_confirmation"
 							></v-text-field>
@@ -73,6 +77,7 @@
 						color="deep-purple"
 						type="submit"
 						class="white--text font-weight-bold mt-12"
+                        data-cy="submit"
 						large
 						block
 						:disabled="invalid"
