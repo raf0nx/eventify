@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth.vue should work 1`] = `
+"<main class=\\"v-main\\" style=\\"padding: 0px 0px 0px 0px;\\">
+  <div class=\\"v-main__wrap\\">
+    <div class=\\"container fill-height py-0 container--fluid\\">
+      <div class=\\"row fill-height\\">
+        <div class=\\"pa-0 left-panel col-md-7 col-12\\">
+          <div class=\\"left-panel-container pa-4 d-flex flex-column justify-space-between\\">
+            <div class=\\"d-flex\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate white--text mr-1 mdi mdi-buffer theme--light\\"></i> <span class=\\"logo-text white--text font-weight-bold\\">Eventify</span></div>
+            <div class=\\"d-flex flex-column align-center mb-16\\">
+              <h2 class=\\"left-panel-title white--text\\">
+                Welcome back!
+              </h2> <span class=\\"left-panel-subtitle grey--text text--lighten-3 mt-4\\">Sign In to continue using my application!</span>
+            </div>
+            <div class=\\"d-flex justify-center\\"><span class=\\"white--text font-weight-bold\\">v. 0.0</span></div>
+          </div>
+        </div>
+        <transition-stub name=\\"scale\\" mode=\\"out-in\\">
+          <!---->
+        </transition-stub>
+      </div>
+    </div>
+  </div>
+</main>"
+`;

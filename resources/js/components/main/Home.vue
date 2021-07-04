@@ -14,7 +14,7 @@
 	import AuthService from "@/services/AuthService";
 	import { AuthModule } from "@modules/Auth";
 
-	@Component({})
+	@Component
 	export default class Home extends Vue {
 		logout(): void {
 			AuthModule.logout();
