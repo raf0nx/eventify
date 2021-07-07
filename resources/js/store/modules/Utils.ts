@@ -20,12 +20,12 @@ export interface UtilsState {
 
 @Module({ dynamic: true, store, name: "utils" })
 class Utils extends VuexModule implements UtilsState {
-    public snackbarNotification: Snackbar = {
+    snackbarNotification: Snackbar = {
         showSnackbar: false,
         message: null
     };
-    public showAlert = false;
-    public isLoading = false;
+    showAlert = false;
+    isLoading = false;
 
     @Mutation
     private SET_ALERT(setAlert: boolean): void {
@@ -43,17 +43,17 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Action
-    public setAlert(setAlert: boolean): void {
+    setAlert(setAlert: boolean): void {
         this.SET_ALERT(setAlert);
     }
 
     @Action
-    public setLoading(isLoading: boolean): void {
+    setLoading(isLoading: boolean): void {
         this.SET_LOADING(isLoading);
     }
 
     @Action
-    public setSnackbar(snackbarPayload: Snackbar): void {
+    setSnackbar(snackbarPayload: Snackbar): void {
         this.SET_SNACKBAR(snackbarPayload);
         setTimeout(
             () =>
@@ -65,15 +65,15 @@ class Utils extends VuexModule implements UtilsState {
         );
     }
 
-    public get alert(): boolean {
+    get alert(): boolean {
         return this.showAlert;
     }
 
-    public get loader(): boolean {
+    get loader(): boolean {
         return this.isLoading;
     }
 
-    public get snackbar(): Snackbar {
+    get snackbar(): Snackbar {
         return this.snackbarNotification;
     }
 }

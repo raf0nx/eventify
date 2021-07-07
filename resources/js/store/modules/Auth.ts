@@ -17,14 +17,14 @@ export interface AuthState {
 
 @Module({ dynamic: true, store, name: "auth" })
 class Auth extends VuexModule implements AuthState {
-    public user: User | null = null;
+    user: User | null = null;
 
     @Mutation
     private SET_USER(userPayload: User | null): void {
         this.user = userPayload;
     }
     @Action
-    public async getAuthUser(): Promise<User | null> {
+    async getAuthUser(): Promise<User | null> {
         try {
             const authUser = await AuthService.getAuthUser();
             this.SET_USER(authUser.data);
@@ -36,7 +36,7 @@ class Auth extends VuexModule implements AuthState {
     }
 
     @Action
-    public async logout(): Promise<void> {
+    async logout(): Promise<void> {
         try {
             await AuthService.logout();
             this.SET_USER(null);
@@ -48,7 +48,7 @@ class Auth extends VuexModule implements AuthState {
         }
     }
 
-    public get authUser(): User | null {
+    get authUser(): User | null {
         return this.user;
     }
 }
