@@ -4,6 +4,8 @@ import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 
 import Auth from "@components/auth/Auth.vue";
 
+const WELCOME_TEXT = "Welcome back!";
+
 describe("Auth.vue", () => {
     const localVue = createLocalVue();
     localVue.use(VueRouter);
@@ -11,19 +13,21 @@ describe("Auth.vue", () => {
     const router = new VueRouter();
     let vuetify: Vuetify;
     let wrapper: Wrapper<Auth>;
-    const welcomeText = "Welcome back!";
-
 
     beforeEach(() => {
         vuetify = new Vuetify();
         wrapper = shallowMount(Auth, { localVue, vuetify, router });
     });
 
-    it("should match snapshot", () => {
+    afterEach(() => {
+        wrapper.destroy();
+    })
+
+    it("Should match snapshot", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it("should contain welcome text", () => {
-        expect(wrapper.html()).toContain(welcomeText);
+    it("Should contain welcome text", () => {
+        expect(wrapper.html()).toContain(WELCOME_TEXT);
     })
 });

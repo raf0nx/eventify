@@ -57,12 +57,16 @@
 			return AuthModule.authUser;
 		}
 
+        get userEmail(): string | null {
+            return this.authUser ? this.authUser.email : null;
+        }
+        
+        get userId(): Number | null {
+            return this.authUser ? this.authUser.id : null;
+        }
+
 		get snackbar(): Snackbar {
 			return UtilsModule.snackbar;
-		}
-
-		get userEmail(): string | null {
-			return this.authUser ? this.authUser.email : null;
 		}
 
 		get alert(): boolean {
@@ -71,10 +75,6 @@
 
 		get loader(): boolean {
 			return UtilsModule.loader;
-		}
-
-		get userId(): Number | null {
-			return this.authUser ? this.authUser.id : null;
 		}
 
 		async resendVerificationLink(): Promise<void> {

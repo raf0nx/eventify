@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App.vue should match the snapshot 1`] = `
+exports[`App.vue Should match the snapshot 1`] = `
 "<v-app-stub id=\\"app\\">
   <!---->
   <v-snackbar-stub color=\\"deep-purple\\" tag=\\"div\\" bottom=\\"true\\" contentclass=\\"\\" timeout=\\"5000\\" transition=\\"v-snack-transition\\" fixed=\\"\\" class=\\"mb-12\\">

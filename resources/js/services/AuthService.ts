@@ -7,9 +7,7 @@ class AuthService {
         return axios.get("/api/user");
     }
 
-    async loginUser(
-        formData: LoginFormData
-    ): Promise<AxiosResponse<void>> {
+    async loginUser(formData: LoginFormData): Promise<AxiosResponse<void>> {
         await axios.get("/sanctum/csrf-cookie");
         return axios.post("/login", formData);
     }
@@ -18,16 +16,12 @@ class AuthService {
         return axios.post("/logout");
     }
 
-    async registerUser(
-        formData: RegisterFormData
-    ): Promise<AxiosResponse<void>> {
+    async registerUser(formData: RegisterFormData): Promise<AxiosResponse<void>> {
         await axios.get("/sanctum/csrf-cookie");
         return axios.post("/register", formData);
     }
 
-    sendVerification(
-        userID: Number | null
-    ): Promise<AxiosResponse<void>> {
+    sendVerification(userID: Number | null): Promise<AxiosResponse<void>> {
         return axios.post("/email/verification-notification", userID);
     }
 }

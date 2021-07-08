@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Auth.vue should match snapshot 1`] = `
+exports[`Auth.vue Should match snapshot 1`] = `
 "<v-main-stub tag=\\"main\\">
   <v-container-stub tag=\\"div\\" fluid=\\"true\\" class=\\"fill-height py-0\\">
     <v-row-stub tag=\\"div\\" class=\\"fill-height\\">
