@@ -17,6 +17,7 @@ describe("Auth.vue", () => {
     });
 
     it("Should contain error page header", () => {
-        expect(wrapper.html()).toContain(ERROR_PAGE_HEADER);
-    })
+        const header = wrapper.find(".display-1");
+        expect(header.text()).toEqual(ERROR_PAGE_HEADER);
+    });
 });

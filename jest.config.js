@@ -14,5 +14,5 @@ module.exports = {
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
         prefix: "<rootDir>/"
     }),
-    setupFiles: ["<rootDir>/resources/js/tests/setup.js"]
+    setupFiles: ["<rootDir>/resources/js/tests/setup.ts"]
 };

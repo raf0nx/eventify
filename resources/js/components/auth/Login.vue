@@ -7,7 +7,12 @@
 	>
 		<v-card elevation="0">
 			<h1
-				class="main-title font-weight-bold deep-purple--text text--darken-4"
+				class="
+					main-title
+					font-weight-bold
+					deep-purple--text
+					text--darken-4
+				"
 			>
 				Sign In
 			</h1>
@@ -22,7 +27,7 @@
 							color="deep-purple"
 							type="email"
 							label="Email Address"
-                            data-cy="email"
+							data-cy="email"
 							:error-messages="errors"
 							v-model="formData.email"
 						></v-text-field>
@@ -37,7 +42,7 @@
 							color="deep-purple"
 							type="password"
 							label="Password"
-                            data-cy="password"
+							data-cy="password"
 							:error-messages="errors"
 							v-model="formData.password"
 						></v-text-field>
@@ -46,7 +51,7 @@
 						color="deep-purple"
 						type="submit"
 						class="white--text font-weight-bold mt-12"
-                        data-cy="submit"
+						data-cy="submit"
 						large
 						block
 						:disabled="invalid"

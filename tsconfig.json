@@ -2,7 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "target": "es6",
-        "types": ["vuetify", "jest"],
+        "types": ["vuetify", "jest", "node"],
         "strict": true,
         "module": "es2015",
         "sourceMap": true,

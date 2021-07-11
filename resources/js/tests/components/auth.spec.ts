@@ -21,13 +21,14 @@ describe("Auth.vue", () => {
 
     afterEach(() => {
         wrapper.destroy();
-    })
+    });
 
     it("Should match snapshot", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
     it("Should contain welcome text", () => {
-        expect(wrapper.html()).toContain(WELCOME_TEXT);
-    })
+        const header = wrapper.find("h2");
+        expect(header.text()).toEqual(WELCOME_TEXT);
+    });
 });
