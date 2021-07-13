@@ -47,11 +47,7 @@ const router = new VueRouter({
     routes,
     linkActiveClass: "font-weight-bold",
     scrollBehavior(_, _2, savedPosition) {
-        if (savedPosition) {
-            return savedPosition;
-        } else {
-            return { x: 0, y: 0 };
-        }
+        return savedPosition ?? { x: 0, y: 0 };
     }
 });
 

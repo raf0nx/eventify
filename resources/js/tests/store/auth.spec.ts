@@ -13,7 +13,7 @@ describe("Auth store", () => {
         expect(result).toBe(state);
     });
 
-    it("Should get auth user from API", async () => {
+    it("Should get auth user from store", async () => {
         // Arrange
         const user: User = {
             id: 1,
