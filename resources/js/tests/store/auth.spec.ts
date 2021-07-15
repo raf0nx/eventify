@@ -1,7 +1,14 @@
 import { AuthModule } from "@modules/Auth";
 import { User } from "@/models/User";
+import axios from "axios";
+
+jest.mock("axios");
 
 describe("Auth store", () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it("Should get user", () => {
         // Arrange
         const state = AuthModule.user;
@@ -24,16 +31,13 @@ describe("Auth store", () => {
             updated_at: new Date("2021-01-01")
         };
 
-        const getAuthUser = jest
-            .spyOn(AuthModule, "getAuthUser")
-            .mockResolvedValue(user);
-
         // Act
-        const authUser = await AuthModule.getAuthUser();
+        // @ts-ignore
+        axios.get.mockImplementationOnce(() => Promise.resolve({ data: user }));
 
         // Assert
-        expect(getAuthUser).toBeCalled();
-        expect(authUser).toBe(user);
+        await expect(AuthModule.getAuthUser()).resolves.toEqual(user);
+        expect(AuthModule.authUser).toEqual(user);
     });
 
     it("Should logout user", async () => {

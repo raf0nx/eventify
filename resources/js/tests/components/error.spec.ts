@@ -12,7 +12,12 @@ describe("Auth.vue", () => {
         wrapper = shallowMount(ErrorPage, { localVue });
     });
 
+    afterEach(() => {
+        wrapper.destroy();
+    });
+
     it("Should match snapshot", () => {
+        // Assert
         expect(wrapper.html()).toMatchSnapshot();
     });
 

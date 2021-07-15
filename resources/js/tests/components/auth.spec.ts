@@ -24,11 +24,15 @@ describe("Auth.vue", () => {
     });
 
     it("Should match snapshot", () => {
+        // Assert
         expect(wrapper.html()).toMatchSnapshot();
     });
 
     it("Should contain welcome text", () => {
+        // Arrange
         const header = wrapper.find("h2");
+
+        // Assert
         expect(header.text()).toEqual(WELCOME_TEXT);
     });
 });
