@@ -20,20 +20,7 @@
 				Resend link
 			</v-btn>
 		</v-system-bar>
-		<v-snackbar
-			v-model="snackbar.showSnackbar"
-			fixed
-			bottom
-			color="deep-purple"
-			class="mb-12"
-		>
-			<div class="d-flex align-center">
-				<v-icon color="white">mdi-check-circle</v-icon>
-				<span class="font-weight-bold ml-1">{{
-					snackbar.message
-				}}</span>
-			</div>
-		</v-snackbar>
+		<snackbar></snackbar>
 		<v-overlay :value="loader">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
@@ -48,25 +35,27 @@
 
 	import AuthService from "@/services/AuthService";
 	import { AuthModule } from "@modules/Auth";
-	import { Snackbar, UtilsModule } from "@modules/Utils";
+	import { UtilsModule } from "@modules/Utils";
 	import { User } from "@/models/User";
+	import Snackbar from "@components/utils/Snackbar.vue";
+	import { SnackbarModel } from "@/models/Snackbar";
 
-	@Component
+	@Component({
+		components: {
+			Snackbar,
+		},
+	})
 	export default class App extends Vue {
 		get authUser(): User | null {
 			return AuthModule.authUser;
 		}
 
-        get userEmail(): string | null {
-            return this.authUser ? this.authUser.email : null;
-        }
-        
-        get userId(): Number | null {
-            return this.authUser ? this.authUser.id : null;
-        }
+		get userEmail(): string | null {
+			return this.authUser ? this.authUser.email : null;
+		}
 
-		get snackbar(): Snackbar {
-			return UtilsModule.snackbar;
+		get userId(): Number | null {
+			return this.authUser ? this.authUser.id : null;
 		}
 
 		get alert(): boolean {
@@ -81,10 +70,11 @@
 			UtilsModule.setLoading(true);
 			try {
 				await AuthService.sendVerification(this.userId);
-				UtilsModule.setSnackbar({
-					showSnackbar: true,
-					message: "Verification Link resend successfully!",
-				});
+				UtilsModule.setSnackbar(
+					new SnackbarModel()
+						.setShowSnackbar(true)
+						.setMessage("Verification Link resend successfully!")
+				);
 			} catch (error: unknown) {
 				console.log(error);
 			}

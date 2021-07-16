@@ -9,11 +9,7 @@ exports[`App.vue Should match the snapshot 1`] = `
       Resend link
     </v-btn-stub>
   </v-system-bar-stub>
-  <v-snackbar-stub color=\\"deep-purple\\" tag=\\"div\\" bottom=\\"true\\" contentclass=\\"\\" timeout=\\"5000\\" transition=\\"v-snack-transition\\" fixed=\\"\\" class=\\"mb-12\\">
-    <div class=\\"d-flex align-center\\">
-      <v-icon-stub color=\\"white\\">mdi-check-circle</v-icon-stub> <span class=\\"font-weight-bold ml-1\\"></span>
-    </div>
-  </v-snackbar-stub>
+  <snackbar-stub></snackbar-stub>
   <v-overlay-stub color=\\"#212121\\" dark=\\"true\\" opacity=\\"0.46\\" zindex=\\"5\\">
     <v-progress-circular-stub indeterminate=\\"true\\" rotate=\\"0\\" size=\\"64\\" width=\\"4\\" value=\\"0\\"></v-progress-circular-stub>
   </v-overlay-stub>

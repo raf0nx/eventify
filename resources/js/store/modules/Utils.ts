@@ -7,23 +7,17 @@ import {
 } from "vuex-module-decorators";
 
 import store from "@/store/store";
+import { SnackbarModel } from "@/models/Snackbar";
 
-export interface Snackbar {
-    showSnackbar: boolean;
-    message: string | null;
-}
 export interface UtilsState {
-    snackbarNotification: Snackbar;
+    snackbarNotification: SnackbarModel;
     showAlert: boolean;
     isLoading: boolean;
 }
 
 @Module({ dynamic: true, store, name: "utils" })
 class Utils extends VuexModule implements UtilsState {
-    snackbarNotification: Snackbar = {
-        showSnackbar: false,
-        message: null
-    };
+    snackbarNotification = new SnackbarModel();
     showAlert = false;
     isLoading = false;
 
@@ -38,7 +32,7 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Mutation
-    private SET_SNACKBAR(snackbarPayload: Snackbar): void {
+    private SET_SNACKBAR(snackbarPayload: SnackbarModel): void {
         this.snackbarNotification = snackbarPayload;
     }
 
@@ -53,16 +47,8 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Action
-    setSnackbar(snackbarPayload: Snackbar): void {
+    setSnackbar(snackbarPayload: SnackbarModel): void {
         this.SET_SNACKBAR(snackbarPayload);
-        setTimeout(
-            () =>
-                this.SET_SNACKBAR({
-                    showSnackbar: false,
-                    message: null
-                }),
-            4000
-        );
     }
 
     get alert(): boolean {
@@ -73,7 +59,7 @@ class Utils extends VuexModule implements UtilsState {
         return this.isLoading;
     }
 
-    get snackbar(): Snackbar {
+    get snackbar(): SnackbarModel {
         return this.snackbarNotification;
     }
 }
