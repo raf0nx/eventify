@@ -23,7 +23,7 @@ describe("Login.vue", () => {
 
     afterEach(() => {
         wrapper.destroy();
-        jest.resetAllMocks();
+        jest.clearAllMocks();
     });
 
     it("Should match snapshot", () => {

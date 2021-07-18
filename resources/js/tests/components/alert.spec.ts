@@ -1,28 +1,33 @@
 import Vuetify from "vuetify";
 import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 
-import Snackbar from "@components/utils/Snackbar.vue";
+import Alert from "@components/utils/Alert.vue";
 import { UtilsModule } from "@modules/Utils";
-import { SnackbarModel } from "@/models/Snackbar";
+import { AlertModel } from "@/models/Alert";
 
 const MESSAGE = "Message for test purposes";
+const BTN_TEXT = "See more";
 
 describe("Snackbar Component", () => {
     const localVue = createLocalVue();
 
     let vuetify: Vuetify;
-    let wrapper: Wrapper<Snackbar>;
+    let wrapper: Wrapper<Alert>;
 
     beforeEach(() => {
         vuetify = new Vuetify();
 
-        wrapper = shallowMount(Snackbar, {
+        wrapper = shallowMount(Alert, {
             localVue,
             vuetify
         });
 
-        UtilsModule.setSnackbar(
-            new SnackbarModel().setShowSnackbar(true).setMessage(MESSAGE)
+        UtilsModule.setAlert(
+            new AlertModel()
+                .setShowAlert(true)
+                .setMessage(MESSAGE)
+                .setCallback(() => true)
+                .setBtnText(BTN_TEXT)
         );
     });
 
@@ -34,12 +39,12 @@ describe("Snackbar Component", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it("Should get snackbar object from store", () => {
+    it("Should get alert object from store", () => {
         // Arrange
-        const snackbarObj = UtilsModule.snackbar;
+        const alertObj = UtilsModule.alertNotification;
 
         // Assert
         // @ts-ignore
-        expect(wrapper.vm.snackbar).toEqual(snackbarObj);
+        expect(wrapper.vm.alert).toEqual(alertObj);
     });
 });

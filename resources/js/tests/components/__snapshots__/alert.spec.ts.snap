@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snackbar Component Should match snapshot 1`] = `
+"<v-alert-stub tile=\\"true\\" tag=\\"div\\" value=\\"true\\" border=\\"bottom\\" closelabel=\\"$vuetify.close\\" dense=\\"true\\" closeicon=\\"$cancel\\" icon=\\"\\" type=\\"success\\" data-cy=\\"alert\\" class=\\"mb-2 font-weight-bold d-flex justify-center\\">
+  Message for test purposes
+  <v-btn-stub outlined=\\"true\\" tag=\\"button\\" activeclass=\\"\\" small=\\"true\\" type=\\"button\\" class=\\"ml-4 font-weight-bold\\">
+    See more
+  </v-btn-stub>
+</v-alert-stub>"
+`;

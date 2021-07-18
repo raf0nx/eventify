@@ -1,18 +1,21 @@
 import { UtilsModule } from "@modules/Utils";
 import { SnackbarModel } from "@/models/Snackbar";
+import { AlertModel } from "@/models/Alert";
 
 const MESSAGE = "Message for test purposes";
 
 describe("Utils store", () => {
-    it("Should set alert to true", () => {
+    it("Should set alert and its content", () => {
         // Arrange
-        expect(UtilsModule.showAlert).toEqual(false);
+        const alertNotification = new AlertModel()
+            .setShowAlert(true)
+            .setMessage(MESSAGE);
 
         // Act
-        UtilsModule.setAlert(true);
+        UtilsModule.setAlert(alertNotification);
 
         // Assert
-        expect(UtilsModule.showAlert).toEqual(true);
+        expect(UtilsModule.alert).toEqual(alertNotification);
     });
 
     it("Should set loading true", () => {
@@ -41,9 +44,9 @@ describe("Utils store", () => {
         );
     });
 
-    it("Should get alert", () => {
+    it("Should get alert notification object", () => {
         // Arrange
-        const state = UtilsModule.showAlert;
+        const state = UtilsModule.alertNotification;
         const result = UtilsModule.alert;
 
         // Assert

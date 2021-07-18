@@ -1,20 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App.vue Should match the snapshot 1`] = `
-"<v-app-stub id=\\"app\\">
-  <v-system-bar-stub app=\\"true\\" color=\\"orange darken-2\\" window=\\"true\\" data-cy=\\"system_bar\\" class=\\"font-weight-bold justify-center white--text\\">
-    <v-icon-stub class=\\"white--text\\">mdi-alert</v-icon-stub>
-    Email not verified! Check your inbox at test@gmail.com
-    <v-btn-stub tag=\\"button\\" activeclass=\\"\\" small=\\"true\\" plain=\\"true\\" text=\\"true\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
-      Resend link
-    </v-btn-stub>
-  </v-system-bar-stub>
-  <snackbar-stub></snackbar-stub>
-  <v-overlay-stub color=\\"#212121\\" dark=\\"true\\" opacity=\\"0.46\\" zindex=\\"5\\">
-    <v-progress-circular-stub indeterminate=\\"true\\" rotate=\\"0\\" size=\\"64\\" width=\\"4\\" value=\\"0\\"></v-progress-circular-stub>
-  </v-overlay-stub>
-  <transition-stub name=\\"scale\\" appear=\\"true\\" mode=\\"out-in\\">
-    <router-view-stub name=\\"default\\"></router-view-stub>
-  </transition-stub>
-</v-app-stub>"
+"<div data-app=\\"true\\" class=\\"v-application v-application--is-ltr theme--light\\" id=\\"app\\">
+  <div class=\\"v-application--wrap\\">
+    <div role=\\"alert\\" class=\\"v-alert mb-2 font-weight-bold d-flex justify-center v-sheet theme--dark rounded-0 v-alert--border v-alert--dense v-alert--border-bottom success\\" data-cy=\\"alert\\">
+      <div class=\\"v-alert__wrapper\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate v-alert__icon mdi mdi-check-circle theme--dark\\"></i>
+        <div class=\\"v-alert__content\\">
+          Email not verified!Check your inbox at test@gmail.com
+          <button type=\\"button\\" class=\\"ml-4 font-weight-bold v-btn v-btn--outlined theme--dark v-size--small\\"><span class=\\"v-btn__content\\">
+		Send
+	</span></button></div>
+        <div class=\\"v-alert__border v-alert__border--bottom\\"></div>
+      </div>
+    </div>
+    <div class=\\"v-snack mb-8 v-snack--active v-snack--bottom v-snack--has-background\\" style=\\"padding: 0px 0px 0px 0px;\\" fixed=\\"\\">
+      <transition-stub name=\\"v-snack-transition\\">
+        <div class=\\"v-snack__wrapper v-sheet theme--dark deep-purple\\" style=\\"\\">
+          <div role=\\"status\\" aria-live=\\"polite\\" class=\\"v-snack__content\\">
+            <div class=\\"d-flex align-center\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-check-circle theme--dark white--text\\"></i> <span class=\\"font-weight-bold ml-2\\">Verification Link resend successfully!</span></div>
+          </div>
+          <div class=\\"v-snack__action \\"></div>
+        </div>
+      </transition-stub>
+    </div>
+    <div class=\\"v-overlay theme--dark\\" style=\\"z-index: 5;\\">
+      <div class=\\"v-overlay__scrim\\" style=\\"opacity: 0; background-color: rgb(33, 33, 33); border-color: #212121;\\"></div>
+    </div>
+    <transition-stub name=\\"scale\\" appear=\\"true\\" mode=\\"out-in\\">
+      <!---->
+    </transition-stub>
+  </div>
+</div>"
 `;

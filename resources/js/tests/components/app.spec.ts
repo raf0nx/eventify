@@ -1,14 +1,11 @@
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
-import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
-import axios from "axios";
+import { createLocalVue, mount, Wrapper } from "@vue/test-utils";
 
 import App from "@components/App.vue";
-import { AuthModule } from "@modules/Auth";
-import { UtilsModule } from "@modules/Utils";
+import { UtilsModule } from "@/store/modules/Utils";
+import { AlertModel } from "@/models/Alert";
 import { SnackbarModel } from "@/models/Snackbar";
-
-jest.mock("axios");
 
 const EMAIL_NOT_VERIFIED = "Email not verified!";
 const INBOX_CHECK = "Check your inbox at ";
@@ -34,19 +31,29 @@ describe("App.vue", () => {
     beforeEach(() => {
         vuetify = new Vuetify();
 
-        wrapper = shallowMount(App, {
+        wrapper = mount(App, {
             localVue,
             vuetify,
             router
         });
 
-        AuthModule.SET_USER(user);
-        UtilsModule.setAlert(true);
+        UtilsModule.setAlert(
+            new AlertModel()
+                .setShowAlert(true)
+                .setMessage(EMAIL_NOT_VERIFIED + INBOX_CHECK + user.email)
+                .setCallback(() => true)
+                .setBtnText("Send")
+        );
+        
+        UtilsModule.setSnackbar(
+            new SnackbarModel()
+                .setShowSnackbar(true)
+                .setMessage(RESEND_LINK_MSG)
+        );
     });
 
     afterEach(() => {
         wrapper.destroy();
-        jest.resetAllMocks();
     });
 
     it("Should match the snapshot", () => {
@@ -54,111 +61,20 @@ describe("App.vue", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it("Should get authenticated user object", () => {
-        // Arrange
-        const user = AuthModule.user;
+    it("Should render alert and its content", () => {
+        // Act
+        const alert = wrapper.find(".v-alert");
+        const button = wrapper.find("button");
 
         // Assert
-        // @ts-ignore
-        expect(wrapper.vm.authUser).toEqual(user);
-    });
-
-    it("Should get authenticated user email", () => {
-        // Arrange
-        const user = AuthModule.user!;
-        const userEmail = user.email;
-
-        // Assert
-        // @ts-ignore
-        expect(wrapper.vm.userEmail).toEqual(userEmail);
-    });
-
-    it("Should not get authenticated user email", () => {
-        // Arrange
-        AuthModule.SET_USER(null);
-        // Assert
-        // @ts-ignore
-        expect(wrapper.vm.userEmail).toBeNull();
-    });
-
-    it("Should get authenticated user ID", () => {
-        // Arrange
-        const user = AuthModule.user!;
-        const userID = user.id;
-
-        // Assert
-        // @ts-ignore
-        expect(wrapper.vm.userId).toEqual(userID);
-    });
-
-    it("Should not get authenticated user ID", () => {
-        // Arrange
-        AuthModule.SET_USER(null);
-
-        // Assert
-        // @ts-ignore
-        expect(wrapper.vm.userId).toBeNull();
-    });
-
-    it("Should get info whether to show alert", () => {
-        // Arrange
-        const showAlert = UtilsModule.showAlert;
-
-        // Assert
-        // @ts-ignore
-        expect(wrapper.vm.alert).toEqual(showAlert);
-    });
-
-    it("Should trigger resendVerificationLink method", async () => {
-        // Arrange
-        const spy = jest.spyOn(
-            wrapper.vm,
-            // @ts-ignore
-            "resendVerificationLink"
+        expect(alert.text()).toContain(
+            EMAIL_NOT_VERIFIED + INBOX_CHECK + user.email
         );
-
-        // Act
-        // @ts-ignore
-        axios.post.mockImplementationOnce(() => Promise.resolve(true));
-        // @ts-ignore
-        await wrapper.vm.resendVerificationLink();
-
-        // Assert
-        expect(UtilsModule.snackbarNotification).toEqual(
-            new SnackbarModel()
-                .setShowSnackbar(true)
-                .setMessage(RESEND_LINK_MSG)
-        );
-        expect(spy).toHaveBeenCalled();
+        expect(button.text()).toBe("Send");
     });
 
-    it("Should trigger resendVerificationLink method with rejected value", async () => {
-        // Arrange
-        const spy = jest.spyOn(axios, "post").mockRejectedValueOnce(false);
-
+    it("Should render snackbar and it's message", () => {
         // Assert
-        try {
-            // @ts-ignore
-            await wrapper.vm.resendVerificationLink();
-        } catch {
-            expect(spy).toHaveBeenCalled();
-            expect(spy).resolves.toBe(false);
-        }
-    });
-
-    it("Should render that email has not been verified", () => {
-        // Act
-        const topBar = wrapper.find("v-system-bar-stub");
-
-        // Assert
-        expect(topBar.text()).toContain(EMAIL_NOT_VERIFIED);
-    });
-
-    it("Should render authenticated user email", () => {
-        // Act
-        const topBar = wrapper.find("v-system-bar-stub");
-
-        // Assert
-        expect(topBar.text()).toContain(INBOX_CHECK + user.email);
+        expect(wrapper.html()).toContain(RESEND_LINK_MSG);
     });
 });
