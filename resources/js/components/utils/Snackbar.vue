@@ -1,10 +1,10 @@
 <template>
 	<v-snackbar
 		v-model="snackbar.showSnackbar"
+        class="mb-8"
 		app
 		fixed
-		top
-		right
+		bottom
 		:color="snackbar.color"
 	>
 		<div class="d-flex align-center">
@@ -28,5 +28,5 @@
 	}
 </script>
 
-<style>
+<style scoped>
 </style>

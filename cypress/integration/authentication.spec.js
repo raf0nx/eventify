@@ -48,7 +48,7 @@ describe("Authentication", () => {
 
         cy.get("[data-cy=submit]").click();
 
-        cy.get("[data-cy=system_bar]").contains(email);
+        cy.get("[data-cy=alert]").contains(email);
         cy.getCookie("eventify_session").should("exist");
         cy.url().should("eq", `${Cypress.config("baseUrl")}/`);
     });

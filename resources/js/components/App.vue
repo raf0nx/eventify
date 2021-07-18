@@ -1,25 +1,6 @@
 <template>
 	<v-app>
-		<v-system-bar
-			v-if="alert"
-			color="orange darken-2"
-			class="font-weight-bold justify-center white--text"
-			data-cy="system_bar"
-			app
-			window
-		>
-			<v-icon class="white--text">mdi-alert</v-icon>
-			Email not verified! Check your inbox at {{ userEmail }}
-			<v-btn
-				@click="resendVerificationLink()"
-				plain
-				text
-				class="white--text font-weight-bold"
-				small
-			>
-				Resend link
-			</v-btn>
-		</v-system-bar>
+		<alert></alert>
 		<snackbar></snackbar>
 		<v-overlay :value="loader">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
@@ -33,52 +14,19 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	import AuthService from "@/services/AuthService";
-	import { AuthModule } from "@modules/Auth";
-	import { UtilsModule } from "@modules/Utils";
-	import { User } from "@/models/User";
 	import Snackbar from "@components/utils/Snackbar.vue";
-	import { SnackbarModel } from "@/models/Snackbar";
+	import Alert from "@components/utils/Alert.vue";
+	import { UtilsModule } from "@/store/modules/Utils";
 
 	@Component({
 		components: {
 			Snackbar,
+			Alert,
 		},
 	})
 	export default class App extends Vue {
-		get authUser(): User | null {
-			return AuthModule.authUser;
-		}
-
-		get userEmail(): string | null {
-			return this.authUser ? this.authUser.email : null;
-		}
-
-		get userId(): Number | null {
-			return this.authUser ? this.authUser.id : null;
-		}
-
-		get alert(): boolean {
-			return UtilsModule.alert;
-		}
-
 		get loader(): boolean {
 			return UtilsModule.loader;
-		}
-
-		async resendVerificationLink(): Promise<void> {
-			UtilsModule.setLoading(true);
-			try {
-				await AuthService.sendVerification(this.userId);
-				UtilsModule.setSnackbar(
-					new SnackbarModel()
-						.setShowSnackbar(true)
-						.setMessage("Verification Link resend successfully!")
-				);
-			} catch (error: unknown) {
-				console.log(error);
-			}
-			UtilsModule.setLoading(false);
 		}
 	}
 </script>

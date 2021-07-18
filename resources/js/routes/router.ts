@@ -8,6 +8,9 @@ import Auth from "@components/auth/Auth.vue";
 import Login from "@components/auth/Login.vue";
 import Register from "@components/auth/Register.vue";
 import ErrorPage from "@components/error/ErrorPage.vue";
+import { AlertModel } from "@/models/Alert";
+import { EnumAlertType } from "@/enums/EnumAlertType";
+import AlertCallbacks from "@/utils/alertCallbacks";
 
 Vue.use(VueRouter);
 
@@ -67,9 +70,21 @@ router.beforeEach(async (to, _, next) => {
 router.afterEach((_, _2) => {
     const authUser = AuthModule.authUser;
     if (authUser) {
-        UtilsModule.setAlert(authUser.email_verified_at ? false : true);
+        UtilsModule.setAlert(
+            authUser.email_verified_at
+                ? new AlertModel()
+                : new AlertModel()
+                      .setShowAlert(true)
+                      .setMessage(
+                          "Email not verified! Check your inbox at " +
+                              AuthModule.authUser?.email
+                      )
+                      .setType(EnumAlertType.WARNING)
+                      .setCallback(AlertCallbacks.resendVerificationLink)
+                      .setBtnText("Resend link")
+        );
     } else {
-        UtilsModule.setAlert(false);
+        UtilsModule.setAlert(new AlertModel());
     }
 });
 

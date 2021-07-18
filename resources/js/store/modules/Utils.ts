@@ -8,22 +8,23 @@ import {
 
 import store from "@/store/store";
 import { SnackbarModel } from "@/models/Snackbar";
+import { AlertModel } from "@/models/Alert";
 
 export interface UtilsState {
     snackbarNotification: SnackbarModel;
-    showAlert: boolean;
+    alertNotification: AlertModel;
     isLoading: boolean;
 }
 
 @Module({ dynamic: true, store, name: "utils" })
 class Utils extends VuexModule implements UtilsState {
     snackbarNotification = new SnackbarModel();
-    showAlert = false;
+    alertNotification = new AlertModel();
     isLoading = false;
 
     @Mutation
-    private SET_ALERT(setAlert: boolean): void {
-        this.showAlert = setAlert;
+    private SET_ALERT(alert: AlertModel): void {
+        this.alertNotification = alert;
     }
 
     @Mutation
@@ -32,13 +33,13 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Mutation
-    private SET_SNACKBAR(snackbarPayload: SnackbarModel): void {
-        this.snackbarNotification = snackbarPayload;
+    private SET_SNACKBAR(snackbar: SnackbarModel): void {
+        this.snackbarNotification = snackbar;
     }
 
     @Action
-    setAlert(setAlert: boolean): void {
-        this.SET_ALERT(setAlert);
+    setAlert(alert: AlertModel): void {
+        this.SET_ALERT(alert);
     }
 
     @Action
@@ -47,12 +48,12 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Action
-    setSnackbar(snackbarPayload: SnackbarModel): void {
-        this.SET_SNACKBAR(snackbarPayload);
+    setSnackbar(snackbar: SnackbarModel): void {
+        this.SET_SNACKBAR(snackbar);
     }
 
-    get alert(): boolean {
-        return this.showAlert;
+    get alert(): AlertModel {
+        return this.alertNotification;
     }
 
     get loader(): boolean {
