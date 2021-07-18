@@ -1,4 +1,7 @@
-import { UtilsModule, Snackbar } from "@modules/Utils";
+import { UtilsModule } from "@modules/Utils";
+import { SnackbarModel } from "@/models/Snackbar";
+
+const MESSAGE = "Message for test purposes";
 
 describe("Utils store", () => {
     it("Should set alert to true", () => {
@@ -25,30 +28,22 @@ describe("Utils store", () => {
 
     it("Should set snackbar and its content", async () => {
         // Arrange
-        const snackbarNotification = {
-            showSnackbar: true,
-            message: "Some message just for testing purposes."
-        };
+        const snackbarNotification = new SnackbarModel()
+            .setShowSnackbar(true)
+            .setMessage(MESSAGE);
 
         // Act
         UtilsModule.setSnackbar(snackbarNotification);
 
         // Assert
-        expect(UtilsModule.snackbarNotification).toMatchObject<Snackbar>(
+        expect(UtilsModule.snackbarNotification).toMatchObject<SnackbarModel>(
             snackbarNotification
         );
-        await new Promise(r => setTimeout(r, 4000));
-        expect(UtilsModule.snackbarNotification).toStrictEqual({
-            showSnackbar: false,
-            message: null
-        });
     });
 
     it("Should get alert", () => {
         // Arrange
         const state = UtilsModule.showAlert;
-
-        // Act
         const result = UtilsModule.alert;
 
         // Assert
@@ -58,8 +53,6 @@ describe("Utils store", () => {
     it("Should get loader", () => {
         // Arrange
         const state = UtilsModule.isLoading;
-
-        // Act
         const result = UtilsModule.loader;
 
         // Assert
@@ -69,8 +62,6 @@ describe("Utils store", () => {
     it("Should get snackbar notification object", () => {
         // Arrange
         const state = UtilsModule.snackbarNotification;
-
-        // Act
         const result = UtilsModule.snackbar;
 
         // Assert

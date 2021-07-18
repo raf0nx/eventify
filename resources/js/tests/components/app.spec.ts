@@ -1,75 +1,47 @@
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
-import Vuex from "vuex";
 import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 import axios from "axios";
 
 import App from "@components/App.vue";
+import { AuthModule } from "@modules/Auth";
+import { UtilsModule } from "@modules/Utils";
+import { SnackbarModel } from "@/models/Snackbar";
 
 jest.mock("axios");
 
 const EMAIL_NOT_VERIFIED = "Email not verified!";
 const INBOX_CHECK = "Check your inbox at ";
-const RESEND_LINK = "Resend link";
 const RESEND_LINK_MSG = "Verification Link resend successfully!";
+
+const user = {
+    id: 1,
+    name: "Test",
+    email: "test@gmail.com",
+    created_at: new Date("2021-01-01"),
+    email_verified_at: undefined,
+    updated_at: new Date("2021-01-01")
+};
 
 describe("App.vue", () => {
     const localVue = createLocalVue();
     localVue.use(VueRouter);
-    localVue.use(Vuex);
 
     const router = new VueRouter();
     let vuetify: Vuetify;
     let wrapper: Wrapper<App>;
-    let state: any;
-    let getters: any;
-    let store: any;
 
     beforeEach(() => {
         vuetify = new Vuetify();
 
-        state = {
-            showAlert: true,
-            snackbarNotification: {
-                showSnackbar: false,
-                message: null
-            },
-            user: {
-                id: 1,
-                name: "Test",
-                email: "test@gmail.com",
-                created_at: "2021-01-01",
-                email_verified_at: "2021-01-01",
-                updated_at: "2021-01-01"
-            }
-        };
-
-        getters = {
-            authUser: () => state.user
-        };
-
-        store = new Vuex.Store({
-            state,
-            getters
-        });
-
         wrapper = shallowMount(App, {
             localVue,
             vuetify,
-            router,
-            store,
-            computed: {
-                alert() {
-                    return state.showAlert;
-                },
-                authUser() {
-                    return state.user;
-                },
-                snackbar() {
-                    return state.snackbarNotification;
-                }
-            }
+            router
         });
+
+        AuthModule.SET_USER(user);
+        UtilsModule.setAlert(true);
     });
 
     afterEach(() => {
@@ -84,68 +56,79 @@ describe("App.vue", () => {
 
     it("Should get authenticated user object", () => {
         // Arrange
-        // @ts-ignore
-        const user = wrapper.vm.authUser;
+        const user = AuthModule.user;
 
         // Assert
-        expect(user).toEqual(store.state.user);
+        // @ts-ignore
+        expect(wrapper.vm.authUser).toEqual(user);
+    });
+
+    it("Should get authenticated user email", () => {
+        // Arrange
+        const user = AuthModule.user!;
+        const userEmail = user.email;
+
+        // Assert
+        // @ts-ignore
+        expect(wrapper.vm.userEmail).toEqual(userEmail);
+    });
+
+    it("Should not get authenticated user email", () => {
+        // Arrange
+        AuthModule.SET_USER(null);
+        // Assert
+        // @ts-ignore
+        expect(wrapper.vm.userEmail).toBeNull();
     });
 
     it("Should get authenticated user ID", () => {
         // Arrange
-        // @ts-ignore
-        const userID = wrapper.vm.userId;
+        const user = AuthModule.user!;
+        const userID = user.id;
 
         // Assert
-        expect(userID).toEqual(store.state.user.id);
+        // @ts-ignore
+        expect(wrapper.vm.userId).toEqual(userID);
     });
 
-    it("Should get snackbar object", () => {
+    it("Should not get authenticated user ID", () => {
         // Arrange
-        // @ts-ignore
-        const snackbarObj = wrapper.vm.snackbar;
+        AuthModule.SET_USER(null);
 
         // Assert
-        expect(snackbarObj).toEqual(store.state.snackbarNotification);
+        // @ts-ignore
+        expect(wrapper.vm.userId).toBeNull();
     });
 
     it("Should get info whether to show alert", () => {
         // Arrange
+        const showAlert = UtilsModule.showAlert;
+
+        // Assert
         // @ts-ignore
-        const showAlert = wrapper.vm.alert;
-
-        // Assert
-        expect(showAlert).toEqual(store.state.showAlert);
-    });
-
-    it("Should contain resend link button", async () => {
-        // Arrange
-        const resendButton = wrapper.find("v-btn-stub");
-
-        // Act
-        await resendButton.trigger("click");
-
-        // Assert
-        expect(resendButton.text()).toEqual(RESEND_LINK);
+        expect(wrapper.vm.alert).toEqual(showAlert);
     });
 
     it("Should trigger resendVerificationLink method", async () => {
         // Arrange
-        const spy = jest
-            .spyOn(
-                wrapper.vm,
-                // @ts-ignore
-                "resendVerificationLink"
-            )
-            .mockImplementationOnce(() => Promise.resolve(true));
+        const spy = jest.spyOn(
+            wrapper.vm,
+            // @ts-ignore
+            "resendVerificationLink"
+        );
 
         // Act
         // @ts-ignore
         axios.post.mockImplementationOnce(() => Promise.resolve(true));
+        // @ts-ignore
+        await wrapper.vm.resendVerificationLink();
 
         // Assert
-        // @ts-ignore
-        await expect(wrapper.vm.resendVerificationLink()).resolves.toBe(true);
+        expect(UtilsModule.snackbarNotification).toEqual(
+            new SnackbarModel()
+                .setShowSnackbar(true)
+                .setMessage(RESEND_LINK_MSG)
+        );
         expect(spy).toHaveBeenCalled();
     });
 
@@ -163,40 +146,8 @@ describe("App.vue", () => {
         }
     });
 
-    it("Should render snackbar after resend link", async () => {
-        // Assert
-        expect(store.state.snackbarNotification.showSnackbar).toEqual(false);
-        expect(store.state.snackbarNotification.message).toEqual(null);
-
-        // Arrange
-        const resendLinkSent = jest
-            .spyOn(
-                wrapper.vm,
-                // @ts-ignore
-                "resendVerificationLink"
-            )
-            .mockResolvedValue(true);
-
-        // Act
-        // @ts-ignore
-        const isSend = await wrapper.vm.resendVerificationLink();
-
-        // Assert
-        expect(resendLinkSent).toBeCalled();
-        expect(isSend).toBe(true);
-
-        // Act
-        store.state.snackbarNotification.showSnackbar = true;
-        store.state.snackbarNotification.message = RESEND_LINK_MSG;
-
-        await wrapper.vm.$nextTick();
-
-        // Assert
-        expect(wrapper.html()).toContain(RESEND_LINK_MSG);
-    });
-
     it("Should render that email has not been verified", () => {
-        // Arrange
+        // Act
         const topBar = wrapper.find("v-system-bar-stub");
 
         // Assert
@@ -204,10 +155,10 @@ describe("App.vue", () => {
     });
 
     it("Should render authenticated user email", () => {
-        // Arrange
+        // Act
         const topBar = wrapper.find("v-system-bar-stub");
 
         // Assert
-        expect(topBar.text()).toContain(INBOX_CHECK + store.state.user.email);
+        expect(topBar.text()).toContain(INBOX_CHECK + user.email);
     });
 });
