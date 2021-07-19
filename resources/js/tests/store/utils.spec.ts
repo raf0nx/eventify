@@ -4,70 +4,76 @@ import { AlertModel } from "@/models/Alert";
 
 const MESSAGE = "Message for test purposes";
 
-describe("Utils store", () => {
+describe("Utils module", () => {
     it("Should set alert and its content", () => {
         // Arrange
-        const alertNotification = new AlertModel()
+        const alertModel = new AlertModel()
             .setShowAlert(true)
             .setMessage(MESSAGE);
 
         // Act
-        UtilsModule.setAlert(alertNotification);
+        UtilsModule.setAlert(alertModel);
 
         // Assert
-        expect(UtilsModule.alert).toEqual(alertNotification);
+        expect(UtilsModule.alert).toEqual(alertModel);
     });
 
-    it("Should set loading true", () => {
-        // Arrange
-        expect(UtilsModule.isLoading).toEqual(false);
-
+    it("Should set loader", () => {
         // Act
-        UtilsModule.setLoading(true);
+        UtilsModule.setLoader(true);
 
         // Assert
-        expect(UtilsModule.isLoading).toEqual(true);
+        expect(UtilsModule.loader).toEqual(true);
     });
 
-    it("Should set snackbar and its content", async () => {
+    it("Should set snackbar and its content", () => {
         // Arrange
-        const snackbarNotification = new SnackbarModel()
+        const snackbarModel = new SnackbarModel()
             .setShowSnackbar(true)
             .setMessage(MESSAGE);
 
         // Act
-        UtilsModule.setSnackbar(snackbarNotification);
+        UtilsModule.setSnackbar(snackbarModel);
 
         // Assert
-        expect(UtilsModule.snackbarNotification).toMatchObject<SnackbarModel>(
-            snackbarNotification
+        expect(UtilsModule.snackbar).toMatchObject<SnackbarModel>(
+            snackbarModel
         );
     });
 
-    it("Should get alert notification object", () => {
+    it("Should get alert notification", () => {
         // Arrange
-        const state = UtilsModule.alertNotification;
-        const result = UtilsModule.alert;
+        const alertModel = new AlertModel();
+
+        // Act
+        UtilsModule.setAlert(alertModel);
 
         // Assert
-        expect(result).toEqual(state);
+        const result = UtilsModule.alert;
+        expect(result).toEqual(alertModel);
     });
 
     it("Should get loader", () => {
         // Arrange
-        const state = UtilsModule.isLoading;
-        const result = UtilsModule.loader;
+        const isLoading = true;
 
+        // Act
+        UtilsModule.setLoader(isLoading);
+        
         // Assert
-        expect(result).toEqual(state);
+        const result = UtilsModule.loader;
+        expect(result).toEqual(isLoading);
     });
 
-    it("Should get snackbar notification object", () => {
+    it("Should get snackbar notification", () => {
         // Arrange
-        const state = UtilsModule.snackbarNotification;
-        const result = UtilsModule.snackbar;
+        const snackbarModel = new SnackbarModel();
 
+        // Act
+        UtilsModule.setSnackbar(snackbarModel);
+        
         // Assert
-        expect(result).toMatchObject(state);
+        const result = UtilsModule.snackbar;
+        expect(result).toMatchObject(snackbarModel);
     });
 });

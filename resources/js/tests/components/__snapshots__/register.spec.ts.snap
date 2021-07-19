@@ -3,7 +3,7 @@
 exports[`Register.vue Should match snapshot 1`] = `
 "<v-col-stub cols=\\"12\\" md=\\"5\\" tag=\\"div\\" dark=\\"\\" class=\\"d-flex flex-column justify-center px-12\\">
   <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" elevation=\\"0\\">
-    <h1 class=\\"main-title font-weight-bold deep-purple--text text--darken-4\\">
+    <h1 class=\\"auth-form__title font-weight-bold deep-purple--text text--darken-4\\">
       Create a new account
     </h1>
     <validationobserver-stub tag=\\"span\\" vid=\\"obs_0\\"></validationobserver-stub>

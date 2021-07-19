@@ -28,7 +28,7 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Mutation
-    private SET_LOADING(isLoading: boolean): void {
+    private SET_LOADER(isLoading: boolean): void {
         this.isLoading = isLoading;
     }
 
@@ -43,8 +43,8 @@ class Utils extends VuexModule implements UtilsState {
     }
 
     @Action
-    setLoading(isLoading: boolean): void {
-        this.SET_LOADING(isLoading);
+    setLoader(isLoading: boolean): void {
+        this.SET_LOADER(isLoading);
     }
 
     @Action

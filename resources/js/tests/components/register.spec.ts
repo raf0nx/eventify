@@ -6,8 +6,6 @@ import Register from "@components/auth/Register.vue";
 
 jest.mock("axios");
 
-const SIGN_UP = "Create a new account";
-
 describe("Register.vue", () => {
     const localVue = createLocalVue();
     let wrapper: Wrapper<Register>;
@@ -31,14 +29,6 @@ describe("Register.vue", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it("Should contain Sign Up header", () => {
-        // Arrange
-        const header = wrapper.find("h1");
-
-        // Act
-        expect(header.text()).toEqual(SIGN_UP);
-    });
-
     it("Should trigger register method", async () => {
         // Arrange
         const spy = jest
@@ -47,7 +37,7 @@ describe("Register.vue", () => {
 
         // Act
         // @ts-ignore
-        axios.post.mockResolvedValue(true);
+        axios.post.mockResolvedValue();
 
         // Assert
         try {

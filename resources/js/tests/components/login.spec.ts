@@ -6,8 +6,6 @@ import Login from "@components/auth/Login.vue";
 
 jest.mock("axios");
 
-const SIGN_IN = "Sign In";
-
 describe("Login.vue", () => {
     const localVue = createLocalVue();
     let wrapper: Wrapper<Login>;
@@ -29,14 +27,6 @@ describe("Login.vue", () => {
     it("Should match snapshot", () => {
         // Assert
         expect(wrapper.html()).toMatchSnapshot();
-    });
-
-    it("Should contain Sign In header", () => {
-        // Arrange
-        const header = wrapper.find("h1");
-
-        // Assert
-        expect(header.text()).toEqual(SIGN_IN);
     });
 
     it("Should trigger login method", async () => {

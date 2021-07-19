@@ -4,15 +4,15 @@ exports[`Auth.vue Should match snapshot 1`] = `
 "<v-main-stub tag=\\"main\\">
   <v-container-stub tag=\\"div\\" fluid=\\"true\\" class=\\"fill-height py-0\\">
     <v-row-stub tag=\\"div\\" class=\\"fill-height\\">
-      <v-col-stub cols=\\"12\\" md=\\"7\\" tag=\\"div\\" class=\\"pa-0 left-panel\\">
-        <div class=\\"left-panel-container pa-4 d-flex flex-column justify-space-between\\">
-          <div class=\\"d-flex\\">
-            <v-icon-stub class=\\"white--text mr-1\\">mdi-buffer</v-icon-stub> <span class=\\"logo-text white--text font-weight-bold\\">Eventify</span>
+      <v-col-stub cols=\\"12\\" md=\\"7\\" tag=\\"div\\" class=\\"pa-0 auth-panel\\">
+        <div class=\\"auth-panel__container pa-4 d-flex flex-column justify-space-between\\">
+          <div class=\\"d-flex logo\\">
+            <v-icon-stub class=\\"white--text mr-1\\">mdi-buffer</v-icon-stub> <span class=\\"logo__text white--text font-weight-bold\\">Eventify</span>
           </div>
           <div class=\\"d-flex flex-column align-center mb-16\\">
-            <h2 class=\\"left-panel-title white--text\\">
+            <h2 class=\\"auth-panel__title white--text\\">
               Welcome back!
-            </h2> <span class=\\"left-panel-subtitle grey--text text--lighten-3 mt-4\\">Sign In to continue using my application!</span>
+            </h2> <span class=\\"auth-panel__subtitle grey--text text--lighten-3 mt-4\\">Sign In to continue using my application!</span>
           </div>
           <div class=\\"d-flex justify-center\\"><span class=\\"white--text font-weight-bold\\">v. 0.0</span></div>
         </div>

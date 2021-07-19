@@ -5,6 +5,8 @@ import { UtilsModule } from "@/store/modules/Utils";
 import AlertCallbacks from "@/utils/alertCallbacks";
 import { AuthModule } from "@/store/modules/Auth";
 import { User } from "@/models/User";
+import { EnumSnackbarColor } from "@/enums/EnumSnackbarColor";
+import { EnumSnackbarIcon } from "@/enums/EnumSnackbarIcon";
 
 const RESEND_LINK_MSG = "Verification Link resend successfully!";
 
@@ -45,7 +47,7 @@ describe("Alert callbacks", () => {
         await AlertCallbacks.resendVerificationLink();
 
         // Assert
-        expect(UtilsModule.snackbarNotification).toEqual(
+        expect(UtilsModule.snackbar).toEqual(
             new SnackbarModel()
                 .setShowSnackbar(true)
                 .setMessage(RESEND_LINK_MSG)
@@ -64,5 +66,14 @@ describe("Alert callbacks", () => {
 
         // Assert
         expect(spy).toHaveBeenCalled();
+        expect(UtilsModule.snackbar).toEqual(
+            new SnackbarModel()
+                .setShowSnackbar(true)
+                .setMessage(
+                    "Operation failed, please try again or reload the page."
+                )
+                .setColor(EnumSnackbarColor.ERROR)
+                .setIcon(EnumSnackbarIcon.ERROR)
+        );
     });
 });

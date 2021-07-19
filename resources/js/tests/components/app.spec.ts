@@ -44,7 +44,7 @@ describe("App.vue", () => {
                 .setCallback(() => true)
                 .setBtnText("Send")
         );
-        
+
         UtilsModule.setSnackbar(
             new SnackbarModel()
                 .setShowSnackbar(true)
@@ -74,7 +74,9 @@ describe("App.vue", () => {
     });
 
     it("Should render snackbar and it's message", () => {
+        // Arrange
+        const snackbar = wrapper.find(".v-snack");
         // Assert
-        expect(wrapper.html()).toContain(RESEND_LINK_MSG);
+        expect(snackbar.text()).toContain(RESEND_LINK_MSG);
     });
 });

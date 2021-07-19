@@ -8,7 +8,7 @@ import { AlertModel } from "@/models/Alert";
 const MESSAGE = "Message for test purposes";
 const BTN_TEXT = "See more";
 
-describe("Snackbar Component", () => {
+describe("Snackbar.vue", () => {
     const localVue = createLocalVue();
 
     let vuetify: Vuetify;
@@ -41,10 +41,10 @@ describe("Snackbar Component", () => {
 
     it("Should get alert object from store", () => {
         // Arrange
-        const alertObj = UtilsModule.alertNotification;
+        const alertModel = UtilsModule.alert;
 
         // Assert
         // @ts-ignore
-        expect(wrapper.vm.alert).toEqual(alertObj);
+        expect(wrapper.vm.alert).toEqual(alertModel);
     });
 });

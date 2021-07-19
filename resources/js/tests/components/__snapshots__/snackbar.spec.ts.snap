@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snackbar Component Should match snapshot 1`] = `
+exports[`Snackbar.vue Should match snapshot 1`] = `
 "<v-snackbar-stub color=\\"deep-purple\\" tag=\\"div\\" bottom=\\"true\\" app=\\"true\\" contentclass=\\"\\" timeout=\\"5000\\" transition=\\"v-snack-transition\\" fixed=\\"\\" class=\\"mb-8\\" value=\\"true\\">
   <div class=\\"d-flex align-center\\">
     <v-icon-stub color=\\"white\\">mdi-check-circle</v-icon-stub> <span class=\\"font-weight-bold ml-2\\">Message for test purposes</span>

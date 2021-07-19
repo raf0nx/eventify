@@ -7,7 +7,7 @@
 	>
 		<v-card elevation="0">
 			<h1
-				class="main-title font-weight-bold deep-purple--text text--darken-4"
+				class="auth-form__title font-weight-bold deep-purple--text text--darken-4"
 			>
 				Create a new account
 			</h1>
@@ -117,7 +117,7 @@
 		};
 
 		async registerUser(): Promise<void> {
-			UtilsModule.setLoading(true);
+			UtilsModule.setLoader(true);
 			try {
 				await AuthService.registerUser(this.formData);
 				this.$router.push({ name: "Home" });
@@ -129,7 +129,7 @@
 					Password: errorsData.password,
 				});
 			}
-			UtilsModule.setLoading(false);
+			UtilsModule.setLoader(false);
 		}
 	}
 </script>

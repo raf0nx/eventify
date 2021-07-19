@@ -8,7 +8,7 @@
 		<v-card elevation="0">
 			<h1
 				class="
-					main-title
+					auth-form__title
 					font-weight-bold
 					deep-purple--text
 					text--darken-4
@@ -77,6 +77,9 @@
 	import { AuthModule } from "@modules/Auth";
 	import { UtilsModule } from "@modules/Utils";
 	import { LoginFormData } from "./types";
+	import { SnackbarModel } from "@/models/Snackbar";
+	import { EnumSnackbarColor } from "@/enums/EnumSnackbarColor";
+	import { EnumSnackbarIcon } from "@/enums/EnumSnackbarIcon";
 
 	@Component({
 		components: { ValidationProvider, ValidationObserver },
@@ -88,22 +91,28 @@
 		};
 
 		async loginUser(): Promise<void> {
-			UtilsModule.setLoading(true);
+			UtilsModule.setLoader(true);
 			try {
 				await AuthService.loginUser(this.formData);
 				const authUser = await AuthModule.getAuthUser();
-				if (authUser) {
-					this.$router.push({ name: "Home" });
-				} else {
-					throw new Error("Cannot authenticate user");
-				}
+				authUser
+					? this.$router.push({ name: "Home" })
+					: UtilsModule.setSnackbar(
+							new SnackbarModel()
+								.setShowSnackbar(true)
+								.setMessage(
+									"Cannot authenticate you. Please try again."
+								)
+								.setColor(EnumSnackbarColor.ERROR)
+								.setIcon(EnumSnackbarIcon.ERROR)
+					  );
 			} catch (error) {
 				const errorsData = error.response.data.errors;
 				this.$refs.form.setErrors({
 					password: errorsData.password,
 				});
 			}
-			UtilsModule.setLoading(false);
+			UtilsModule.setLoader(false);
 		}
 	}
 </script>

@@ -7,7 +7,7 @@ import { SnackbarModel } from "@/models/Snackbar";
 
 const MESSAGE = "Message for test purposes";
 
-describe("Snackbar Component", () => {
+describe("Snackbar.vue", () => {
     const localVue = createLocalVue();
 
     let vuetify: Vuetify;

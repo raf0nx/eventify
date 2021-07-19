@@ -21,7 +21,7 @@ class AuthService {
         return axios.post("/register", formData);
     }
 
-    sendVerification(userID: Number | null): Promise<AxiosResponse<void>> {
+    sendVerification(userID: Number): Promise<AxiosResponse<void>> {
         return axios.post("/email/verification-notification", userID);
     }
 }
