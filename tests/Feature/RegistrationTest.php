@@ -190,12 +190,12 @@ class RegistrationTest extends TestCase {
         ]);
     }
 
-    public function test_password_is_string_for_registration() {
+    public function test_password_is_valid() {
         // arrange
         $user = TestCase::makeUser();
 
         // act
-        $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => 12345678, "password_confirmation" => 12345678]);
+        $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => 123, "password_confirmation" => 123]);
 
         // assert
         $response->assertStatus(422);
@@ -204,25 +204,7 @@ class RegistrationTest extends TestCase {
             "errors" => [
                 "password" => array(
                     0 => "The password must be a string.",
-                ),
-            ],
-        ]);
-    }
-
-    public function test_password_min_length_for_registration() {
-        // arrange
-        $user = TestCase::makeUser();
-
-        // act
-        $response = $this->post("/register", ["email" => $user->email, "name" => $user->name, "password" => '123', "password_confirmation" => '123']);
-
-        // assert
-        $response->assertStatus(422);
-        $response->assertJson([
-            "message" => "The given data was invalid.",
-            "errors" => [
-                "password" => array(
-                    0 => "The password must be at least 8 characters.",
+                    1 => "The password must be at least 8 characters and contain at least one uppercase character, one number, and one special character.",
                 ),
             ],
         ]);

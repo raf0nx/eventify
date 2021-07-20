@@ -9,7 +9,7 @@ describe("Authentication", () => {
 
     const name = faker.name.findName();
     const email = faker.internet.email();
-    const password = faker.internet.password();
+    const password = "Password123!";
 
     it("Manually registers a user", () => {
         cy.visit("/auth/register");
@@ -117,8 +117,17 @@ describe("Authentication", () => {
         cy.get("[data-cy=email]").type("valid_email");
         cy.contains("E-mail seems not to be valid");
 
-        cy.get("[data-cy=password]").type("short");
+        cy.get("[data-cy=password]").type("pass");
         cy.contains("Password must be at least 8 characters");
+
+        cy.get("[data-cy=password]").type("word");
+        cy.contains("Password must contain at least one uppercase character");
+
+        cy.get("[data-cy=password]").type("D");
+        cy.contains("Password must contain at least one special character");
+
+        cy.get("[data-cy=password]").type("!");
+        cy.contains("Password must contain at least one number");
 
         cy.get("[data-cy=password_confirmation]").type("not_the_same");
         cy.contains("Please make sure your passwords match");

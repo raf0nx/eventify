@@ -46,7 +46,7 @@
 					<ValidationObserver>
 						<ValidationProvider
 							v-slot="{ errors }"
-							rules="required|min:8"
+							rules="required|min:8|uppercase|special_char|number"
 							name="Password"
 						>
 							<v-text-field
