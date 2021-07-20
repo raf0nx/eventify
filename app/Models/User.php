@@ -40,4 +40,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function events(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
+        return $this->belongsToMany(Event::class);
+    }
 }
