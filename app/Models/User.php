@@ -42,6 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function events(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(Event::class, 'users_events');
     }
 }
