@@ -12,6 +12,7 @@ class EventsSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        Event::factory()->count(40)->create();
+        $eventCount = (int) $this->command->ask('How many events would you like to seed', 50);
+        Event::factory()->count($eventCount)->create();
     }
 }

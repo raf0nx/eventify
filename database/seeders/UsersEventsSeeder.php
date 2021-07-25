@@ -16,11 +16,15 @@ class UsersEventsSeeder extends Seeder {
         $eventsCount = Event::all()->count();
 
         if (!$eventsCount) {
+            $this->command->error('No events found! Skipping assigning events to users.');
             return;
         }
 
-        User::all()->each(function(User $user) {
-            $take = random_int(0, 2);
+        $eventsMin = (int) $this->command->ask('Choose the minimum number of events assigned to a user', 0);
+        $eventsMax = abs(min((int) $this->command->ask('Choose the maximum number of events assigned to a user', 2), $eventsCount));
+
+        User::all()->each(function (User $user) use ($eventsMin, $eventsMax) {
+            $take = random_int($eventsMin, $eventsMax);
             $events = Event::inRandomOrder()->take($take)->get()->pluck('id');
             $user->events()->sync($events);
         });

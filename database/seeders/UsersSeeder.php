@@ -12,7 +12,8 @@ class UsersSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        User::factory()->count(20)->create();
+        $userCount = max((int) $this->command->ask('How many users would you like to seed', 20), 1);
+        User::factory()->count($userCount)->create();
         User::factory()->unverified()->create();
     }
 }
