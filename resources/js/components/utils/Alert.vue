@@ -1,7 +1,7 @@
 <template>
 	<v-alert
 		v-if="alert.showAlert"
-		class="mb-2 font-weight-bold d-flex justify-center"
+		class="mb-0 font-weight-bold d-flex justify-center"
 		data-cy="alert"
 		border="bottom"
 		tile
@@ -37,10 +37,4 @@
 </script>
 
 <style scoped>
-	.v-alert {
-		position: sticky;
-		top: 0;
-		left: 0;
-		z-index: 1;
-	}
 </style>

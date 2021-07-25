@@ -2,19 +2,19 @@ import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import axios from "axios";
 
-import Home from "@components/main/Home.vue";
+import Dashboard from "@/components/main/Dashboard.vue";
 import { AuthModule } from "@/store/modules/Auth";
 
 jest.mock("axios");
 
-describe("Home.vue", () => {
+describe("Dashboard.vue", () => {
     const localVue = createLocalVue();
-    let wrapper: Wrapper<Home>;
+    let wrapper: Wrapper<Dashboard>;
     let vuetify: Vuetify;
 
     beforeEach(() => {
         vuetify = new Vuetify();
-        wrapper = shallowMount(Home, { localVue, vuetify });
+        wrapper = shallowMount(Dashboard, { localVue, vuetify });
     });
 
     afterEach(() => {

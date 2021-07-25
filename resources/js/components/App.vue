@@ -1,7 +1,11 @@
 <template>
 	<v-app>
-		<alert></alert>
+		<div class="sticky">
+			<alert></alert>
+			<navbar></navbar>
+		</div>
 		<snackbar></snackbar>
+		<navbar-drawer></navbar-drawer>
 		<v-overlay :value="loader">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
@@ -16,12 +20,16 @@
 
 	import Snackbar from "@components/utils/Snackbar.vue";
 	import Alert from "@components/utils/Alert.vue";
+	import Navbar from "@components/utils/Navbar.vue";
+	import NavbarDrawer from "@components/utils/NavbarDrawer.vue";
 	import { UtilsModule } from "@/store/modules/Utils";
 
 	@Component({
 		components: {
 			Snackbar,
 			Alert,
+			Navbar,
+			NavbarDrawer,
 		},
 	})
 	export default class App extends Vue {
@@ -41,5 +49,11 @@
 	.scale-leave-to {
 		opacity: 0;
 		transform: scale(0.9);
+	}
+	.sticky {
+		position: sticky;
+		top: 0;
+		left: 0;
+		z-index: 1;
 	}
 </style>

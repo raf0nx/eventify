@@ -20,7 +20,7 @@ class EventFactory extends Factory {
      */
     public function definition(): array {
         return [
-            'name' => $this->faker->unique()->name,
+            'name' => $this->faker->unique()->word,
             'description' => $this->faker->text(100),
             'event_image' => 'image.png',
             'start_datetime' => $this->faker->date(),

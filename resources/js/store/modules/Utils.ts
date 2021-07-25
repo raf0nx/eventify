@@ -14,6 +14,7 @@ export interface UtilsState {
     snackbarNotification: SnackbarModel;
     alertNotification: AlertModel;
     isLoading: boolean;
+    navDrawer: boolean;
 }
 
 @Module({ dynamic: true, store, name: "utils" })
@@ -21,6 +22,7 @@ class Utils extends VuexModule implements UtilsState {
     snackbarNotification = new SnackbarModel();
     alertNotification = new AlertModel();
     isLoading = false;
+    navDrawer = false;
 
     @Mutation
     private SET_ALERT(alert: AlertModel): void {
@@ -35,6 +37,11 @@ class Utils extends VuexModule implements UtilsState {
     @Mutation
     private SET_SNACKBAR(snackbar: SnackbarModel): void {
         this.snackbarNotification = snackbar;
+    }
+
+    @Mutation
+    private SET_NAV_DRAWER(setNavDrawer: boolean): void {
+        this.navDrawer = setNavDrawer;
     }
 
     @Action
@@ -52,6 +59,11 @@ class Utils extends VuexModule implements UtilsState {
         this.SET_SNACKBAR(snackbar);
     }
 
+    @Action
+    setNavDrawer(setNavDrawer: boolean): void {
+        this.SET_NAV_DRAWER(setNavDrawer);
+    }
+
     get alert(): AlertModel {
         return this.alertNotification;
     }
@@ -62,6 +74,10 @@ class Utils extends VuexModule implements UtilsState {
 
     get snackbar(): SnackbarModel {
         return this.snackbarNotification;
+    }
+
+    get isNavDrawer(): boolean {
+        return this.navDrawer;
     }
 }
 

@@ -3,7 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 
 import { AuthModule } from "@modules/Auth";
 import { UtilsModule } from "@modules/Utils";
-import Home from "@components/main/Home.vue";
+import Dashboard from "@/components/main/Dashboard.vue";
 import Auth from "@components/auth/Auth.vue";
 import Login from "@components/auth/Login.vue";
 import Register from "@components/auth/Register.vue";
@@ -17,8 +17,8 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
     {
         path: "/",
-        component: Home,
-        name: "Home",
+        component: Dashboard,
+        name: "Dashboard",
         meta: { requiresAuth: true }
     },
     {
