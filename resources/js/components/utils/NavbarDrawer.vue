@@ -27,7 +27,7 @@
 
 		<v-list nav dense>
 			<v-list-item-group active-class="deep-purple--text text--darken-4">
-				<v-list-item>
+				<v-list-item :to="{ name: 'Dashboard' }">
 					<v-list-item-icon>
 						<v-icon>mdi-view-dashboard</v-icon>
 					</v-list-item-icon>

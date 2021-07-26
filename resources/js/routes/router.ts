@@ -25,16 +25,19 @@ const routes: Array<RouteConfig> = [
         path: "/auth",
         component: Auth,
         name: "Auth",
+        meta: { preventAuthUser: true },
         children: [
             {
                 path: "login",
                 component: Login,
-                name: "Login"
+                name: "Login",
+                meta: { preventAuthUser: true }
             },
             {
                 path: "register",
                 component: Register,
-                name: "Register"
+                name: "Register",
+                meta: { preventAuthUser: true }
             }
         ]
     },
@@ -63,7 +66,9 @@ router.beforeEach(async (to, _, next) => {
             AuthModule.authUser ? next() : next({ name: "Login" });
         }
     } else {
-        next();
+        to.matched.some(record => record.meta.preventAuthUser)
+            ? next({ name: "Dashboard" })
+            : next();
     }
 });
 

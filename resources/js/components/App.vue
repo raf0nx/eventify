@@ -1,11 +1,13 @@
 <template>
 	<v-app>
-		<div class="sticky">
-			<alert></alert>
-			<navbar></navbar>
-		</div>
-		<snackbar></snackbar>
-		<navbar-drawer></navbar-drawer>
+		<template v-if="user">
+			<div class="sticky">
+				<alert></alert>
+				<navbar></navbar>
+			</div>
+			<snackbar></snackbar>
+			<navbar-drawer></navbar-drawer>
+		</template>
 		<v-overlay :value="loader">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
@@ -23,6 +25,8 @@
 	import Navbar from "@components/utils/Navbar.vue";
 	import NavbarDrawer from "@components/utils/NavbarDrawer.vue";
 	import { UtilsModule } from "@/store/modules/Utils";
+	import { AuthModule } from "@/store/modules/Auth";
+	import { User } from "@/models/User";
 
 	@Component({
 		components: {
@@ -35,6 +39,10 @@
 	export default class App extends Vue {
 		get loader(): boolean {
 			return UtilsModule.loader;
+		}
+
+		get user(): User | null {
+			return AuthModule.authUser ?? null;
 		}
 	}
 </script>
