@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar.vue Should match snapshot 1`] = `
+"<v-navigation-drawer-stub app=\\"true\\" mobilebreakpoint=\\"1264\\" bottom=\\"true\\" height=\\"100vh\\" minivariantwidth=\\"56\\" src=\\"\\" tag=\\"nav\\" temporary=\\"true\\" width=\\"256\\">
+  <v-divider-stub></v-divider-stub>
+  <v-list-stub tag=\\"div\\" dense=\\"true\\" nav=\\"true\\">
+    <v-list-item-group-stub activeclass=\\"deep-purple--text text--darken-4\\" tag=\\"div\\">
+      <v-list-item-stub activeclass=\\"\\" to=\\"[object Object]\\" tag=\\"div\\">
+        <v-list-item-icon-stub>
+          <v-icon-stub>mdi-view-dashboard</v-icon-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub>Dashboard</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub activeclass=\\"\\" tag=\\"div\\">
+        <v-list-item-icon-stub>
+          <v-icon-stub>mdi-account</v-icon-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub>Profile</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub activeclass=\\"\\" tag=\\"div\\">
+        <v-list-item-icon-stub>
+          <v-icon-stub>mdi-heart</v-icon-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub>Favourites</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub activeclass=\\"\\" tag=\\"div\\">
+        <v-list-item-icon-stub>
+          <v-icon-stub>mdi-cogs</v-icon-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub>Settings</v-list-item-content-stub>
+      </v-list-item-stub>
+    </v-list-item-group-stub>
+  </v-list-stub>
+</v-navigation-drawer-stub>"
+`;

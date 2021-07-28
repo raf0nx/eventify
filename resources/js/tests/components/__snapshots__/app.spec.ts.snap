@@ -3,26 +3,7 @@
 exports[`App.vue Should match the snapshot 1`] = `
 "<div data-app=\\"true\\" class=\\"v-application v-application--is-ltr theme--light\\" id=\\"app\\">
   <div class=\\"v-application--wrap\\">
-    <div role=\\"alert\\" class=\\"v-alert mb-2 font-weight-bold d-flex justify-center v-sheet theme--dark rounded-0 v-alert--border v-alert--dense v-alert--border-bottom success\\" data-cy=\\"alert\\">
-      <div class=\\"v-alert__wrapper\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate v-alert__icon mdi mdi-check-circle theme--dark\\"></i>
-        <div class=\\"v-alert__content\\">
-          Email not verified!Check your inbox at test@gmail.com
-          <button type=\\"button\\" class=\\"ml-4 font-weight-bold v-btn v-btn--outlined theme--dark v-size--small\\"><span class=\\"v-btn__content\\">
-		Send
-	</span></button></div>
-        <div class=\\"v-alert__border v-alert__border--bottom\\"></div>
-      </div>
-    </div>
-    <div class=\\"v-snack mb-8 v-snack--active v-snack--bottom v-snack--has-background\\" style=\\"padding: 0px 0px 0px 0px;\\" fixed=\\"\\">
-      <transition-stub name=\\"v-snack-transition\\">
-        <div class=\\"v-snack__wrapper v-sheet theme--dark deep-purple\\" style=\\"\\">
-          <div role=\\"status\\" aria-live=\\"polite\\" class=\\"v-snack__content\\">
-            <div class=\\"d-flex align-center\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-check-circle theme--dark white--text\\"></i> <span class=\\"font-weight-bold ml-2\\">Verification Link resend successfully!</span></div>
-          </div>
-          <div class=\\"v-snack__action \\"></div>
-        </div>
-      </transition-stub>
-    </div>
+    <!---->
     <div class=\\"v-overlay theme--dark\\" style=\\"z-index: 5;\\">
       <div class=\\"v-overlay__scrim\\" style=\\"opacity: 0; background-color: rgb(33, 33, 33); border-color: #212121;\\"></div>
     </div>

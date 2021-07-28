@@ -41,6 +41,14 @@ describe("Utils module", () => {
         );
     });
 
+    it("Should set navbar drawer", () => {
+        // Act
+        UtilsModule.setNavDrawer(true);
+
+        // Assert
+        expect(UtilsModule.isNavDrawer).toBe(true);
+    });
+
     it("Should get alert notification", () => {
         // Arrange
         const alertModel = new AlertModel();
@@ -59,7 +67,7 @@ describe("Utils module", () => {
 
         // Act
         UtilsModule.setLoader(isLoading);
-        
+
         // Assert
         const result = UtilsModule.loader;
         expect(result).toEqual(isLoading);
@@ -71,9 +79,21 @@ describe("Utils module", () => {
 
         // Act
         UtilsModule.setSnackbar(snackbarModel);
-        
+
         // Assert
         const result = UtilsModule.snackbar;
         expect(result).toMatchObject(snackbarModel);
+    });
+
+    it("Should get navbar drawer", () => {
+        // Arrange
+        const isNavDrawer = true;
+
+        // Act
+        UtilsModule.setNavDrawer(isNavDrawer);
+
+        // Assert
+        const result = UtilsModule.isNavDrawer;
+        expect(result).toBe(isNavDrawer);
     });
 });

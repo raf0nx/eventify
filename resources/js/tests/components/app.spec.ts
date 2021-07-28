@@ -1,24 +1,20 @@
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
 import { createLocalVue, mount, Wrapper } from "@vue/test-utils";
+import axios from "axios";
 
 import App from "@components/App.vue";
 import { UtilsModule } from "@/store/modules/Utils";
 import { AlertModel } from "@/models/Alert";
 import { SnackbarModel } from "@/models/Snackbar";
+import { AuthModule } from "@/store/modules/Auth";
+import { user } from "@/tests/constans/User";
 
 const EMAIL_NOT_VERIFIED = "Email not verified!";
 const INBOX_CHECK = "Check your inbox at ";
 const RESEND_LINK_MSG = "Verification Link resend successfully!";
 
-const user = {
-    id: 1,
-    name: "Test",
-    email: "test@gmail.com",
-    created_at: new Date("2021-01-01"),
-    email_verified_at: undefined,
-    updated_at: new Date("2021-01-01")
-};
+jest.mock("axios");
 
 describe("App.vue", () => {
     const localVue = createLocalVue();
@@ -34,7 +30,11 @@ describe("App.vue", () => {
         wrapper = mount(App, {
             localVue,
             vuetify,
-            router
+            router,
+            stubs: {
+                Navbar: true,
+                NavbarDrawer: true
+            }
         });
 
         UtilsModule.setAlert(
@@ -54,6 +54,7 @@ describe("App.vue", () => {
 
     afterEach(() => {
         wrapper.destroy();
+        jest.clearAllMocks();
     });
 
     it("Should match the snapshot", () => {
@@ -61,7 +62,47 @@ describe("App.vue", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
+    it("Should get authenticated user", async () => {
+        // Assert
+        // @ts-ignore
+        axios.get.mockImplementationOnce(() => Promise.resolve({ data: user }));
+
+        // Act
+        const authUser = await AuthModule.getAuthUser();
+
+        // Assert
+        // @ts-ignore
+        expect(wrapper.vm.user).toEqual(authUser);
+    });
+
+    it("Should not get authenticated user", async () => {
+        // Assert
+        // @ts-ignore
+        axios.get.mockImplementationOnce(() => Promise.reject());
+
+        // Act
+        await AuthModule.getAuthUser();
+
+        // Assert
+        // @ts-ignore
+        expect(wrapper.vm.user).toBeNull();
+    });
+
     it("Should render alert and its content", () => {
+        // Arrange
+        wrapper = mount(App, {
+            localVue,
+            vuetify,
+            router,
+            computed: {
+                user: () => true
+            },
+            stubs: {
+                Navbar: true,
+                NavbarDrawer: true
+            }
+        });
+
         // Act
         const alert = wrapper.find(".v-alert");
         const button = wrapper.find("button");
@@ -75,7 +116,20 @@ describe("App.vue", () => {
 
     it("Should render snackbar and it's message", () => {
         // Arrange
+        wrapper = mount(App, {
+            localVue,
+            vuetify,
+            router,
+            computed: {
+                user: () => true
+            },
+            stubs: {
+                Navbar: true,
+                NavbarDrawer: true
+            }
+        });
         const snackbar = wrapper.find(".v-snack");
+
         // Assert
         expect(snackbar.text()).toContain(RESEND_LINK_MSG);
     });

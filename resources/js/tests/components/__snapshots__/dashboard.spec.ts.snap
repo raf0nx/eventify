@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard.vue Should match snapshot 1`] = `
+"<v-main-stub tag=\\"main\\">
+  <div class=\\"container-fluid\\" style=\\"height: 1500px;\\"></div>
+</v-main-stub>"
+`;
