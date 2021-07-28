@@ -58,15 +58,13 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
+    const authenticatedUser =
+        AuthModule.authUser ?? (await AuthModule.getAuthUser());
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (AuthModule.authUser) {
-            next();
-        } else {
-            await AuthModule.getAuthUser();
-            AuthModule.authUser ? next() : next({ name: "Login" });
-        }
+        authenticatedUser ? next() : next({ name: "Login" });
     } else {
-        to.matched.some(record => record.meta.preventAuthUser)
+        to.matched.some(record => record.meta.preventAuthUser) &&
+        authenticatedUser
             ? next({ name: "Dashboard" })
             : next();
     }
