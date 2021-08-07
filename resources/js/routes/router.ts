@@ -3,7 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 
 import { AuthModule } from "@modules/Auth";
 import { UtilsModule } from "@modules/Utils";
-import Dashboard from "@/components/main/Dashboard.vue";
+import Dashboard from "@/components/dashboard/Dashboard.vue";
 import Auth from "@components/auth/Auth.vue";
 import Login from "@components/auth/Login.vue";
 import Register from "@components/auth/Register.vue";

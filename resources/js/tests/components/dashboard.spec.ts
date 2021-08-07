@@ -1,7 +1,7 @@
 import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 import Vuetify from "vuetify";
 
-import Dashboard from "@/components/main/Dashboard.vue";
+import Dashboard from "@/components/dashboard/Dashboard.vue";
 
 describe("Dashboard.vue", () => {
     const localVue = createLocalVue();
