@@ -22,7 +22,7 @@ class EventFactory extends Factory {
         return [
             'name' => $this->faker->unique()->word,
             'description' => $this->faker->text(100),
-            'event_image' => 'image.png',
+            'image' => 'image.png',
             'start_datetime' => $this->faker->date(),
         ];
     }

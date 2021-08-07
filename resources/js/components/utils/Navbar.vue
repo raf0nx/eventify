@@ -10,7 +10,7 @@
 		<v-btn class="mr-2" icon>
 			<v-icon>mdi-heart</v-icon>
 		</v-btn>
-		<v-menu open-on-hover offset-y>
+		<v-menu open-on-hover offset-y nudge-bottom="12" close-delay="400">
 			<template v-slot:activator="{ on, attrs }">
 				<v-badge
 					bordered
@@ -20,11 +20,9 @@
 					offset-x="10"
 					offset-y="10"
 				>
-					Hi, {{ username }}
+					Hi, {{ user.name }}
 					<v-avatar size="40" v-bind="attrs" v-on="on">
-						<v-img
-							src="https://cdn.vuetifyjs.com/images/lists/2.jpg"
-						></v-img>
+						<v-img :src="user.avatar"></v-img>
 					</v-avatar>
 				</v-badge>
 			</template>
@@ -61,11 +59,12 @@
 
 	import { UtilsModule } from "@modules/Utils";
 	import { AuthModule } from "@modules/Auth";
+	import { User } from "@/models/User";
 
 	@Component
 	export default class Navbar extends Vue {
-		get username(): string {
-			return AuthModule.authUser ? AuthModule.authUser.name : "";
+		get user(): User | null {
+			return AuthModule.authUser ?? null;
 		}
 
 		setNavDrawer(): void {

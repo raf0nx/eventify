@@ -8,16 +8,14 @@
 					color="green accent-4"
 					dot
 					offset-x="26"
-					offset-y="24"
+					offset-y="26"
 				>
 					<v-list-item-avatar>
-						<img
-							src="https://randomuser.me/api/portraits/women/81.jpg"
-						/>
+						<img :src="user.avatar" />
 					</v-list-item-avatar>
 				</v-badge>
 				<v-list-item-content>
-					<v-list-item-title>{{ username }}</v-list-item-title>
+					<v-list-item-title>{{ user.name }}</v-list-item-title>
 					<v-list-item-subtitle>Active</v-list-item-subtitle>
 				</v-list-item-content>
 			</v-list-item>
@@ -78,6 +76,7 @@
 
 	import { UtilsModule } from "@modules/Utils";
 	import { AuthModule } from "@modules/Auth";
+	import { User } from "@/models/User";
 
 	@Component
 	export default class NavbarDrawer extends Vue {
@@ -89,8 +88,8 @@
 			UtilsModule.setNavDrawer(value);
 		}
 
-		get username(): string {
-			return AuthModule.authUser ? AuthModule.authUser.name : "unidentified";
+		get user(): User | null {
+			return AuthModule.authUser ?? null;
 		}
 
 		logout(): void {
