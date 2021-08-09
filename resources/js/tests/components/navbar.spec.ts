@@ -29,7 +29,7 @@ describe("Navbar.vue", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it("Should get username", async () => {
+    it("Should get user", async () => {
         // Arrange
         // @ts-ignore
         axios.get.mockImplementationOnce(() => Promise.resolve({ data: user }));
@@ -39,10 +39,10 @@ describe("Navbar.vue", () => {
 
         // Assert
         // @ts-ignore
-        expect(wrapper.vm.username).toEqual(authUser!.name);
+        expect(wrapper.vm.user).toEqual(authUser);
     });
 
-    it("Should not get username", async () => {
+    it("Should not get user", async () => {
         // Arrange
         // @ts-ignore
         axios.get.mockImplementationOnce(() => Promise.reject());
@@ -52,7 +52,7 @@ describe("Navbar.vue", () => {
 
         // Assert
         // @ts-ignore
-        expect(wrapper.vm.username).toBeFalsy();
+        expect(wrapper.vm.user).toBeNull();
     });
 
     it("Should set navbar drawer", () => {

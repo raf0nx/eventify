@@ -2,6 +2,36 @@
 
 exports[`Dashboard.vue Should match snapshot 1`] = `
 "<v-main-stub tag=\\"main\\">
-  <div class=\\"container-fluid\\" style=\\"height: 1500px;\\"></div>
+  <div class=\\"container-fluid\\">
+    <v-row-stub tag=\\"div\\">
+      <v-col-stub cols=\\"4\\" tag=\\"div\\">
+        <v-spacer-stub></v-spacer-stub>
+      </v-col-stub>
+      <v-col-stub cols=\\"4\\" tag=\\"div\\">
+        <div>
+          <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
+        </div>
+        <div>
+          <event-stub event=\\"Lorem ipsum dolor sit amet, consectetur adip\\"></event-stub>
+        </div>
+        <div>
+          <event-stub event=\\"image.png\\"></event-stub>
+        </div>
+        <div>
+          <event-stub event=\\"1\\"></event-stub>
+        </div>
+        <div>
+          <event-stub event=\\"event\\"></event-stub>
+        </div>
+        <div>
+          <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
+        </div>
+        <div>
+          <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
+        </div>
+      </v-col-stub>
+      <v-col-stub cols=\\"4\\" tag=\\"div\\"></v-col-stub>
+    </v-row-stub>
+  </div>
 </v-main-stub>"
 `;

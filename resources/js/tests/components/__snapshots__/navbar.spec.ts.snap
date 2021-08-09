@@ -12,7 +12,7 @@ exports[`Navbar.vue Should match snapshot 1`] = `
   <v-btn-stub tag=\\"button\\" activeclass=\\"\\" icon=\\"true\\" type=\\"button\\" class=\\"mr-2\\">
     <v-icon-stub>mdi-heart</v-icon-stub>
   </v-btn-stub>
-  <v-menu-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" openonhover=\\"true\\" maxwidth=\\"auto\\" nudgebottom=\\"0\\" nudgeleft=\\"0\\" nudgeright=\\"0\\" nudgetop=\\"0\\" nudgewidth=\\"0\\" openonclick=\\"true\\" closeonclick=\\"true\\" closeoncontentclick=\\"true\\" maxheight=\\"auto\\" offsety=\\"true\\" origin=\\"top left\\" transition=\\"v-menu-transition\\">
+  <v-menu-stub opendelay=\\"0\\" closedelay=\\"400\\" contentclass=\\"\\" openonhover=\\"true\\" maxwidth=\\"auto\\" nudgebottom=\\"12\\" nudgeleft=\\"0\\" nudgeright=\\"0\\" nudgetop=\\"0\\" nudgewidth=\\"0\\" openonclick=\\"true\\" closeonclick=\\"true\\" closeoncontentclick=\\"true\\" maxheight=\\"auto\\" offsety=\\"true\\" origin=\\"top left\\" transition=\\"v-menu-transition\\">
     <v-list-stub tag=\\"div\\" dense=\\"true\\">
       <v-list-item-group-stub activeclass=\\"deep-purple--text text--darken-4\\" tag=\\"div\\">
         <v-list-item-stub activeclass=\\"\\" tag=\\"div\\">

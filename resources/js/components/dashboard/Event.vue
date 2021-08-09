@@ -77,20 +77,16 @@
 	@Component
 	export default class Event extends Vue {
 		@Prop()
-		event: EventModel | undefined;
+		event!: EventModel;
 
         isActive = false;
 
 		get eventStartDate(): string {
-			return this.event
-				? moment(this.event.start_datetime).format("dddd, MMM Do YYYY")
-				: "";
+			return moment(this.event.start_datetime).format("dddd, MMM Do YYYY");
 		}
 
 		get eventStartTime(): string {
-			return this.event
-				? moment(this.event.start_datetime).format("h a")
-				: "";
+			return moment(this.event.start_datetime).format("h a");
 		}
 	}
 </script>

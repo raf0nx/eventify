@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard.vue Should match snapshot 1`] = `
+"<v-lazy-stub minheight=\\"200\\" options=\\"[object Object]\\" tag=\\"div\\" transition=\\"fade-transition\\">
+  <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" elevation=\\"8\\" class=\\"my-12\\">
+    <v-img-stub height=\\"300\\" lazysrc=\\"https://picsum.photos/id/11/10/6\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"https://picsum.photos/id/11/500/300\\" transition=\\"fade-transition\\"></v-img-stub>
+    <v-card-subtitle-stub class=\\"pb-0\\">
+      Event starts on Friday, Jan 1st 2021 at 1 am
+    </v-card-subtitle-stub>
+    <v-card-title-stub class=\\"font-weight-bold\\">event</v-card-title-stub>
+    <v-card-text-stub>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adip
+      </div>
+      <div class=\\"pt-4\\">
+        1 interested • 0 going
+      </div>
+    </v-card-text-stub>
+    <v-card-actions-stub class=\\"py-4\\">
+      <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
+        <v-icon-stub left=\\"\\">mdi-star</v-icon-stub>
+        Interested
+      </v-btn-stub>
+      <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
+        <v-icon-stub left=\\"\\">mdi-check-circle</v-icon-stub>
+        Going
+      </v-btn-stub>
+      <v-spacer-stub></v-spacer-stub>
+      <v-btn-stub tag=\\"button\\" activeclass=\\"\\" icon=\\"true\\" type=\\"button\\">
+        <v-tooltip-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" fixed=\\"true\\" top=\\"true\\" openonhover=\\"true\\" maxwidth=\\"auto\\" nudgebottom=\\"0\\" nudgeleft=\\"0\\" nudgeright=\\"0\\" nudgetop=\\"0\\" nudgewidth=\\"0\\" tag=\\"span\\"> <span>Add to favourites</span></v-tooltip-stub>
+      </v-btn-stub>
+      <v-btn-stub tag=\\"button\\" activeclass=\\"\\" icon=\\"true\\" type=\\"button\\">
+        <v-tooltip-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" fixed=\\"true\\" top=\\"true\\" openonhover=\\"true\\" maxwidth=\\"auto\\" nudgebottom=\\"0\\" nudgeleft=\\"0\\" nudgeright=\\"0\\" nudgetop=\\"0\\" nudgewidth=\\"0\\" tag=\\"span\\"> <span>Share</span></v-tooltip-stub>
+      </v-btn-stub>
+    </v-card-actions-stub>
+  </v-card-stub>
+</v-lazy-stub>"
+`;
