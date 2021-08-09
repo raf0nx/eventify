@@ -83,6 +83,7 @@ router.afterEach((_, _2) => {
                               AuthModule.authUser?.email
                       )
                       .setType(EnumAlertType.WARNING)
+                      .setDismissible(true)
                       .setCallback(AlertCallbacks.resendVerificationLink)
                       .setBtnText("Resend link")
         );

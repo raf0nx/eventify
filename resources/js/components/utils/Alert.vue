@@ -36,5 +36,9 @@
 	}
 </script>
 
-<style scoped>
+<style>
+	.v-alert__wrapper .v-alert__dismissible {
+		position: absolute;
+		right: 20px;
+	}
 </style>
