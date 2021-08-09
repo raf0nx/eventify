@@ -1,6 +1,7 @@
+import axios, { AxiosResponse } from "axios";
+
 import { LoginFormData, RegisterFormData } from "@/components/auth/types";
 import { User } from "@/models/User";
-import axios, { AxiosResponse } from "axios";
 
 class AuthService {
     getAuthUser(): Promise<AxiosResponse<User>> {
