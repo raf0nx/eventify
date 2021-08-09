@@ -1,7 +1,7 @@
 <template>
 	<v-alert
 		v-if="alert.showAlert"
-		class="mb-0 font-weight-bold d-flex justify-center"
+		class="mb-0 font-weight-bold text-center"
 		data-cy="alert"
 		border="bottom"
 		tile
@@ -36,9 +36,5 @@
 	}
 </script>
 
-<style>
-	.v-alert__wrapper .v-alert__dismissible {
-		position: absolute;
-		right: 20px;
-	}
+<style scoped>
 </style>
