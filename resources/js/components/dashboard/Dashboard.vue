@@ -11,10 +11,20 @@
 						class="mr-2 mt-4 font-weight-bold"
 						color="deep-purple"
 						dark
+						@click.stop="dialog = true"
 					>
 						<v-icon left> mdi-plus-circle </v-icon>
 						Create
 					</v-chip>
+					<v-dialog v-model="dialog" max-width="290">
+                        <v-card>
+                            <v-text-field v-model="data.name"></v-text-field>
+                            <v-text-field v-model="data.description"></v-text-field>
+                            <v-text-field v-model="data.image"></v-text-field>
+                            <v-text-field v-model="data.start_datetime"></v-text-field>
+                            <v-btn @click="submit()">Click</v-btn>
+                        </v-card>
+                    </v-dialog>
 					<v-chip
 						class="mr-2 mt-4 font-weight-bold"
 						color="deep-purple"
@@ -66,10 +76,17 @@
 	export default class Dashboard extends Vue {
 		events: EventModel[] | null = null;
 
+		dialog = false;
+        data: EventModel | object = {};
+
 		async created(): Promise<void> {
 			const response = await EventService.getEvents();
 			this.events = response.data;
 		}
+
+        submit() {
+            EventService.createEvent(this.data as EventModel);
+        }
 	}
 </script>
 

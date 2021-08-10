@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateEventRequest;
+use App\Http\Resources\EventCollection;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,7 @@ class EventsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return Event::with(['users' => function ($query) {
-            $query->orderBy('created_at', 'desc');
-        }])->get();
+        return EventCollection::collection(Event::all()->sortByDesc('start_datetime'));
     }
 
     /**
@@ -23,8 +23,13 @@ class EventsController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //
+    public function store(CreateEventRequest $request) {
+        return Event::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $request->image ?? null,
+            'start_datetime' => $request->start_datetime,
+        ]);
     }
 
     /**
