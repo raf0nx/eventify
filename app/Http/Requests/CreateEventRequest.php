@@ -27,4 +27,10 @@ class CreateEventRequest extends FormRequest {
             'image' => 'file|size:512',
         ];
     }
+
+    public function messages() {
+        return [
+            'start_datetime.after_or_equal' => 'The start time of the event cannot be earlier than the current time.',
+        ];
+    }
 }
