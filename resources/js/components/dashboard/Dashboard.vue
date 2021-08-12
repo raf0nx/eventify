@@ -1,5 +1,8 @@
 <template>
 	<v-main>
+		<v-dialog v-model="showDialog" max-width="750px">
+			<event-stepper @closeDialog="showDialog = false"></event-stepper>
+		</v-dialog>
 		<div class="container-fluid">
 			<v-row>
 				<v-col cols="4"><v-spacer></v-spacer></v-col>
@@ -11,20 +14,11 @@
 						class="mr-2 mt-4 font-weight-bold"
 						color="deep-purple"
 						dark
-						@click.stop="dialog = true"
+						@click.stop="showDialog = true"
 					>
 						<v-icon left> mdi-plus-circle </v-icon>
 						Create
 					</v-chip>
-					<v-dialog v-model="dialog" max-width="290">
-                        <v-card>
-                            <v-text-field v-model="data.name"></v-text-field>
-                            <v-text-field v-model="data.description"></v-text-field>
-                            <v-text-field v-model="data.image"></v-text-field>
-                            <v-text-field v-model="data.start_datetime"></v-text-field>
-                            <v-btn @click="submit()">Click</v-btn>
-                        </v-card>
-                    </v-dialog>
 					<v-chip
 						class="mr-2 mt-4 font-weight-bold"
 						color="deep-purple"
@@ -65,28 +59,24 @@
 	import { Vue, Component } from "vue-property-decorator";
 
 	import Event from "@components/dashboard/Event.vue";
-	import { Event as EventModel } from "@/models/Event";
+	import EventStepper from "@components/dashboard/EventStepper.vue";
+    import { Event as EventModel } from "@/models/Event";
 	import EventService from "@/services/EventService";
 
 	@Component({
 		components: {
 			Event,
+			EventStepper,
 		},
 	})
 	export default class Dashboard extends Vue {
 		events: EventModel[] | null = null;
-
-		dialog = false;
-        data: EventModel | object = {};
+		showDialog = false;
 
 		async created(): Promise<void> {
 			const response = await EventService.getEvents();
 			this.events = response.data;
 		}
-
-        submit() {
-            EventService.createEvent(this.data as EventModel);
-        }
 	}
 </script>
 
