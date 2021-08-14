@@ -196,7 +196,7 @@
 		currentStep = 1;
 		fab = false;
 		eventDate = moment().format("YYYY-MM-DD");
-		eventTime = moment().format("HH:MM");
+		eventTime = moment().format("HH:mm");
 		event: EventModel = {
 			name: "",
 			description: "",
@@ -209,8 +209,8 @@
 
 		get minEventTime(): string {
 			if (this.eventDate === moment().format("YYYY-MM-DD")) {
-				this.eventTime = moment().format("HH:MM");
-				return moment().format("HH:MM");
+				this.eventTime = moment().format("HH:mm");
+				return moment().format("HH:mm");
 			} else {
 				return "00:00";
 			}
