@@ -10,7 +10,7 @@
 
 		<v-stepper-content step="1">
 			<v-text-field
-				v-model="eventData.name"
+				v-model="event.name"
 				color="deep-purple"
 				label="Event name"
 				filled
@@ -41,7 +41,7 @@
 
 		<v-stepper-content step="2">
 			<v-textarea
-				v-model="eventData.description"
+				v-model="event.description"
 				color="deep-purple"
 				label="Description"
 				hint="Write something fancy about your event!"
@@ -80,12 +80,12 @@
 				max-height="350px"
 			>
 				<!-- <v-overlay
-					v-if="eventData.image.length === 0"
+					v-if="event.image.length === 0"
 					absolute
 					value="true"
 				>
 					<v-file-input
-						v-model="eventData.image"
+						v-model="event.image"
 						class="pointer"
 						prepend-icon=""
 						filled
@@ -126,7 +126,7 @@
 					</v-btn>
 					<v-btn fab dark x-small color="green">
 						<v-file-input
-							v-model="eventData.image"
+							v-model="event.image"
 							class="pt-0 mt-0 ml-2"
 							prepend-icon="mdi-plus-box-multiple"
 							hide-input
@@ -154,8 +154,8 @@
 			<v-row class="mb-8">
 				<v-col cols="6">
 					<v-date-picker
-						v-model="eventData.start_datetime"
-						:min="currentDate"
+						v-model="eventDate"
+						:min="minEventDate"
 						color="deep-purple"
 						show-current
 						show-adjacent-months
@@ -163,7 +163,8 @@
 				</v-col>
 				<v-col cols="6">
 					<v-time-picker
-						:min="currentTime"
+						v-model="eventTime"
+						:min="minEventTime"
 						format="24hr"
 						color="deep-purple"
 					></v-time-picker>
@@ -194,22 +195,37 @@
 	export default class EventStepper extends Vue {
 		currentStep = 1;
 		fab = false;
-		// startDate = moment().format("YYYY-MM-DD");
-		// startTime = moment().format("HH:MM");
-		eventData: EventModel = {
+		eventDate = moment().format("YYYY-MM-DD");
+		eventTime = moment().format("HH:MM");
+		event: EventModel = {
 			name: "",
 			description: "",
-			start_datetime: moment().format("YYYY-MM-DD"),
+			start_datetime: "",
 		};
-		currentDate = moment().format("YYYY-MM-DD");
-		currentTime = moment().format("HH:MM");
+
+		get minEventDate(): string {
+			return moment().format("YYYY-MM-DD");
+		}
+
+		get minEventTime(): string {
+			if (this.eventDate === moment().format("YYYY-MM-DD")) {
+				this.eventTime = moment().format("HH:MM");
+				return moment().format("HH:MM");
+			} else {
+				return "00:00";
+			}
+		}
 
 		createEvent(): void {
-			EventService.createEvent(this.eventData);
+			EventService.createEvent(
+				Object.assign(this.event, {
+					start_datetime: `${this.eventDate} ${this.eventTime}`,
+				})
+			);
 		}
 
 		removeImage(): void {
-			this.eventData.image = [];
+			this.event.image = [];
 		}
 
 		closeDialog(): void {
