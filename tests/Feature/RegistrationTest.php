@@ -1,9 +1,12 @@
 <?php
 
+namespace Tests\Feature;
+
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase {
@@ -127,7 +130,7 @@ class RegistrationTest extends TestCase {
 
         // act
         $response = $this->post("/register", [
-            "email" => "someveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylong@email.com",
+            "email" => Str::random(244) . '@example.com',
             "name" => $user->name,
             "password" => $user->password,
             "password_confirmation" => $user->password,
@@ -172,7 +175,7 @@ class RegistrationTest extends TestCase {
         // act
         $response = $this->post("/register", [
             "email" => $user->email,
-            "name" => "someveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongName",
+            "name" => Str::random(256),
             "password" => $user->password,
             "password_confirmation" => $user->password,
         ]

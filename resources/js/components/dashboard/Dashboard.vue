@@ -1,6 +1,10 @@
 <template>
 	<v-main>
-		<v-dialog v-model="showDialog" max-width="750px">
+		<v-dialog
+			v-model="showDialog"
+			max-width="750px"
+			transition="dialog-top-transition"
+		>
 			<event-stepper
 				@closeDialog="showDialog = false"
 				@rerenderEvents="getEvents()"
@@ -13,7 +17,9 @@
 					<div class="display-2 mt-4 grey--text text--darken-4">
 						Events
 					</div>
-					<action-chips @openDialog="showDialog = true"></action-chips>
+					<action-chips
+						@openDialog="showDialog = true"
+					></action-chips>
 					<template v-if="events">
 						<div v-for="event in events" :key="event.name">
 							<event :event="event" />
@@ -48,7 +54,7 @@
 		components: {
 			Event,
 			EventStepper,
-            ActionChips
+			ActionChips,
 		},
 	})
 	export default class Dashboard extends Vue {
