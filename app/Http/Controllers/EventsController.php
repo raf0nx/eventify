@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Resources\EventCollection;
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller {
@@ -14,7 +15,7 @@ class EventsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return EventCollection::collection(Event::all()->sortByDesc('start_datetime'));
+        return EventCollection::collection(Event::all()->where('start_datetime', '>=', Carbon::now()->toDateTimeString())->sortBy('start_datetime'));
     }
 
     /**

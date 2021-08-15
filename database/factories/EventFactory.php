@@ -18,12 +18,12 @@ class EventFactory extends Factory {
      *
      * @return array
      */
-    public function definition(): array {
+    public function definition(): array{
         return [
             'name' => $this->faker->unique()->word,
             'description' => $this->faker->text(100),
             'image' => 'image.png',
-            'start_datetime' => $this->faker->date(),
+            'start_datetime' => $this->faker->dateTimeBetween('now', '+5 years'),
         ];
     }
 }
