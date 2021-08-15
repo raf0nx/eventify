@@ -18,6 +18,7 @@
 				counter
 				maxlength="255"
 				clearable
+				@keydown.enter="currentStep++"
 			></v-text-field>
 			<v-btn
 				color="deep-purple"
@@ -52,6 +53,7 @@
 				no-resize
 				auto-grow
 				clearable
+				@keydown.enter="currentStep++"
 			></v-textarea>
 			<v-btn
 				color="deep-purple"
@@ -190,6 +192,10 @@
 
 	import { Event as EventModel } from "@/models/Event";
 	import EventService from "@/services/EventService";
+	import { UtilsModule } from "@/store/modules/Utils";
+	import { SnackbarModel } from "@/models/Snackbar";
+	import { EnumSnackbarIcon } from "@/enums/EnumSnackbarIcon";
+	import { EnumSnackbarColor } from "@/enums/EnumSnackbarColor";
 
 	@Component
 	export default class EventStepper extends Vue {
@@ -216,15 +222,40 @@
 			}
 		}
 
-		createEvent(): void {
-			EventService.createEvent(
-				Object.assign(this.event, {
-					start_datetime: `${this.eventDate} ${this.eventTime}`,
-				})
-			);
+		async createEvent(): Promise<void> {
+			UtilsModule.setLoader(true);
+
+			try {
+				await EventService.createEvent(
+					Object.assign(this.event, {
+						start_datetime: `${this.eventDate} ${this.eventTime}`,
+					})
+				);
+				this.$emit("rerenderEvents");
+				this.closeDialog();
+				UtilsModule.setSnackbar(
+					new SnackbarModel()
+						.setShowSnackbar(true)
+						.setMessage("Event created successfully!")
+						.setIcon(EnumSnackbarIcon.SUCCESS)
+						.setColor(EnumSnackbarColor.SUCCESS)
+				);
+			} catch {
+				UtilsModule.setSnackbar(
+					new SnackbarModel()
+						.setShowSnackbar(true)
+						.setMessage(
+							"Couldn't create your event. Reload the page and try again."
+						)
+						.setIcon(EnumSnackbarIcon.ERROR)
+						.setColor(EnumSnackbarColor.ERROR)
+				);
+			}
+
+			UtilsModule.setLoader(false);
 		}
 
-		removeImage(): void {
+		private removeImage(): void {
 			this.event.image = [];
 		}
 

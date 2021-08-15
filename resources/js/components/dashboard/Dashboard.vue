@@ -1,7 +1,10 @@
 <template>
 	<v-main>
 		<v-dialog v-model="showDialog" max-width="750px">
-			<event-stepper @closeDialog="showDialog = false"></event-stepper>
+			<event-stepper
+				@closeDialog="showDialog = false"
+				@rerenderEvents="getEvents()"
+			></event-stepper>
 		</v-dialog>
 		<div class="container-fluid">
 			<v-row>
@@ -10,30 +13,7 @@
 					<div class="display-2 mt-4 grey--text text--darken-4">
 						Events
 					</div>
-					<v-chip
-						class="mr-2 mt-4 font-weight-bold"
-						color="deep-purple"
-						dark
-						@click.stop="showDialog = true"
-					>
-						<v-icon left> mdi-plus-circle </v-icon>
-						Create
-					</v-chip>
-					<v-chip
-						class="mr-2 mt-4 font-weight-bold"
-						color="deep-purple"
-						outlined
-					>
-						<v-icon left> mdi-calendar </v-icon>
-						Your events
-					</v-chip>
-					<v-chip
-						class="mr-2 mt-4 font-weight-bold"
-						color="deep-purple"
-						dark
-					>
-						<v-icon small> mdi-bell </v-icon>
-					</v-chip>
+					<action-chips @openDialog="showDialog = true"></action-chips>
 					<template v-if="events">
 						<div v-for="event in events" :key="event.name">
 							<event :event="event" />
@@ -58,15 +38,17 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	import Event from "@components/dashboard/Event.vue";
-	import EventStepper from "@components/dashboard/EventStepper.vue";
-    import { Event as EventModel } from "@/models/Event";
+	import Event from "@/components/dashboard/event/Event.vue";
+	import EventStepper from "@/components/dashboard/event/EventStepper.vue";
+	import ActionChips from "@/components/dashboard/ActionChips.vue";
+	import { Event as EventModel } from "@/models/Event";
 	import EventService from "@/services/EventService";
 
 	@Component({
 		components: {
 			Event,
 			EventStepper,
+            ActionChips
 		},
 	})
 	export default class Dashboard extends Vue {
@@ -74,6 +56,10 @@
 		showDialog = false;
 
 		async created(): Promise<void> {
+			this.getEvents();
+		}
+
+		private async getEvents(): Promise<void> {
 			const response = await EventService.getEvents();
 			this.events = response.data;
 		}

@@ -8,7 +8,7 @@
 			<snackbar></snackbar>
 			<navbar-drawer></navbar-drawer>
 		</template>
-		<v-overlay :value="loader">
+		<v-overlay z-index="999" :value="loader">
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
 		<transition name="scale" mode="out-in" appear>

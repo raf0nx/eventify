@@ -1,7 +1,7 @@
 import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 import Vuetify from "vuetify";
 
-import Event from "@/components/dashboard/Event.vue";
+import Event from "@/components/dashboard/event/Event.vue";
 import { Event as EventMock } from "@/tests/constans/Event";
 
 describe("Dashboard.vue", () => {
