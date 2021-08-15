@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar.vue Should match snapshot 1`] = `
+exports[`NavbarDrawer.vue Should match snapshot 1`] = `
 "<v-navigation-drawer-stub app=\\"true\\" mobilebreakpoint=\\"1264\\" bottom=\\"true\\" height=\\"100vh\\" minivariantwidth=\\"56\\" src=\\"\\" tag=\\"nav\\" temporary=\\"true\\" width=\\"256\\">
   <v-divider-stub></v-divider-stub>
   <v-list-stub tag=\\"div\\" dense=\\"true\\" nav=\\"true\\">

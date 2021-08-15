@@ -207,6 +207,7 @@
 			name: "",
 			description: "",
 			start_datetime: "",
+			image: "",
 		};
 
 		get minEventDate(): string {
@@ -253,10 +254,6 @@
 			}
 
 			UtilsModule.setLoader(false);
-		}
-
-		private removeImage(): void {
-			this.event.image = [];
 		}
 
 		closeDialog(): void {

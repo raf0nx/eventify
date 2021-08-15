@@ -9,7 +9,7 @@ import { user } from "@/tests/constans/User";
 
 jest.mock("axios");
 
-describe("Navbar.vue", () => {
+describe("NavbarDrawer.vue", () => {
     const localVue = createLocalVue();
     let wrapper: Wrapper<NavbarDrawer>;
     let vuetify: Vuetify;

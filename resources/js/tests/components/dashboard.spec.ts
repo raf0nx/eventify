@@ -34,6 +34,6 @@ describe("Dashboard.vue", () => {
     it("Should get events from API", () => {
         // Assert
         // @ts-ignore
-        expect(wrapper.vm.events).toEqual(event);
+        expect(wrapper.vm.events).toEqual(Event);
     });
 });

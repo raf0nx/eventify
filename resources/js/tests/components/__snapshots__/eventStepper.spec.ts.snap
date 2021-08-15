@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventStepper.vue Should match snapshot 1`] = `
+"<v-stepper-stub value=\\"1\\" vertical=\\"true\\" color=\\"deep-purple\\">
+  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"1\\">
+    Choose a name for your event
+  </v-stepper-step-stub>
+  <v-stepper-content-stub step=\\"1\\">
+    <v-text-field-stub color=\\"deep-purple\\" errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" value=\\"\\" backgroundcolor=\\"\\" label=\\"Event name\\" loaderheight=\\"2\\" clearable=\\"true\\" clearicon=\\"$clear\\" counter=\\"true\\" filled=\\"true\\" shaped=\\"true\\" type=\\"text\\" maxlength=\\"255\\"></v-text-field-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
+      Continue
+    </v-btn-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
+      Cancel
+    </v-btn-stub>
+  </v-stepper-content-stub>
+  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"2\\">
+    Write something about it
+  </v-stepper-step-stub>
+  <v-stepper-content-stub step=\\"2\\">
+    <v-textarea-stub color=\\"deep-purple\\" errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" value=\\"\\" backgroundcolor=\\"\\" hint=\\"Write something fancy about your event!\\" label=\\"Description\\" loaderheight=\\"2\\" clearable=\\"true\\" clearicon=\\"$clear\\" counter=\\"true\\" filled=\\"true\\" shaped=\\"true\\" type=\\"text\\" autogrow=\\"true\\" noresize=\\"true\\" rowheight=\\"24\\" rows=\\"6\\"></v-textarea-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
+      Continue
+    </v-btn-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
+      Go back
+    </v-btn-stub>
+  </v-stepper-content-stub>
+  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"3\\">
+    Select an image for your event
+  </v-stepper-step-stub>
+  <v-stepper-content-stub step=\\"3\\">
+    <v-img-stub maxheight=\\"350px\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"https://wallpapercave.com/wp/wp2686927.jpg\\" transition=\\"fade-transition\\" class=\\"mb-8\\"></v-img-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
+      Continue
+    </v-btn-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
+      Go back
+    </v-btn-stub>
+  </v-stepper-content-stub>
+  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"4\\">
+    Tell when your event will start
+  </v-stepper-step-stub>
+  <v-stepper-content-stub step=\\"4\\">
+    <v-row-stub tag=\\"div\\" class=\\"mb-8\\">
+      <v-col-stub cols=\\"6\\" tag=\\"div\\">
+        <v-date-picker-stub color=\\"deep-purple\\" width=\\"290\\" eventcolor=\\"warning\\" firstdayofweek=\\"0\\" localefirstdayofyear=\\"0\\" min=\\"2021-08-16\\" nexticon=\\"$next\\" nextmontharialabel=\\"$vuetify.datePicker.nextMonthAriaLabel\\" nextyeararialabel=\\"$vuetify.datePicker.nextYearAriaLabel\\" previcon=\\"$prev\\" prevmontharialabel=\\"$vuetify.datePicker.prevMonthAriaLabel\\" prevyeararialabel=\\"$vuetify.datePicker.prevYearAriaLabel\\" showcurrent=\\"true\\" selecteditemstext=\\"$vuetify.datePicker.itemsSelected\\" showadjacentmonths=\\"true\\" type=\\"date\\" value=\\"2021-08-16\\"></v-date-picker-stub>
+      </v-col-stub>
+      <v-col-stub cols=\\"6\\" tag=\\"div\\">
+        <v-time-picker-stub color=\\"deep-purple\\" width=\\"290\\" format=\\"24hr\\" min=\\"01:32\\" value=\\"01:32\\"></v-time-picker-stub>
+      </v-col-stub>
+    </v-row-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
+      Create
+    </v-btn-stub>
+    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
+      Go back
+    </v-btn-stub>
+  </v-stepper-content-stub>
+</v-stepper-stub>"
+`;

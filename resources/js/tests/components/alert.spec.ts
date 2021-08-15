@@ -8,7 +8,7 @@ import { AlertModel } from "@/models/Alert";
 const MESSAGE = "Message for test purposes";
 const BTN_TEXT = "See more";
 
-describe("Snackbar.vue", () => {
+describe("Alert.vue", () => {
     const localVue = createLocalVue();
 
     let vuetify: Vuetify;

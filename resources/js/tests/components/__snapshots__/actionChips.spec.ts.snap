@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionChips.vue Should match snapshot 1`] = `
+"<div class=\\"mt-4\\">
+  <v-chip-stub color=\\"deep-purple\\" activeclass=\\"\\" tag=\\"span\\" dark=\\"true\\" active=\\"true\\" closeicon=\\"$delete\\" closelabel=\\"$vuetify.close\\" filtericon=\\"$complete\\" class=\\"mr-2 font-weight-bold\\">
+    <v-icon-stub left=\\"\\"> mdi-plus-circle </v-icon-stub>
+    Create
+  </v-chip-stub>
+  <v-chip-stub color=\\"deep-purple\\" activeclass=\\"\\" tag=\\"span\\" active=\\"true\\" closeicon=\\"$delete\\" closelabel=\\"$vuetify.close\\" filtericon=\\"$complete\\" outlined=\\"true\\" class=\\"mr-2 font-weight-bold\\">
+    <v-icon-stub left=\\"\\"> mdi-calendar </v-icon-stub>
+    Your events
+  </v-chip-stub>
+  <v-chip-stub color=\\"deep-purple\\" activeclass=\\"\\" tag=\\"span\\" dark=\\"true\\" active=\\"true\\" closeicon=\\"$delete\\" closelabel=\\"$vuetify.close\\" filtericon=\\"$complete\\" class=\\"mr-2 font-weight-bold\\">
+    <v-icon-stub small=\\"\\"> mdi-bell </v-icon-stub>
+  </v-chip-stub>
+</div>"
+`;

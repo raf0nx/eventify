@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dashboard.vue Should match snapshot 1`] = `
+exports[`Event.vue Should match snapshot 1`] = `
 "<v-lazy-stub minheight=\\"200\\" options=\\"[object Object]\\" tag=\\"div\\" transition=\\"fade-transition\\">
   <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" elevation=\\"8\\" class=\\"my-12\\">
     <v-img-stub height=\\"300\\" lazysrc=\\"https://picsum.photos/id/11/10/6\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"https://picsum.photos/id/11/500/300\\" transition=\\"fade-transition\\"></v-img-stub>
     <v-card-subtitle-stub class=\\"pb-0\\">
-      Event starts on Friday, Jan 1st 2021 at 1 am
+      Event starts on Friday, Jan 1st 2021 at 12 am
     </v-card-subtitle-stub>
     <v-card-title-stub class=\\"font-weight-bold\\">event</v-card-title-stub>
     <v-card-text-stub>
