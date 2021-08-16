@@ -1,87 +1,110 @@
 <template>
 	<v-stepper v-model="currentStep" color="deep-purple" vertical>
-		<v-stepper-step
-			color="deep-purple"
-			:complete="currentStep > 1"
-			step="1"
-		>
-			Choose a name for your event
-		</v-stepper-step>
-
-		<v-stepper-content step="1">
-			<v-text-field
-				v-model="event.name"
+		<ValidationObserver ref="form" v-slot="{ invalid }">
+			<v-stepper-step
 				color="deep-purple"
-				label="Event name"
-				filled
-				shaped
-				counter
-				maxlength="255"
-				clearable
-				@keydown.enter="currentStep++"
-			></v-text-field>
-			<v-btn
-				color="deep-purple"
-				class="white--text font-weight-bold"
-				@click="currentStep++"
+				:complete="currentStep > 1"
+				step="1"
 			>
-				Continue
-			</v-btn>
-			<v-btn color="deep-purple" text @click="closeDialog()">
-				Cancel
-			</v-btn>
-		</v-stepper-content>
+				Choose a name for your event
+			</v-stepper-step>
 
-		<v-stepper-step
-			color="deep-purple"
-			:complete="currentStep > 2"
-			step="2"
-		>
-			Write something about it
-		</v-stepper-step>
+			<v-stepper-content step="1">
+				<v-form>
+					<ValidationProvider
+						v-slot="{ errors, invalid }"
+						rules="required|min:2|max:255"
+						name="Name"
+						vid="name"
+					>
+						<v-text-field
+							v-model="event.name"
+							color="deep-purple"
+							label="Event name"
+							filled
+							shaped
+							counter
+							maxlength="255"
+							clearable
+							@keydown.enter.prevent="invalid ? null : currentStep++"
+							:error-messages="errors"
+						></v-text-field>
+						<v-btn
+							color="deep-purple"
+							class="white--text font-weight-bold"
+							@click="currentStep++"
+							:disabled="invalid"
+						>
+							Continue
+						</v-btn>
+						<v-btn color="deep-purple" text @click="closeDialog()">
+							Cancel
+						</v-btn>
+					</ValidationProvider>
+				</v-form>
+			</v-stepper-content>
 
-		<v-stepper-content step="2">
-			<v-textarea
-				v-model="event.description"
+			<v-stepper-step
 				color="deep-purple"
-				label="Description"
-				hint="Write something fancy about your event!"
-				rows="6"
-				filled
-				shaped
-				counter
-				no-resize
-				auto-grow
-				clearable
-				@keydown.enter="currentStep++"
-			></v-textarea>
-			<v-btn
+				:complete="currentStep > 2"
+				step="2"
+			>
+				Write something about it
+			</v-stepper-step>
+
+			<v-stepper-content step="2">
+				<v-form>
+					<ValidationProvider
+						v-slot="{ errors, invalid }"
+						rules="required|min:10|max:65535"
+						name="Description"
+						vid="description"
+					>
+						<v-textarea
+							v-model="event.description"
+							color="deep-purple"
+							label="Description"
+							hint="Write something fancy about your event!"
+							rows="6"
+							filled
+							shaped
+							counter
+							no-resize
+							auto-grow
+							clearable
+							@keydown.enter="invalid ? null : currentStep++"
+							:error-messages="errors"
+						></v-textarea>
+						<v-btn
+							color="deep-purple"
+							class="white--text font-weight-bold"
+							@click="currentStep++"
+							:disabled="invalid"
+						>
+							Continue
+						</v-btn>
+						<v-btn @click="currentStep--" color="deep-purple" text>
+							Go back
+						</v-btn>
+					</ValidationProvider>
+				</v-form>
+			</v-stepper-content>
+
+			<v-stepper-step
 				color="deep-purple"
-				class="white--text font-weight-bold"
-				@click="currentStep++"
+				:complete="currentStep > 3"
+				step="3"
 			>
-				Continue
-			</v-btn>
-			<v-btn @click="currentStep--" color="deep-purple" text>
-				Go back
-			</v-btn>
-		</v-stepper-content>
+				Select an image for your event
+			</v-stepper-step>
 
-		<v-stepper-step
-			color="deep-purple"
-			:complete="currentStep > 3"
-			step="3"
-		>
-			Select an image for your event
-		</v-stepper-step>
-
-		<v-stepper-content step="3">
-			<v-img
-				src="https://wallpapercave.com/wp/wp2686927.jpg"
-				class="mb-8"
-				max-height="350px"
-			>
-				<!-- <v-overlay
+			<v-stepper-content step="3">
+				<v-img
+					src="https://wallpapercave.com/wp/wp2686927.jpg"
+					class="mb-8"
+					max-height="350px"
+				>
+					<!-- <v-overlay
 					v-if="event.image.length === 0"
 					absolute
 					value="true"
@@ -136,58 +159,61 @@
 						</v-file-input>
 					</v-btn>
 				</v-speed-dial> -->
-			</v-img>
-			<v-btn
-				color="deep-purple"
-				class="white--text font-weight-bold"
-				@click="currentStep++"
-			>
-				Continue
-			</v-btn>
-			<v-btn @click="currentStep--" color="deep-purple" text>
-				Go back
-			</v-btn>
-		</v-stepper-content>
+				</v-img>
+				<v-btn
+					color="deep-purple"
+					class="white--text font-weight-bold"
+					@click="currentStep++"
+				>
+					Continue
+				</v-btn>
+				<v-btn @click="currentStep--" color="deep-purple" text>
+					Go back
+				</v-btn>
+			</v-stepper-content>
 
-		<v-stepper-step color="deep-purple" step="4">
-			Tell when your event will start
-		</v-stepper-step>
-		<v-stepper-content step="4">
-			<v-row class="mb-8">
-				<v-col cols="6">
-					<v-date-picker
-						v-model="eventDate"
-						:min="minEventDate"
-						color="deep-purple"
-						show-current
-						show-adjacent-months
-					></v-date-picker>
-				</v-col>
-				<v-col cols="6">
-					<v-time-picker
-						v-model="eventTime"
-						:min="minEventTime"
-						format="24hr"
-						color="deep-purple"
-					></v-time-picker>
-				</v-col>
-			</v-row>
-			<v-btn
-				color="deep-purple"
-				class="white--text font-weight-bold"
-				@click="createEvent()"
-			>
-				Create
-			</v-btn>
-			<v-btn @click="currentStep--" color="deep-purple" text>
-				Go back
-			</v-btn>
-		</v-stepper-content>
+			<v-stepper-step color="deep-purple" step="4">
+				Tell when your event will start
+			</v-stepper-step>
+			<v-stepper-content step="4">
+				<v-row class="mb-8">
+					<v-col cols="6">
+						<v-date-picker
+							v-model="eventDate"
+							:min="minEventDate"
+							color="deep-purple"
+							show-current
+							show-adjacent-months
+						></v-date-picker>
+					</v-col>
+					<v-col cols="6">
+						<v-time-picker
+							v-model="eventTime"
+							:min="minEventTime"
+							format="24hr"
+							color="deep-purple"
+						></v-time-picker>
+					</v-col>
+				</v-row>
+				<v-btn
+					color="deep-purple"
+					class="white--text font-weight-bold"
+					@click="createEvent()"
+					:disabled="invalid"
+				>
+					Create
+				</v-btn>
+				<v-btn @click="currentStep--" color="deep-purple" text>
+					Go back
+				</v-btn>
+			</v-stepper-content>
+		</ValidationObserver>
 	</v-stepper>
 </template>
 
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
+	import { ValidationProvider, ValidationObserver } from "vee-validate";
 	import moment from "moment";
 
 	import { Event as EventModel } from "@/models/Event";
@@ -197,7 +223,7 @@
 	import { EnumSnackbarIcon } from "@/enums/EnumSnackbarIcon";
 	import { EnumSnackbarColor } from "@/enums/EnumSnackbarColor";
 
-	@Component
+	@Component({ components: { ValidationProvider, ValidationObserver } })
 	export default class EventStepper extends Vue {
 		currentStep = 1;
 		fab = false;
@@ -207,7 +233,11 @@
 			name: "",
 			description: "",
 			start_datetime: "",
-			image: "",
+			image: "image.png",
+		};
+
+		$refs!: {
+			form: InstanceType<typeof ValidationObserver>;
 		};
 
 		get minEventDate(): string {
@@ -232,6 +262,7 @@
 						start_datetime: `${this.eventDate} ${this.eventTime}`,
 					})
 				);
+
 				this.$emit("rerenderEvents");
 				this.closeDialog();
 				UtilsModule.setSnackbar(
@@ -241,12 +272,26 @@
 						.setIcon(EnumSnackbarIcon.SUCCESS)
 						.setColor(EnumSnackbarColor.SUCCESS)
 				);
-			} catch {
+			} catch (error) {
+				const errorsData = error.response.data.errors;
+				this.$refs.form.setErrors({
+					name: errorsData.name,
+					description: errorsData.description,
+				});
+
+				if (errorsData.hasOwnProperty("name")) {
+					this.currentStep = 1;
+				} else if (errorsData.hasOwnProperty("description")) {
+					this.currentStep = 2;
+				}
+
 				UtilsModule.setSnackbar(
 					new SnackbarModel()
 						.setShowSnackbar(true)
 						.setMessage(
-							"Couldn't create your event. Reload the page and try again."
+							errorsData.hasOwnProperty("start_datetime")
+								? errorsData.start_datetime[0]
+								: "Couldn't create your event. Perhaps you have some errors in the form. If no, reload the page and try again."
 						)
 						.setIcon(EnumSnackbarIcon.ERROR)
 						.setColor(EnumSnackbarColor.ERROR)
