@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login.vue Should match snapshot 1`] = `
-"<v-col-stub cols=\\"12\\" md=\\"5\\" tag=\\"div\\" dark=\\"\\" class=\\"d-flex flex-column justify-center px-12\\">
-  <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" elevation=\\"0\\">
+"<div dark=\\"\\" class=\\"d-flex flex-column justify-center px-12 col-md-5 col-12\\">
+  <div class=\\"v-card v-sheet theme--light elevation-0\\">
     <h1 class=\\"
 				auth-form__title
 				font-weight-bold
@@ -10,14 +10,12 @@ exports[`Login.vue Should match snapshot 1`] = `
 				text--darken-4
 			\\">
       Sign In
-    </h1>
-    <validationobserver-stub tag=\\"span\\" vid=\\"obs_0\\"></validationobserver-stub>
+    </h1> <span><form novalidate=\\"novalidate\\" class=\\"v-form py-12\\"><span><div class=\\"v-input theme--light v-text-field\\"><div class=\\"v-input__control\\"><div class=\\"v-input__slot\\"><div class=\\"v-text-field__slot\\"><label for=\\"input-11\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Email Address</label><input data-cy=\\"email\\" id=\\"input-11\\" type=\\"email\\"></div></div><div class=\\"v-text-field__details\\"><div class=\\"v-messages theme--light\\"><transition-group-stub tag=\\"div\\" name=\\"message-transition\\" class=\\"v-messages__wrapper\\"></transition-group-stub></div></div></div></div></span> <span><div class=\\"v-input theme--light v-text-field\\"><div class=\\"v-input__control\\"><div class=\\"v-input__slot\\"><div class=\\"v-text-field__slot\\"><label for=\\"input-15\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Password</label><input data-cy=\\"password\\" id=\\"input-15\\" type=\\"password\\"></div></div><div class=\\"v-text-field__details\\"><div class=\\"v-messages theme--light\\"><transition-group-stub tag=\\"div\\" name=\\"message-transition\\" class=\\"v-messages__wrapper\\"></transition-group-stub></div></div></div></div></span> <button type=\\"submit\\" class=\\"white--text font-weight-bold mt-12 v-btn v-btn--block v-btn--is-elevated v-btn--has-bg theme--light v-size--large deep-purple\\" data-cy=\\"submit\\"><span class=\\"v-btn__content\\">Continue</span></button></form></span>
     <p class=\\"text-center\\">
       Don't have an account?
-      <v-btn-stub tag=\\"button\\" activeclass=\\"\\" to=\\"[object Object]\\" small=\\"true\\" plain=\\"true\\" text=\\"true\\" type=\\"button\\">
-        Sign up
-      </v-btn-stub>
-    </p>
-  </v-card-stub>
-</v-col-stub>"
+      <a href=\\"#/\\" aria-current=\\"page\\" class=\\"v-btn--active v-btn v-btn--plain v-btn--router v-btn--text theme--light v-size--small\\"><span class=\\"v-btn__content\\">
+				Sign up
+			</span></a></p>
+  </div>
+</div>"
 `;

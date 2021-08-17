@@ -26,7 +26,9 @@
 							counter
 							maxlength="255"
 							clearable
-							@keydown.enter.prevent="invalid ? null : currentStep++"
+							@keydown.enter.prevent="
+								invalid ? null : currentStep++
+							"
 							:error-messages="errors"
 						></v-text-field>
 						<v-btn
@@ -274,16 +276,8 @@
 				);
 			} catch (error) {
 				const errorsData = error.response.data.errors;
-				this.$refs.form.setErrors({
-					name: errorsData.name,
-					description: errorsData.description,
-				});
-
-				if (errorsData.hasOwnProperty("name")) {
-					this.currentStep = 1;
-				} else if (errorsData.hasOwnProperty("description")) {
-					this.currentStep = 2;
-				}
+				this.setServerSideErrors(errorsData);
+				this.setStepAfterValidation(errorsData);
 
 				UtilsModule.setSnackbar(
 					new SnackbarModel()
@@ -299,6 +293,21 @@
 			}
 
 			UtilsModule.setLoader(false);
+		}
+
+		setServerSideErrors(errorsData: any): void {
+			this.$refs.form.setErrors({
+				name: errorsData.name,
+				description: errorsData.description,
+			});
+		}
+
+		setStepAfterValidation(errorsData: any): void {
+			if (errorsData.hasOwnProperty("name")) {
+				this.currentStep = 1;
+			} else if (errorsData.hasOwnProperty("description")) {
+				this.currentStep = 2;
+			}
 		}
 
 		closeDialog(): void {

@@ -1,61 +1,258 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EventStepper.vue Should match snapshot 1`] = `
-"<v-stepper-stub value=\\"1\\" vertical=\\"true\\" color=\\"deep-purple\\">
-  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"1\\">
+"<div class=\\"v-stepper v-stepper--vertical theme--light\\" color=\\"deep-purple\\"><span><div class=\\"v-stepper__step v-stepper__step--active\\"><span class=\\"v-stepper__step__step deep-purple\\">1</span>
+  <div class=\\"v-stepper__label\\">
     Choose a name for your event
-  </v-stepper-step-stub>
-  <v-stepper-content-stub step=\\"1\\">
-    <v-text-field-stub color=\\"deep-purple\\" errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" value=\\"\\" backgroundcolor=\\"\\" label=\\"Event name\\" loaderheight=\\"2\\" clearable=\\"true\\" clearicon=\\"$clear\\" counter=\\"true\\" filled=\\"true\\" shaped=\\"true\\" type=\\"text\\" maxlength=\\"255\\"></v-text-field-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
-      Continue
-    </v-btn-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
-      Cancel
-    </v-btn-stub>
-  </v-stepper-content-stub>
-  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"2\\">
+  </div>
+</div>
+<transition-stub name=\\"tab-transition\\">
+  <div class=\\"v-stepper__content\\">
+    <div class=\\"v-stepper__wrapper\\" style=\\"height: auto;\\">
+      <form novalidate=\\"novalidate\\" class=\\"v-form\\"><span><div class=\\"v-input theme--light v-text-field v-text-field--filled v-text-field--enclosed v-text-field--shaped\\"><div class=\\"v-input__control\\"><div class=\\"v-input__slot\\"><div class=\\"v-text-field__slot\\"><label for=\\"input-13\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Event name</label><input maxlength=\\"255\\" id=\\"input-13\\" type=\\"text\\"></div><div class=\\"v-input__append-inner\\"><div class=\\"v-input__icon v-input__icon--clear\\"><button disabled=\\"disabled\\" type=\\"button\\" aria-label=\\"clear icon\\" class=\\"v-icon notranslate v-icon--disabled v-icon--link mdi mdi-close theme--light\\"></button></div></div></div><div class=\\"v-text-field__details\\"><div class=\\"v-messages theme--light\\"><transition-group-stub tag=\\"div\\" name=\\"message-transition\\" class=\\"v-messages__wrapper\\"></transition-group-stub></div><div class=\\"v-counter theme--light\\">0 / 255</div></div></div></div> <button type=\\"button\\" class=\\"white--text font-weight-bold v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default deep-purple\\"><span class=\\"v-btn__content\\">
+						Continue
+					</span></button> <button type=\\"button\\" class=\\"v-btn v-btn--text theme--light v-size--default deep-purple--text\\"><span class=\\"v-btn__content\\">
+						Cancel
+					</span></button></span></form>
+    </div>
+  </div>
+</transition-stub>
+<div class=\\"v-stepper__step v-stepper__step--inactive\\"><span class=\\"v-stepper__step__step\\">2</span>
+  <div class=\\"v-stepper__label\\">
     Write something about it
-  </v-stepper-step-stub>
-  <v-stepper-content-stub step=\\"2\\">
-    <v-textarea-stub color=\\"deep-purple\\" errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" value=\\"\\" backgroundcolor=\\"\\" hint=\\"Write something fancy about your event!\\" label=\\"Description\\" loaderheight=\\"2\\" clearable=\\"true\\" clearicon=\\"$clear\\" counter=\\"true\\" filled=\\"true\\" shaped=\\"true\\" type=\\"text\\" autogrow=\\"true\\" noresize=\\"true\\" rowheight=\\"24\\" rows=\\"6\\"></v-textarea-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
-      Continue
-    </v-btn-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
-      Go back
-    </v-btn-stub>
-  </v-stepper-content-stub>
-  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"3\\">
+  </div>
+</div>
+<transition-stub name=\\"tab-transition\\">
+  <div class=\\"v-stepper__content\\">
+    <div class=\\"v-stepper__wrapper\\" style=\\"height: 0px;\\">
+      <form novalidate=\\"novalidate\\" class=\\"v-form\\"><span><div class=\\"v-input v-textarea v-textarea--auto-grow v-textarea--no-resize theme--light v-text-field v-text-field--filled v-text-field--enclosed v-text-field--shaped\\"><div class=\\"v-input__control\\"><div class=\\"v-input__slot\\"><div class=\\"v-text-field__slot\\"><label for=\\"input-24\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Description</label><textarea id=\\"input-24\\" rows=\\"6\\"></textarea></div><div class=\\"v-input__append-inner\\"><div class=\\"v-input__icon v-input__icon--clear\\"><button disabled=\\"disabled\\" type=\\"button\\" aria-label=\\"clear icon\\" class=\\"v-icon notranslate v-icon--disabled v-icon--link mdi mdi-close theme--light\\"></button></div></div></div><div class=\\"v-text-field__details\\"><div class=\\"v-messages theme--light\\"><transition-group-stub tag=\\"div\\" name=\\"message-transition\\" class=\\"v-messages__wrapper\\"></transition-group-stub></div><div class=\\"v-counter theme--light\\">0</div></div></div></div> <button type=\\"button\\" class=\\"white--text font-weight-bold v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default deep-purple\\"><span class=\\"v-btn__content\\">
+						Continue
+					</span></button> <button type=\\"button\\" class=\\"v-btn v-btn--text theme--light v-size--default deep-purple--text\\"><span class=\\"v-btn__content\\">
+						Go back
+					</span></button></span></form>
+    </div>
+  </div>
+</transition-stub>
+<div class=\\"v-stepper__step v-stepper__step--inactive\\"><span class=\\"v-stepper__step__step\\">3</span>
+  <div class=\\"v-stepper__label\\">
     Select an image for your event
-  </v-stepper-step-stub>
-  <v-stepper-content-stub step=\\"3\\">
-    <v-img-stub maxheight=\\"350px\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"https://wallpapercave.com/wp/wp2686927.jpg\\" transition=\\"fade-transition\\" class=\\"mb-8\\"></v-img-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
-      Continue
-    </v-btn-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
-      Go back
-    </v-btn-stub>
-  </v-stepper-content-stub>
-  <v-stepper-step-stub color=\\"deep-purple\\" completeicon=\\"$complete\\" editicon=\\"$edit\\" erroricon=\\"$error\\" rules=\\"\\" step=\\"4\\">
+  </div>
+</div>
+<transition-stub name=\\"tab-transition\\">
+  <div class=\\"v-stepper__content\\">
+    <div class=\\"v-stepper__wrapper\\" style=\\"height: 0px;\\">
+      <div class=\\"v-image v-responsive mb-8 theme--light\\" style=\\"max-height: 350px;\\">
+        <transition-stub name=\\"fade-transition\\" mode=\\"in-out\\">
+          <div class=\\"v-image__image v-image__image--preload v-image__image--cover\\" style=\\"background-position: center center;\\"></div>
+        </transition-stub>
+        <div class=\\"v-responsive__content\\"></div>
+      </div> <button type=\\"button\\" class=\\"white--text font-weight-bold v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default deep-purple\\"><span class=\\"v-btn__content\\">
+				Continue
+			</span></button> <button type=\\"button\\" class=\\"v-btn v-btn--text theme--light v-size--default deep-purple--text\\"><span class=\\"v-btn__content\\">
+				Go back
+			</span></button>
+    </div>
+  </div>
+</transition-stub>
+<div class=\\"v-stepper__step v-stepper__step--inactive\\"><span class=\\"v-stepper__step__step\\">4</span>
+  <div class=\\"v-stepper__label\\">
     Tell when your event will start
-  </v-stepper-step-stub>
-  <v-stepper-content-stub step=\\"4\\">
-    <v-row-stub tag=\\"div\\" class=\\"mb-8\\">
-      <v-col-stub cols=\\"6\\" tag=\\"div\\">
-        <v-date-picker-stub color=\\"deep-purple\\" width=\\"290\\" eventcolor=\\"warning\\" firstdayofweek=\\"0\\" localefirstdayofyear=\\"0\\" min=\\"2021-08-16\\" nexticon=\\"$next\\" nextmontharialabel=\\"$vuetify.datePicker.nextMonthAriaLabel\\" nextyeararialabel=\\"$vuetify.datePicker.nextYearAriaLabel\\" previcon=\\"$prev\\" prevmontharialabel=\\"$vuetify.datePicker.prevMonthAriaLabel\\" prevyeararialabel=\\"$vuetify.datePicker.prevYearAriaLabel\\" showcurrent=\\"true\\" selecteditemstext=\\"$vuetify.datePicker.itemsSelected\\" showadjacentmonths=\\"true\\" type=\\"date\\" value=\\"2021-08-16\\"></v-date-picker-stub>
-      </v-col-stub>
-      <v-col-stub cols=\\"6\\" tag=\\"div\\">
-        <v-time-picker-stub color=\\"deep-purple\\" width=\\"290\\" format=\\"24hr\\" min=\\"01:32\\" value=\\"01:32\\"></v-time-picker-stub>
-      </v-col-stub>
-    </v-row-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" type=\\"button\\" class=\\"white--text font-weight-bold\\">
-      Create
-    </v-btn-stub>
-    <v-btn-stub color=\\"deep-purple\\" tag=\\"button\\" activeclass=\\"\\" text=\\"true\\" type=\\"button\\">
-      Go back
-    </v-btn-stub>
-  </v-stepper-content-stub>
-</v-stepper-stub>"
+  </div>
+</div>
+<transition-stub name=\\"tab-transition\\">
+  <div class=\\"v-stepper__content\\">
+    <div class=\\"v-stepper__wrapper\\" style=\\"height: 0px;\\">
+      <div class=\\"row mb-8\\">
+        <div class=\\"col col-6\\">
+          <div class=\\"v-picker v-card v-picker--date theme--light\\">
+            <div class=\\"v-picker__title deep-purple\\">
+              <div class=\\"v-date-picker-title\\">
+                <div class=\\"v-picker__title__btn v-date-picker-title__year\\">2021</div>
+                <div class=\\"v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active\\">
+                  <transition-stub name=\\"picker-transition\\">
+                    <div>Tue, Aug 17</div>
+                  </transition-stub>
+                </div>
+              </div>
+            </div>
+            <div class=\\"v-picker__body theme--light\\" style=\\"width: 290px;\\">
+              <transition-stub name=\\"fade-transition\\">
+                <div>
+                  <div class=\\"v-date-picker-header theme--light\\"><button type=\\"button\\" disabled=\\"disabled\\" class=\\"v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--default\\" aria-label=\\"Previous month\\"><span class=\\"v-btn__content\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-chevron-left theme--light\\"></i></span></button>
+                    <div class=\\"v-date-picker-header__value\\">
+                      <transition-stub name=\\"tab-transition\\">
+                        <div class=\\"deep-purple--text\\"><button type=\\"button\\">August 2021</button></div>
+                      </transition-stub>
+                    </div><button type=\\"button\\" class=\\"v-btn v-btn--icon v-btn--round theme--light v-size--default\\" aria-label=\\"Next month\\"><span class=\\"v-btn__content\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-chevron-right theme--light\\"></i></span></button>
+                  </div>
+                  <div class=\\"v-date-picker-table v-date-picker-table--date theme--light\\">
+                    <transition-stub name=\\"tab-transition\\">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>T</th>
+                            <th>W</th>
+                            <th>T</th>
+                            <th>F</th>
+                            <th>S</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">1</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">2</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">3</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">4</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">5</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">6</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">7</div>
+                              </button></td>
+                          </tr>
+                          <tr>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">8</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">9</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">10</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">11</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">12</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">13</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">14</div>
+                              </button></td>
+                          </tr>
+                          <tr>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">15</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">16</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-date-picker-table__current v-btn--active v-btn--text v-btn--rounded theme--light deep-purple\\">
+                                <div class=\\"v-btn__content\\">17</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">18</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">19</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">20</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">21</div>
+                              </button></td>
+                          </tr>
+                          <tr>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">22</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">23</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">24</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">25</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">26</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">27</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">28</div>
+                              </button></td>
+                          </tr>
+                          <tr>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">29</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">30</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--text v-btn--rounded theme--light\\">
+                                <div class=\\"v-btn__content\\">31</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">1</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">2</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">3</div>
+                              </button></td>
+                            <td><button type=\\"button\\" class=\\"v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light\\" disabled=\\"\\">
+                                <div class=\\"v-btn__content\\">4</div>
+                              </button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </transition-stub>
+                  </div>
+                </div>
+              </transition-stub>
+            </div>
+          </div>
+        </div>
+        <div class=\\"col col-6\\">
+          <div class=\\"v-picker v-card v-picker--time theme--light\\">
+            <div class=\\"v-picker__title deep-purple\\">
+              <div class=\\"v-time-picker-title\\">
+                <div class=\\"v-time-picker-title__time\\">
+                  <div class=\\"v-picker__title__btn v-picker__title__btn--active\\">21</div><span>:</span>
+                  <div class=\\"v-picker__title__btn\\">17</div>
+                </div>
+              </div>
+            </div>
+            <div class=\\"v-picker__body theme--light\\" style=\\"width: 290px;\\">
+              <transition-stub name=\\"fade-transition\\">
+                <div class=\\"v-time-picker-clock__container\\">
+                  <div class=\\"v-time-picker-clock theme--light\\">
+                    <div class=\\"v-time-picker-clock__inner\\">
+                      <div class=\\"v-time-picker-clock__hand v-time-picker-clock__hand--inner deep-purple\\" style=\\"transform: rotate(630deg) scaleY(0.62);\\"></div><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 50%; top: 0%;\\"><span>0</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 75%; top: 6.698729810778062%;\\"><span>1</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 93.30127018922192%; top: 24.999999999999993%;\\"><span>2</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 100%; top: 50%;\\"><span>3</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 93.30127018922194%; top: 74.99999999999999%;\\"><span>4</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 75.00000000000001%; top: 93.30127018922192%;\\"><span>5</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 50.00000000000001%; top: 100%;\\"><span>6</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 25.000000000000014%; top: 93.30127018922194%;\\"><span>7</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 6.698729810778076%; top: 75.00000000000003%;\\"><span>8</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 0%; top: 50.00000000000001%;\\"><span>9</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 6.6987298107780475%; top: 25.000000000000032%;\\"><span>10</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 24.99999999999998%; top: 6.698729810778083%;\\"><span>11</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 49.99999999999999%; top: 19%;\\"><span>12</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 65.49999999999997%; top: 23.153212482682388%;\\"><span>13</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 76.84678751731758%; top: 34.499999999999986%;\\"><span>14</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 81%; top: 49.999999999999964%;\\"><span>15</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 76.84678751731761%; top: 65.49999999999997%;\\"><span>16</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 65.50000000000004%; top: 76.84678751731758%;\\"><span>17</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 50.000000000000014%; top: 81%;\\"><span>18</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 34.50000000000003%; top: 76.84678751731761%;\\"><span>19</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--disabled\\" style=\\"left: 23.153212482682427%; top: 65.50000000000004%;\\"><span>20</span></span><span class=\\"v-time-picker-clock__item v-time-picker-clock__item--active deep-purple\\" style=\\"left: 19%; top: 50.000000000000014%;\\"><span>21</span></span><span class=\\"v-time-picker-clock__item\\" style=\\"left: 23.153212482682385%; top: 34.50000000000003%;\\"><span>22</span></span><span class=\\"v-time-picker-clock__item\\" style=\\"left: 34.49999999999996%; top: 23.153212482682427%;\\"><span>23</span></span>
+                    </div>
+                  </div>
+                </div>
+              </transition-stub>
+            </div>
+          </div>
+        </div>
+      </div> <button type=\\"button\\" class=\\"white--text font-weight-bold v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default deep-purple\\"><span class=\\"v-btn__content\\">
+				Create
+			</span></button> <button type=\\"button\\" class=\\"v-btn v-btn--text theme--light v-size--default deep-purple--text\\"><span class=\\"v-btn__content\\">
+				Go back
+			</span></button>
+    </div>
+  </div>
+</transition-stub></span></div>"
 `;

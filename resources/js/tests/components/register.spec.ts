@@ -1,6 +1,7 @@
-import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
+import { createLocalVue, mount, Wrapper } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import axios from "axios";
+import VueRouter from "vue-router";
 
 import Register from "@components/auth/Register.vue";
 
@@ -8,20 +9,23 @@ jest.mock("axios");
 
 describe("Register.vue", () => {
     const localVue = createLocalVue();
+    localVue.use(VueRouter);
+    const router = new VueRouter();
     let wrapper: Wrapper<Register>;
     let vuetify: Vuetify;
 
     beforeEach(() => {
         vuetify = new Vuetify();
-        wrapper = shallowMount(Register, {
+        wrapper = mount(Register, {
             localVue,
-            vuetify
+            vuetify,
+            router
         });
     });
 
     afterEach(() => {
-        wrapper.destroy();
         jest.clearAllMocks();
+        wrapper.destroy();
     });
 
     it("Should match snapshot", () => {
@@ -29,22 +33,42 @@ describe("Register.vue", () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it("Should trigger register method", async () => {
+    it("Should register a user successfully", async () => {
         // Arrange
-        const spy = jest
-            //@ts-ignore
-            .spyOn(wrapper.vm, "registerUser");
+        // @ts-ignore
+        axios.post.mockImplementationOnce(() => Promise.resolve());
 
         // Act
         // @ts-ignore
-        axios.post.mockResolvedValue();
+        await wrapper.vm.registerUser();
 
         // Assert
-        try {
-            // @ts-ignore
-            await wrapper.vm.registerUser();
-        } catch {
-            expect(spy).toHaveBeenCalled();
-        }
+        // @ts-ignore
+        expect(wrapper.vm.$router.currentRoute.path === "/");
+    });
+
+    it("Should fail registering a user", async () => {
+        // Arrange
+        const error = {
+            response: {
+                data: {
+                    errors: {
+                        name: ["The name has already been taken."],
+                        email: ["The email has already been taken."]
+                    }
+                }
+            }
+        };
+
+        // @ts-ignore
+        axios.post.mockImplementationOnce(() => Promise.reject(error));
+
+        // Act
+        // @ts-ignore
+        await wrapper.vm.registerUser();
+
+        // Assert
+        // @ts-ignore
+        expect(wrapper.vm.registerUser()).rejects;
     });
 });
