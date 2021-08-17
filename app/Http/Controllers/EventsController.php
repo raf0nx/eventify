@@ -6,7 +6,6 @@ use App\Http\Requests\CreateEventRequest;
 use App\Http\Resources\EventCollection;
 use App\Models\Event;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class EventsController extends Controller {
     /**
@@ -21,27 +20,37 @@ class EventsController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CreateEventRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateEventRequest $request) {
-        return Event::create([
+        $event = new EventCollection(Event::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $request->image ?? null,
             'start_datetime' => $request->start_datetime,
-        ]);
+        ]));
+
+        return $event->response()->setStatusCode(201);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CreateEventRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(CreateEventRequest $request, $id) {
+        $event = new EventCollection(Event::findOrFail($id));
+        $event->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $request->image ?? null,
+            'start_datetime' => $request->start_datetime,
+        ]);
+
+        return $event->response()->setStatusCode(200);
     }
 
     /**

@@ -10,6 +10,13 @@ class EventService {
     createEvent(eventData: EventModel): Promise<AxiosResponse<void>> {
         return axios.post("/api/events", eventData);
     }
+
+    updateEvent(
+        eventData: EventModel,
+        eventId: number
+    ): Promise<AxiosResponse<void>> {
+        return axios.patch(`/api/events/${eventId}`, eventData);
+    }
 }
 
 export default new EventService();
