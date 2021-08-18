@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
         return User::factory()->make();
     }
 
-    static function createEvent(int $count) {
+    static function createEvent(int $count = 1) {
         return Event::factory()->count($count)->create();
     }
 
