@@ -35,15 +35,6 @@ class Auth extends VuexModule implements AuthState {
             return authUser.data;
         } catch {
             this.SET_USER(null);
-            UtilsModule.setSnackbar(
-                new SnackbarModel()
-                    .setShowSnackbar(true)
-                    .setMessage(
-                        "You are not authenticated! Reload the page and try to login again."
-                    )
-                    .setColor(EnumSnackbarColor.ERROR)
-                    .setIcon(EnumSnackbarIcon.ERROR)
-            );
             return null;
         }
     }

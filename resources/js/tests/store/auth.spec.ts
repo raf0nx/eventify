@@ -45,15 +45,6 @@ describe("Auth module", () => {
         // Assert
         await expect(AuthModule.getAuthUser()).resolves.toBe(null);
         expect(AuthModule.authUser).toBe(null);
-        expect(UtilsModule.snackbar).toEqual(
-            new SnackbarModel()
-                .setShowSnackbar(true)
-                .setMessage(
-                    "You are not authenticated! Reload the page and try to login again."
-                )
-                .setColor(EnumSnackbarColor.ERROR)
-                .setIcon(EnumSnackbarIcon.ERROR)
-        );
     });
 
     it("Should logout user", async () => {
