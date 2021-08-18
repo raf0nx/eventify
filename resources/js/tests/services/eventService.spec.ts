@@ -40,4 +40,40 @@ describe("Event Service", () => {
             status: 201
         });
     });
+
+    it("Should update an event", async () => {
+        // Arrange
+        const eventData = {
+            name: Event.name,
+            description: Event.description,
+            image: Event.image,
+            start_datetime: Event.start_datetime
+        };
+
+        // Act
+        // @ts-ignore
+        axios.patch.mockImplementationOnce(() =>
+            Promise.resolve({ status: 200 })
+        );
+
+        // Assert
+        expect(EventService.updateEvent(eventData, 1)).resolves.toEqual({
+            status: 200
+        });
+    });
+
+    it("Should delete an event", async () => {
+        // Act
+        // @ts-ignore
+        axios.delete.mockImplementationOnce(() =>
+            Promise.resolve({
+                status: 200
+            })
+        );
+
+        // Assert
+        expect(EventService.deleteEvent(1)).resolves.toEqual({
+            status: 200
+        });
+    });
 });

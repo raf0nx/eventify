@@ -8,22 +8,6 @@
 		transition="fade-transition"
 	>
 		<v-card class="my-12" elevation="8">
-			<!-- Testing purposes -->
-			<v-dialog v-model="dialog" max-width="750px">
-				<v-text-field
-					v-model="eventModel.name"
-					label="name"
-				></v-text-field>
-				<v-text-field
-					v-model="eventModel.description"
-					label="description"
-				></v-text-field>
-				<v-text-field
-					v-model="eventModel.image"
-					label="image"
-				></v-text-field>
-				<v-btn @click="updateEvent()"></v-btn>
-			</v-dialog>
 			<v-img
 				lazy-src="https://picsum.photos/id/11/10/6"
 				src="https://picsum.photos/id/11/500/300"
@@ -60,21 +44,6 @@
 
 				<v-spacer></v-spacer>
 
-				<!-- Testing purposes -->
-				<v-btn icon>
-					<v-tooltip top>
-						<template v-slot:activator="{ on, attrs }">
-							<v-icon
-								@click="dialog = true"
-								v-on="on"
-								v-bind="attrs"
-								>mdi-pencil</v-icon
-							>
-						</template>
-						<span>Edit</span>
-					</v-tooltip>
-				</v-btn>
-
 				<v-btn icon>
 					<v-tooltip top>
 						<template v-slot:activator="{ on, attrs }">
@@ -104,21 +73,11 @@
 	import moment from "moment";
 
 	import { Event as EventModel } from "@/models/Event";
-	// Testing purposes
-	import EventService from "@/services/EventService";
 
 	@Component
 	export default class Event extends Vue {
 		@Prop()
 		event!: EventModel;
-		// Testing purposes
-		eventModel = {
-			name: this.event.name,
-			description: this.event.description,
-			image: this.event.image,
-			start_datetime: this.event.start_datetime,
-		};
-		dialog = false;
 
 		isActive = false;
 
@@ -128,14 +87,6 @@
 
 		get eventStartTime(): string {
 			return moment(this.event.start_datetime).format("h a");
-		}
-
-		// Testing purposes
-		async updateEvent(): Promise<void> {
-			await EventService.updateEvent(
-				this.eventModel,
-				<number>this.event.id
-			);
 		}
 	}
 </script>

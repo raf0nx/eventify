@@ -17,6 +17,10 @@ class EventService {
     ): Promise<AxiosResponse<void>> {
         return axios.patch(`/api/events/${eventId}`, eventData);
     }
+
+    deleteEvent(eventId: number): Promise<AxiosResponse<void>> {
+        return axios.delete(`/api/events/${eventId}`);
+    }
 }
 
 export default new EventService();
