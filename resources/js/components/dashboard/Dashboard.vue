@@ -1,5 +1,5 @@
 <template>
-	<v-main>
+	<v-main class="dashboard">
 		<v-dialog
 			v-model="showDialog"
 			max-width="750px"
@@ -29,7 +29,9 @@
 						<v-skeleton-loader
 							v-for="i in 10"
 							:key="i"
-							type="image, article, actions"
+							type="image, text, article, table-cell, table-tfoot"
+                            :types="{ 'table-tfoot': 'button@2, avatar@2' }"
+                            min-height="590px"
 							class="my-12"
 							elevation="8"
 						></v-skeleton-loader>
@@ -66,11 +68,25 @@
 		}
 
 		private async getEvents(): Promise<void> {
-			const response = await EventService.getEvents();
-			this.events = response.data;
+            setTimeout(async () => {
+                const response = await EventService.getEvents();
+                this.events = response.data;
+            }, 3000000);
 		}
 	}
 </script>
 
 <style>
+.dashboard .v-skeleton-loader > .v-skeleton-loader__text {
+    margin: 16px;
+}
+.dashboard .v-skeleton-loader > .v-skeleton-loader__table-cell {
+    margin-left: 16px;
+}
+.dashboard .v-skeleton-loader > .v-skeleton-loader__table-tfoot {
+    justify-content: unset;
+}
+.dashboard .v-skeleton-loader__image {
+    height: 300px !important;
+}
 </style>
