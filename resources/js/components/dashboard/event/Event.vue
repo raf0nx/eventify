@@ -8,19 +8,25 @@
 		transition="fade-transition"
 	>
 		<v-card class="my-12" elevation="8">
-			<v-img
-				lazy-src="https://picsum.photos/id/11/10/6"
-				src="https://picsum.photos/id/11/500/300"
-				height="300"
-			></v-img>
+			<router-link :to="{ name: 'event', params: { id: event.id } }">
+				<v-img
+					lazy-src="https://picsum.photos/id/11/10/6"
+					src="https://picsum.photos/id/11/500/300"
+					height="320"
+				></v-img>
+			</router-link>
 
 			<v-card-subtitle class="pb-0">
 				Event starts on {{ eventStartDate }} at {{ eventStartTime }}
 			</v-card-subtitle>
 
-			<v-card-title class="font-weight-bold">{{
-				event.name
-			}}</v-card-title>
+			<v-card-title class="font-weight-bold">
+				<router-link
+					:to="{ name: 'event', params: { id: event.id } }"
+					class="black--text text-decoration-none"
+					>{{ event.name }}</router-link
+				>
+			</v-card-title>
 
 			<v-card-text>
 				<div>

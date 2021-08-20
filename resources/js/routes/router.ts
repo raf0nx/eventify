@@ -8,6 +8,7 @@ import Auth from "@components/auth/Auth.vue";
 import Login from "@components/auth/Login.vue";
 import Register from "@components/auth/Register.vue";
 import ErrorPage from "@components/error/ErrorPage.vue";
+import EventDetails from "@components/dashboard/event_details/EventDetails.vue";
 import { AlertModel } from "@/models/Alert";
 import { EnumAlertType } from "@/enums/EnumAlertType";
 import AlertCallbacks from "@/utils/alertCallbacks";
@@ -19,6 +20,12 @@ const routes: Array<RouteConfig> = [
         path: "/",
         component: Dashboard,
         name: "Dashboard",
+        meta: { requiresAuth: true }
+    },
+    {
+        path: "/event/:id",
+        component: EventDetails,
+        name: "event",
         meta: { requiresAuth: true }
     },
     {

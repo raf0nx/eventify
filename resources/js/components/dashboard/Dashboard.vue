@@ -30,8 +30,10 @@
 							v-for="i in 10"
 							:key="i"
 							type="image, text, article, table-cell, table-tfoot"
-                            :types="{ 'table-tfoot': 'button@2, avatar@2' }"
-                            min-height="590px"
+							:types="{
+								'table-tfoot': 'button@2, table-cell, avatar@2',
+							}"
+							min-height="590px"
 							class="my-12"
 							elevation="8"
 						></v-skeleton-loader>
@@ -68,25 +70,36 @@
 		}
 
 		private async getEvents(): Promise<void> {
-            setTimeout(async () => {
-                const response = await EventService.getEvents();
-                this.events = response.data;
-            }, 3000000);
+			const response = await EventService.getEvents();
+			this.events = response.data;
 		}
 	}
 </script>
 
 <style>
-.dashboard .v-skeleton-loader > .v-skeleton-loader__text {
-    margin: 16px;
-}
-.dashboard .v-skeleton-loader > .v-skeleton-loader__table-cell {
-    margin-left: 16px;
-}
-.dashboard .v-skeleton-loader > .v-skeleton-loader__table-tfoot {
-    justify-content: unset;
-}
-.dashboard .v-skeleton-loader__image {
-    height: 300px !important;
-}
+	.dashboard .v-skeleton-loader > .v-skeleton-loader__text {
+		margin: 16px 16px 0;
+	}
+	.dashboard .v-skeleton-loader > .v-skeleton-loader__table-cell {
+		margin-left: 16px;
+	}
+	.dashboard .v-skeleton-loader > .v-skeleton-loader__table-tfoot {
+		justify-content: unset;
+	}
+	.dashboard
+		.v-skeleton-loader
+		> .v-skeleton-loader__table-tfoot
+		.v-skeleton-loader__button:first-child {
+		margin-left: 0;
+	}
+	.dashboard
+		.v-skeleton-loader
+		> .v-skeleton-loader__table-tfoot
+		> .v-skeleton-loader__table-cell {
+		flex: 1 1 auto;
+		height: 0;
+	}
+	.dashboard .v-skeleton-loader__image {
+		height: 320px !important;
+	}
 </style>
