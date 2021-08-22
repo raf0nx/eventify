@@ -2,7 +2,7 @@
 	<v-main class="dashboard">
 		<div class="container-fluid">
 			<v-row class="pr-4">
-				<v-col cols="3"><v-spacer></v-spacer></v-col>
+				<v-col cols="3"><dashboard-sidebar /></v-col>
 				<transition name="scale" mode="out-in">
 					<router-view />
 				</transition>
@@ -14,7 +14,9 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 
-	@Component
+	import DashboardSidebar from "@components/dashboard/DashboardSidebar.vue";
+
+	@Component({ components: { DashboardSidebar } })
 	export default class Dashboard extends Vue {}
 </script>
 

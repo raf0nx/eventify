@@ -1,6 +1,6 @@
 import { createLocalVue, shallowMount, Wrapper } from "@vue/test-utils";
 
-import ActionChips from "@components/dashboard/ActionChips.vue";
+import ActionChips from "@/components/dashboard/event/ActionChips.vue";
 
 describe("ActionChips.vue", () => {
     const localVue = createLocalVue();

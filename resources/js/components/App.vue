@@ -48,6 +48,9 @@
 </script>
 
 <style>
+	.v-application .headline {
+		font-family: "nunito" !important;
+	}
 	.scale-enter-active,
 	.scale-leave-active {
 		transition: all 0.5s ease;

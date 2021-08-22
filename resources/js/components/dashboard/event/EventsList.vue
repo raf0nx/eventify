@@ -64,7 +64,7 @@
 
 	import Event from "@/components/dashboard/event/Event.vue";
 	import EventStepper from "@/components/dashboard/event/EventStepper.vue";
-	import ActionChips from "@/components/dashboard/ActionChips.vue";
+	import ActionChips from "@/components/dashboard/event/ActionChips.vue";
 	import { Event as EventModel } from "@/models/Event";
 	import EventService from "@/services/EventService";
 

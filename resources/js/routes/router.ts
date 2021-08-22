@@ -9,7 +9,7 @@ import Login from "@components/auth/Login.vue";
 import Register from "@components/auth/Register.vue";
 import ErrorPage from "@components/error/ErrorPage.vue";
 import EventDetails from "@components/dashboard/event_details/EventDetails.vue";
-import EventsList from "@components/dashboard/EventsList.vue";
+import EventsList from "@/components/dashboard/event/EventsList.vue";
 import { AlertModel } from "@/models/Alert";
 import { EnumAlertType } from "@/enums/EnumAlertType";
 import AlertCallbacks from "@/utils/alertCallbacks";
