@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-4">
+	<div class="my-8">
 		<v-chip
 			class="mr-2 font-weight-bold"
 			color="deep-purple"
