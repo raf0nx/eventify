@@ -18,6 +18,16 @@ class EventsController extends Controller {
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id) {
+        return new EventCollection(Event::findOrFail($id));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\CreateEventRequest  $request

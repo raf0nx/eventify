@@ -45,6 +45,23 @@ class EventControllerTest extends TestCase {
         $response->assertCreated();
     }
 
+    public function test_get_event() {
+        // Arrange
+        $user = TestCase::createUser();
+        $event = TestCase::createEvent()->first();
+
+        // Act
+        $response = $this->actingAs($user)->get('/api/events/' . $event->id, ['id' => $event->id]);
+
+        // Assert
+        $response->assertOk();
+        $response->assertJson(function (AssertableJson $json) use ($event) {
+            $json->where('id', $event->id)
+                ->where('name', $event->name)
+                ->etc();
+        });
+    }
+
     public function test_update_event() {
         // Arrange
         $user = TestCase::createUser();
@@ -54,7 +71,7 @@ class EventControllerTest extends TestCase {
         $response = $this->actingAs($user)->patch('/api/events/' . $event->id, ['name' => Str::random(), 'description' => Str::random(80), 'image' => $event->image, 'start_datetime' => $event->start_datetime, 'id' => $event->id]);
 
         // Assert
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_delete_event() {
@@ -66,7 +83,7 @@ class EventControllerTest extends TestCase {
         $response = $this->actingAs($user)->delete('/api/events/' . $event->id, ['id' => $event->id]);
 
         // Assert
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function test_required_fields_for_event_creation() {
