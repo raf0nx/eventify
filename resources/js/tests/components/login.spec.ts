@@ -76,7 +76,7 @@ describe("Login.vue", () => {
         );
     });
 
-    it("Should fail loggin in user", async () => {
+    it("Should fail logging in user", async () => {
         // Arrange
         const error = {
             response: {

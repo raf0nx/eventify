@@ -5,6 +5,11 @@ import moment from "moment";
 import Event from "@/components/dashboard/event/Event.vue";
 import { Event as EventMock } from "@/tests/constans/Event";
 
+const route = {
+    name: "Event",
+    id: 1
+};
+
 describe("Event.vue", () => {
     const localVue = createLocalVue();
     let wrapper: Wrapper<Event>;
@@ -17,6 +22,11 @@ describe("Event.vue", () => {
             vuetify,
             propsData: {
                 event: EventMock
+            },
+            mocks: {
+                $route: {
+                    params: route
+                }
             }
         });
     });
@@ -54,5 +64,15 @@ describe("Event.vue", () => {
 
         // Assert
         expect(startTimeFormatted).toEqual(expectedTime);
+    });
+
+    it("Should change route to event details", async () => {
+        // Act
+        // @ts-ignore
+        await wrapper.vm.goToEventDetails();
+
+        // Assert
+        // @ts-ignore
+        expect(wrapper.vm.$route.params).toEqual(route);
     });
 });

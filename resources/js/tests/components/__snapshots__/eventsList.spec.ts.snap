@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventsList.vue Should match snapshot 1`] = `
+"<v-col-stub cols=\\"9\\" tag=\\"div\\">
+  <v-dialog-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" maxwidth=\\"750px\\" origin=\\"center center\\" retainfocus=\\"true\\" transition=\\"dialog-top-transition\\" width=\\"auto\\">
+    <event-stepper-stub></event-stepper-stub>
+  </v-dialog-stub>
+  <v-sheet-stub elevation=\\"6\\" height=\\"60\\" tag=\\"div\\" class=\\"mt-4 d-flex align-center rounded-lg justify-space-between\\">
+    <div class=\\"headline grey--text text--darken-4 font-weight-bold ml-6\\">
+      Discover events
+    </div>
+    <v-tabs-stub color=\\"deep-purple\\" activeclass=\\"\\" nexticon=\\"$next\\" previcon=\\"$prev\\" slidersize=\\"2\\" class=\\"flex-grow-0 flex-shrink-0 mr-6\\">
+      <v-tab-stub ripple=\\"true\\" class=\\"font-weight-bold\\">Starting soon</v-tab-stub>
+      <v-tab-stub ripple=\\"true\\" class=\\"font-weight-bold\\">Most popular</v-tab-stub>
+      <v-tab-stub ripple=\\"true\\" class=\\"font-weight-bold\\">This week</v-tab-stub>
+    </v-tabs-stub>
+  </v-sheet-stub>
+  <action-chips-stub></action-chips-stub>
+  <v-row-stub tag=\\"div\\" class=\\"\\">
+    <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
+    <event-stub event=\\"Lorem ipsum dolor sit amet, consectetur adip\\"></event-stub>
+    <event-stub event=\\"image.png\\"></event-stub>
+    <event-stub event=\\"1\\"></event-stub>
+    <event-stub event=\\"event\\"></event-stub>
+    <event-stub event=\\"2021-01-01\\"></event-stub>
+    <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
+    <event-stub event=\\"1\\"></event-stub>
+  </v-row-stub>
+</v-col-stub>"
+`;

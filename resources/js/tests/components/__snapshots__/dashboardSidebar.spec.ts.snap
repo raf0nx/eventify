@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardSidebar.vue Should match snapshot 1`] = `
+"<v-card-stub loaderheight=\\"4\\" tag=\\"div\\" elevation=\\"4\\" tile=\\"true\\" class=\\"dashboard__sidebar\\">
+  <v-list-stub tag=\\"div\\" flat=\\"true\\" class=\\"px-4\\">
+    <v-card-title-stub class=\\"headline font-weight-bold px-0 py-1\\">Events</v-card-title-stub>
+    <v-autocomplete-stub color=\\"deep-purple\\" errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" appendicon=\\"$dropdown\\" backgroundcolor=\\"\\" dense=\\"true\\" loaderheight=\\"2\\" clearicon=\\"$clear\\" filled=\\"true\\" placeholder=\\"Search for events\\" prependinnericon=\\"mdi-magnify\\" rounded=\\"true\\" type=\\"text\\" valuecomparator=\\"[Function]\\" nodatatext=\\"$vuetify.noDataText\\" items=\\"\\" itemcolor=\\"primary\\" itemdisabled=\\"disabled\\" itemtext=\\"text\\" itemvalue=\\"value\\" menuprops=\\"[object Object]\\" allowoverflow=\\"true\\" filter=\\"[Function]\\" class=\\"mt-2\\"></v-autocomplete-stub>
+    <v-divider-stub></v-divider-stub>
+    <v-list-item-group-stub activeclass=\\"deep-purple--text text--darken-4\\" multiple=\\"true\\" tag=\\"div\\" class=\\"pt-2 pb-16\\">
+      <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+      <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+      <v-list-group-stub color=\\"primary\\" activeclass=\\"\\" appendicon=\\"$expand\\" prependicon=\\"mdi-map-marker\\" ripple=\\"true\\">
+        <v-autocomplete-stub color=\\"deep-purple\\" errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" appendicon=\\"$dropdown\\" backgroundcolor=\\"\\" dense=\\"true\\" hidedetails=\\"true\\" loaderheight=\\"2\\" clearicon=\\"$clear\\" filled=\\"true\\" placeholder=\\"Select a city\\" prependinnericon=\\"mdi-magnify\\" rounded=\\"true\\" type=\\"text\\" valuecomparator=\\"[Function]\\" nodatatext=\\"$vuetify.noDataText\\" items=\\"\\" itemcolor=\\"primary\\" itemdisabled=\\"disabled\\" itemtext=\\"text\\" itemvalue=\\"value\\" menuprops=\\"[object Object]\\" allowoverflow=\\"true\\" filter=\\"[Function]\\" class=\\"px-4 py-2\\"></v-autocomplete-stub>
+      </v-list-group-stub>
+      <v-list-group-stub color=\\"primary\\" activeclass=\\"\\" appendicon=\\"$expand\\" prependicon=\\"mdi-calendar\\" ripple=\\"true\\">
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+      </v-list-group-stub>
+      <v-list-group-stub color=\\"primary\\" activeclass=\\"\\" appendicon=\\"$expand\\" prependicon=\\"mdi-format-list-bulleted\\" ripple=\\"true\\">
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" tag=\\"div\\"></v-list-item-stub>
+      </v-list-group-stub>
+    </v-list-item-group-stub>
+  </v-list-stub>
+</v-card-stub>"
+`;

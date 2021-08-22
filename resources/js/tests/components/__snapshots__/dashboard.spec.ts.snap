@@ -2,45 +2,14 @@
 
 exports[`Dashboard.vue Should match snapshot 1`] = `
 "<v-main-stub tag=\\"main\\" class=\\"dashboard\\">
-  <v-dialog-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" maxwidth=\\"750px\\" origin=\\"center center\\" retainfocus=\\"true\\" transition=\\"dialog-top-transition\\" width=\\"auto\\">
-    <event-stepper-stub></event-stepper-stub>
-  </v-dialog-stub>
   <div class=\\"container-fluid\\">
-    <v-row-stub tag=\\"div\\">
-      <v-col-stub cols=\\"4\\" tag=\\"div\\">
-        <v-spacer-stub></v-spacer-stub>
+    <v-row-stub tag=\\"div\\" class=\\"pr-4\\">
+      <v-col-stub cols=\\"3\\" tag=\\"div\\">
+        <dashboard-sidebar-stub></dashboard-sidebar-stub>
       </v-col-stub>
-      <v-col-stub cols=\\"4\\" tag=\\"div\\">
-        <div class=\\"display-2 mt-4 grey--text text--darken-4\\">
-          Events
-        </div>
-        <action-chips-stub></action-chips-stub>
-        <div>
-          <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"Lorem ipsum dolor sit amet, consectetur adip\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"image.png\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"1\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"event\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"2021-01-01\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"Fri Jan 01 2021 01:00:00 GMT+0100 (Central European Standard Time)\\"></event-stub>
-        </div>
-        <div>
-          <event-stub event=\\"1\\"></event-stub>
-        </div>
-      </v-col-stub>
-      <v-col-stub cols=\\"4\\" tag=\\"div\\"></v-col-stub>
+      <transition-stub name=\\"scale\\" mode=\\"out-in\\">
+        <router-view-stub name=\\"default\\"></router-view-stub>
+      </transition-stub>
     </v-row-stub>
   </div>
 </v-main-stub>"
