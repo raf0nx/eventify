@@ -96,7 +96,7 @@
 				await AuthService.loginUser(this.formData);
 				const authUser = await AuthModule.getAuthUser();
 				authUser
-					? this.$router.push({ name: "Dashboard" })
+					? this.$router.push({ name: "EventsList" })
 					: UtilsModule.setSnackbar(
 							new SnackbarModel()
 								.setShowSnackbar(true)

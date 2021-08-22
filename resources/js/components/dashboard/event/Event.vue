@@ -8,69 +8,94 @@
 			min-height="240"
 			transition="fade-transition"
 		>
-			<v-card class="rounded-lg" elevation="8" max-height="480">
-				<router-link :to="{ name: 'event', params: { id: event.id } }">
+			<v-hover v-slot="{ hover }">
+				<v-card
+					ripple
+					class="rounded-lg"
+					:elevation="hover ? 12 : 4"
+					max-height="480"
+					@click="goToEventDetails()"
+				>
 					<v-img
 						lazy-src="https://picsum.photos/id/11/10/6"
 						src="https://picsum.photos/id/11/500/300"
 						max-height="200"
 						class="rounded-t-lg"
 					></v-img>
-				</router-link>
 
-				<v-card-subtitle class="pb-0">
-					{{ eventStartDate }} at {{ eventStartTime }}
-				</v-card-subtitle>
+					<v-card-subtitle class="pb-0">
+						{{ eventStartDate }} at {{ eventStartTime }}
+					</v-card-subtitle>
 
-				<v-card-title class="font-weight-bold">
-					<router-link
-						:to="{ name: 'event', params: { id: event.id } }"
-						class="black--text text-decoration-none"
-						>{{ event.name }}</router-link
-					>
-				</v-card-title>
+					<v-card-title class="font-weight-bold">
+						<router-link
+							:to="{ name: 'Event', params: { id: event.id } }"
+							class="
+								event__link
+								black--text
+								text-decoration-none text-truncate
+							"
+							>{{ event.name }}</router-link
+						>
+					</v-card-title>
 
-				<v-card-text>
-					<v-tooltip top max-width="320">
-						<template v-slot:activator="{ on, attrs }">
-							<div class="text-truncate" v-on="on" v-bind="attrs">
-								{{ event.description }}
-							</div>
-						</template>
-						<p class="text-justify mb-0">{{ event.description }}</p>
-					</v-tooltip>
-					<div class="pt-4">
-						{{ event.users.length }} interested &bull; 0 going
-					</div>
-				</v-card-text>
-
-				<v-card-actions class="pt-2 pb-4">
-					<v-btn color="deep-purple" text>
-						<v-icon left>mdi-star</v-icon>
-						Interested
-					</v-btn>
-					<v-btn
-						color="deep-purple"
-						class="white--text font-weight-bold"
-					>
-						<v-icon left>mdi-check-circle</v-icon>
-						Going
-					</v-btn>
-
-					<v-spacer></v-spacer>
-
-					<v-btn icon>
-						<v-tooltip top>
+					<v-card-text>
+						<v-tooltip bottom max-width="320">
 							<template v-slot:activator="{ on, attrs }">
-								<v-icon v-on="on" v-bind="attrs"
-									>mdi-heart</v-icon
+								<div
+									class="text-truncate"
+									v-on="on"
+									v-bind="attrs"
 								>
+									{{ event.description }}
+								</div>
 							</template>
-							<span>Add to favourites</span>
+							<p class="text-justify mb-0">
+								{{ event.description }}
+							</p>
 						</v-tooltip>
-					</v-btn>
-				</v-card-actions>
-			</v-card>
+						<div class="pt-4">
+							{{ event.users.length }} interested &bull; 0 going
+						</div>
+					</v-card-text>
+
+					<v-card-actions class="pt-2 pb-4">
+						<v-btn
+							@click.stop="() => true"
+							color="deep-purple"
+							text
+						>
+							<v-icon left>mdi-star</v-icon>
+							Interested
+						</v-btn>
+						<v-btn
+							@click.stop="() => true"
+							color="deep-purple"
+							class="white--text font-weight-bold"
+						>
+							<v-icon left>mdi-check-circle</v-icon>
+							Going
+						</v-btn>
+
+						<v-spacer></v-spacer>
+
+						<v-btn icon>
+							<v-tooltip top>
+								<template v-slot:activator="{ on, attrs }">
+									<v-icon
+										@click.stop="() => true"
+										color="red accent-2"
+										v-on="on"
+										v-bind="attrs"
+										>mdi-heart-outline</v-icon
+									>
+								</template>
+								<span>Add to favourites</span>
+							</v-tooltip>
+						</v-btn>
+					</v-card-actions>
+				</v-card>
+			</v-hover>
 		</v-lazy>
 	</v-col>
 </template>
@@ -95,8 +120,24 @@
 		get eventStartTime(): string {
 			return moment(this.event.start_datetime).format("h a");
 		}
+
+		goToEventDetails(): void {
+			setTimeout(() => {
+				this.$router.push({
+					name: "Event",
+					params: { id: String(this.event.id) },
+				});
+			}, 200);
+		}
 	}
 </script>
 
-<style>
+<style scoped>
+	.event__link {
+		border-bottom: 2px solid white;
+		transition: border-bottom linear 0.5s;
+	}
+	.event__link:hover {
+		border-bottom: 2px solid black;
+	}
 </style>

@@ -9,6 +9,7 @@ import Login from "@components/auth/Login.vue";
 import Register from "@components/auth/Register.vue";
 import ErrorPage from "@components/error/ErrorPage.vue";
 import EventDetails from "@components/dashboard/event_details/EventDetails.vue";
+import EventsList from "@components/dashboard/EventsList.vue";
 import { AlertModel } from "@/models/Alert";
 import { EnumAlertType } from "@/enums/EnumAlertType";
 import AlertCallbacks from "@/utils/alertCallbacks";
@@ -20,13 +21,21 @@ const routes: Array<RouteConfig> = [
         path: "/",
         component: Dashboard,
         name: "Dashboard",
-        meta: { requiresAuth: true }
-    },
-    {
-        path: "/event/:id",
-        component: EventDetails,
-        name: "event",
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: true },
+        children: [
+            {
+                path: "/events",
+                component: EventsList,
+                name: "EventsList",
+                meta: { requiresAuth: true }
+            },
+            {
+                path: "/event/:id",
+                component: EventDetails,
+                name: "Event",
+                meta: { requiresAuth: true }
+            }
+        ]
     },
     {
         path: "/auth",
@@ -68,11 +77,15 @@ router.beforeEach(async (to, _, next) => {
     const authenticatedUser =
         AuthModule.authUser ?? (await AuthModule.getAuthUser());
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        authenticatedUser ? next() : next({ name: "Login" });
+        authenticatedUser
+            ? to.name === "Dashboard"
+                ? next({ name: "EventsList" })
+                : next()
+            : next({ name: "Login" });
     } else {
         to.matched.some(record => record.meta.preventAuthUser) &&
         authenticatedUser
-            ? next({ name: "Dashboard" })
+            ? next({ name: "EventsList" })
             : next();
     }
 });

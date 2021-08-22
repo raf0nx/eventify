@@ -120,7 +120,7 @@
 			UtilsModule.setLoader(true);
 			try {
 				await AuthService.registerUser(this.formData);
-				this.$router.push({ name: "Dashboard" });
+				this.$router.push({ name: "EventsList" });
 			} catch (error) {
 				const errorsData = error.response.data.errors;
 				this.$refs.form.setErrors({

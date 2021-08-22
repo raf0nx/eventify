@@ -12,7 +12,7 @@
 			<v-progress-circular indeterminate size="64"></v-progress-circular>
 		</v-overlay>
 		<transition name="scale" mode="out-in" appear>
-			<router-view></router-view>
+			<router-view />
 		</transition>
 	</v-app>
 </template>
