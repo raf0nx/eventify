@@ -7,19 +7,23 @@ class EventService {
         return axios.get("/api/events");
     }
 
+    getEvent(eventID: number): Promise<AxiosResponse<EventModel>> {
+        return axios.get(`/api/events/${eventID}`);
+    }
+
     createEvent(eventData: EventModel): Promise<AxiosResponse<void>> {
         return axios.post("/api/events", eventData);
     }
 
     updateEvent(
         eventData: EventModel,
-        eventId: number
+        eventID: number
     ): Promise<AxiosResponse<void>> {
-        return axios.patch(`/api/events/${eventId}`, eventData);
+        return axios.patch(`/api/events/${eventID}`, eventData);
     }
 
-    deleteEvent(eventId: number): Promise<AxiosResponse<void>> {
-        return axios.delete(`/api/events/${eventId}`);
+    deleteEvent(eventID: number): Promise<AxiosResponse<void>> {
+        return axios.delete(`/api/events/${eventID}`);
     }
 }
 

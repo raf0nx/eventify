@@ -19,6 +19,15 @@ describe("Event Service", () => {
         await expect(EventService.getEvents()).resolves.toEqual(Event);
     });
 
+    it("Should get event from API", async () => {
+        // Act
+        // @ts-ignore
+        axios.get.mockImplementationOnce(() => Promise.resolve(Event));
+
+        // Assert
+        await expect(EventService.getEvent(Event.id)).resolves.toEqual(Event);
+    });
+
     it("Should create an event", async () => {
         // Arrange
         const eventData = {
