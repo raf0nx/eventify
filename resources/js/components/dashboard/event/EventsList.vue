@@ -1,5 +1,5 @@
 <template>
-	<v-col cols="9">
+	<v-col cols="9" class="py-0 pr-0">
 		<v-dialog
 			v-model="showDialog"
 			max-width="750px"

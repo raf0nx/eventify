@@ -1,13 +1,13 @@
 <template>
 	<v-main class="dashboard">
-		<div class="container-fluid">
-			<v-row class="pr-4">
-				<v-col cols="3"><dashboard-sidebar /></v-col>
+		<v-container fluid>
+			<v-row class="pr-4 flex-nowrap">
+				<v-col cols="3" class="py-0 pl-0"><dashboard-sidebar /></v-col>
 				<transition name="scale" mode="out-in">
 					<router-view />
 				</transition>
 			</v-row>
-		</div>
+		</v-container>
 	</v-main>
 </template>
 
