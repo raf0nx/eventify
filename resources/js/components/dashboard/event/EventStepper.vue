@@ -285,7 +285,7 @@
 						.setMessage(
 							errorsData.hasOwnProperty("start_datetime")
 								? errorsData.start_datetime[0]
-								: "Couldn't create your event. Perhaps you have some errors in the form. If no, reload the page and try again."
+								: "Couldn't create your event. Perhaps you have some errors in the form or your session expired."
 						)
 						.setIcon(EnumSnackbarIcon.ERROR)
 						.setColor(EnumSnackbarColor.ERROR)

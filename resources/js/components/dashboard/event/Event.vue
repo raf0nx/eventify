@@ -40,20 +40,9 @@
 					</v-card-title>
 
 					<v-card-text>
-						<v-tooltip bottom max-width="320">
-							<template v-slot:activator="{ on, attrs }">
-								<div
-									class="text-truncate"
-									v-on="on"
-									v-bind="attrs"
-								>
-									{{ event.description }}
-								</div>
-							</template>
-							<p class="text-justify mb-0">
-								{{ event.description }}
-							</p>
-						</v-tooltip>
+						<div class="text-truncate">
+							{{ event.description }}
+						</div>
 						<div class="pt-4">
 							{{ event.users.length }} interested &bull; 0 going
 						</div>

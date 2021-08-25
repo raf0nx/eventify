@@ -30,7 +30,7 @@ const routes: Array<RouteConfig> = [
                 meta: { requiresAuth: true }
             },
             {
-                path: "/event/:id",
+                path: "/events/:id",
                 component: EventDetails,
                 name: "Event",
                 meta: { requiresAuth: true }

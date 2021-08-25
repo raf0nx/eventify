@@ -22,7 +22,7 @@ class EventFactory extends Factory {
     public function definition(): array{
         return [
             'name' => $this->faker->unique()->word,
-            'description' => $this->faker->text(100),
+            'description' => $this->faker->text(2000),
             'image' => 'image.png',
             'start_datetime' => $this->faker->dateTimeBetween('now', '+5 years'),
         ];

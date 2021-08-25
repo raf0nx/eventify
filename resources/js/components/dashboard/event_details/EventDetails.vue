@@ -101,9 +101,21 @@
 									>
 								</v-list-item>
 							</v-list>
-							<v-card-text class="pt-2">{{
-								event.description
-							}}</v-card-text>
+							<v-card-text
+								class="
+									details__description
+									pt-2
+									px-6
+									text-justify
+								"
+							>
+								<vue-show-more-text
+									:text="event.description"
+									:lines="4"
+									additional-container-css="padding: 0;"
+									additional-anchor-css="text-align: center; color: #673ab7; margin: 0 auto; width: fit-content;"
+								/>
+							</v-card-text>
 						</v-card>
 					</v-col>
 					<v-col cols="5">
@@ -296,9 +308,21 @@
 									>
 								</v-list-item>
 							</v-list>
-							<v-card-text class="pt-2">{{
-								event.description
-							}}</v-card-text>
+							<v-card-text
+								class="
+									details__description
+									pt-2
+									px-6
+									text-justify
+								"
+							>
+								<vue-show-more-text
+									:text="event.description"
+									:lines="4"
+									additional-container-css="padding: 0;"
+									additional-anchor-css="text-align: center; color: #673ab7; margin: 0 auto; width: fit-content;"
+								/>
+							</v-card-text>
 						</v-card>
 					</v-col>
 				</v-row>
@@ -310,18 +334,25 @@
 <script lang="ts">
 	import { Vue, Component } from "vue-property-decorator";
 	import moment from "moment";
+	// @ts-ignore
+	import vueShowMoreText from "vue-show-more-text";
 
 	import { Event as EventModel } from "@/models/Event";
 	import EventService from "@/services/EventService";
 
-	@Component
+	@Component({ components: { vueShowMoreText } })
 	export default class EventDetails extends Vue {
 		eventID: number | null = null;
-		event: EventModel | null = null;
+		event: EventModel = {
+			name: "",
+			description: "",
+			start_datetime: "",
+			users: [],
+		};
 		currentTab = 0;
 
 		get formattedEventDate(): string {
-			return moment(this.event?.start_datetime)
+			return moment(this.event.start_datetime)
 				.format("dddd, D MMMM YYYY AT HH:mm UTC+02")
 				.toUpperCase();
 		}
@@ -330,12 +361,15 @@
 			this.eventID = +this.$route.params.id;
 
 			const response = await EventService.getEvent(this.eventID);
-			this.event = response.data;
+			Object.assign(this.event, response.data);
 		}
 	}
 </script>
 
 <style>
+	.details .details__description {
+		max-width: fit-content;
+	}
 	.details .details__activityButton {
 		flex: 1 0 50%;
 	}

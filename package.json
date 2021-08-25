@@ -48,6 +48,7 @@
         "vee-validate": "^3.4.5",
         "vue-property-decorator": "^9.1.2",
         "vue-router": "^3.5.1",
+        "vue-show-more-text": "^2.0.2",
         "vuetify": "^2.4.10",
         "vuex": "^3.6.2"
     }
