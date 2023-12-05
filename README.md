@@ -12,6 +12,10 @@ Unfortunately, `Eventify` is now abandoned and deprecated. As a result, no furth
 -   **Create Your Own Events:** Plan and organize your events, customizing details to suit your preferences.
 -   **Invite Friends (not implemented):** Invite your friends to join your events and have the fun together.
 
+## Authentication
+
+`Eventify` features authentication using Laravel Sanctum. Additionally, new accounts are subject to email verification for enhanced security.
+
 ## Getting Started
 
 To explore the codebase:
